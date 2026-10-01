@@ -1,0 +1,231 @@
+/* ==========================================================================
+   SOFIA · Modal (desktop 800 + mobile 360)
+   Figma: CATCPGSOAIUuXcPBLDY1dK · sección 4060:4860 "Desktop_ modal"
+          (frames "Modal" 1366x772 con "Modal_basic" 800 centrado) + instancia 4321:19656 "Modal Mobile".
+   Estructura propia (.sofia-modal / .sofia-modal-mobile): el modal EVA (.eva-3-modal) no coincide con el
+   Figma (ancho 690/400, título 20px, header padding 20 20 0, footer con border-top, margin-top 80px en vez de
+   centrado vertical, overlay rgba(0,0,0,.8)). Los átomos internos SÍ son EVA: eva-3-btn / eva-3-btn-ghost,
+   eva-3-tag, eva-3-tabs y el ícono eva-3-icon-cross.
+   ========================================================================== */
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · modal». */
+
+/* ── Overlay desktop (dimmer del frame "Modal") ─────────────────────────────
+   En la app va position: fixed sobre el viewport; acá es absolute para que la
+   preview/galería lo contenga dentro de su stage. */
+.sofia-modal-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--sofia-modal-overlay-desktop);
+}
+
+/* ── Modal desktop ─────────────────────────────────────────────────────────── */
+.sofia-modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--sofia-modal-width);
+  border-radius: var(--sofia-radius-lg);
+  overflow: hidden;
+  background: var(--sofia-bg-low);
+}
+
+.sofia-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: var(--sofia-bs-spacing-header-v) var(--sofia-bs-spacing-header-h);
+  background: var(--sofia-bg-low);
+}
+
+/* Title L (H2) · Medium 32/40 — usado en las variantes con tabs y tags */
+.sofia-modal__title {
+  margin: 0;
+  color: var(--sofia-bs-color-title);
+  font-size: var(--sofia-type-title-l-size);
+  line-height: var(--sofia-type-title-l-lh);
+  font-weight: var(--sofia-weight-medium);
+  letter-spacing: var(--sofia-type-title-l-ls, -0.002em); /* Figma: -0.2% de 32px */
+  white-space: nowrap;
+}
+
+/* Variante básica: Title M (H3) · Medium 24/30 → header de 70px */
+.sofia-modal--basic .sofia-modal__title {
+  font-size: var(--sofia-type-title-m-size);
+  line-height: var(--sofia-type-title-m-lh);
+  letter-spacing: var(--sofia-type-title-m-ls);
+}
+
+/* Close Button Container 20x20 con el ícono cross de 24px centrado (desborda 2px por lado, igual que Figma) */
+.sofia-modal__close {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--sofia-radius-md);
+  background: none;
+  color: var(--sofia-text-high);
+  cursor: pointer;
+  overflow: visible;
+}
+.sofia-modal__close > [class*="eva-3-icon-"] {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* Tabs · EVA .eva-3-tabs.-no-stroke (Tab Container Desktop, 6 tabs)
+   Ajuste mínimo: EVA suma 52px de ítem + 1px de borde inferior (53px); en Figma el Tab Container mide 52px
+   con el borde por dentro. Se baja el ítem a 51px para respetar el alto total del modal (460px) y se aplica
+   el "padding superior 4px" del Tab Label (spec EVA en Figma) para que el texto quede a la misma altura. */
+.sofia-modal__tabs .tabs-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sofia-modal__tabs .tabs-nav-item {
+  height: 51px;
+  padding-top: 4px;
+  line-height: 47px;
+}
+
+/* Fila de tags · Frame 2610590: gap 8, padding lateral 20 */
+.sofia-modal__tags {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0 var(--sofia-bs-spacing-header-h);
+  overflow: hidden;
+  background: var(--sofia-bg-low);
+}
+/* Ajuste mínimo sobre EVA .eva-3-tag: EVA trae margin 0 8px 8px 0 y alto 36px; el Tag del Figma (y su spec EVA)
+   mide 32px y el espaciado lo da el gap de la fila. */
+.sofia-modal__tags .eva-3-tag {
+  flex-shrink: 0;
+  height: 32px;
+  margin: 0;
+}
+
+/* Content · padding 10px vertical; horizontal según variante (16 básica / 8 tabs / 20 tags) */
+.sofia-modal__body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sofia-modal-content-pv) 16px;
+  background: var(--sofia-bg-low);
+}
+.sofia-modal--tabs .sofia-modal__body { padding-left: 8px; padding-right: 8px; }
+.sofia-modal--tags .sofia-modal__body { padding-left: var(--sofia-bs-spacing-header-h); padding-right: var(--sofia-bs-spacing-header-h); }
+
+/* Placeholder "[Put content here]" — reemplazar por el contenido real */
+.sofia-modal__slot {
+  width: 100%;
+  height: var(--sofia-modal-slot-height);
+  background: var(--sofia-bs-bg-section);
+}
+
+/* Action Container · alto 66, borde superior divider, CTAs a la derecha con gap 12 */
+.sofia-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sofia-bs-cta-gap);
+  min-height: var(--sofia-modal-footer-height);
+  padding: var(--sofia-bs-spacing-action-v) var(--sofia-bs-spacing-header-h);
+  background: var(--sofia-bs-bg-action);
+  /* Borde superior divider como sombra inset: en Figma el stroke no ocupa espacio de layout, así los CTAs
+     quedan centrados en los 66px (con border-top real bajaban 0,5px y Chrome los redondeaba 1px más abajo).
+     + static-hover (queda recortada por el radio del modal, igual que en Figma). */
+  box-shadow: inset 0 1px 0 var(--sofia-bs-color-divider), var(--sofia-shadow-static-hover);
+}
+/* Button-contained del Figma tiene ancho fijo de 149px (texto centrado) */
+.sofia-modal__footer .sofia-modal__primary {
+  min-width: 149px;
+}
+
+/* ── Modal mobile (Modal Mobile · Small (Overlay)) ─────────────────────────── */
+.sofia-modal-mobile {
+  position: absolute; /* en la app: fixed sobre el viewport */
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--sofia-modal-overlay-mobile);
+}
+
+.sofia-modal-mobile__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sofia-modal-mobile-gap);
+  width: 100%;
+  border-radius: var(--sofia-radius-lg);
+  background: var(--sofia-bg-low);
+}
+
+/* Modal header base · padding 20, gap 20 */
+.sofia-modal-mobile__header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: var(--sofia-radius-lg) var(--sofia-radius-lg) 0 0;
+  background: var(--sofia-bg-low);
+}
+
+/* Title S (H4) · Medium 20/28 */
+.sofia-modal-mobile__title {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  color: var(--sofia-text-high);
+  font-size: var(--sofia-type-title-s-size);
+  line-height: var(--sofia-type-title-s-lh);
+  font-weight: var(--sofia-weight-medium);
+}
+
+.sofia-modal-mobile__close {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sofia-text-high);
+  cursor: pointer;
+}
+.sofia-modal-mobile__close > [class*="eva-3-icon-"] {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* Modal body base · padding lateral 20, Body L (Body 1) 16/24 Neutral-700 */
+.sofia-modal-mobile__body {
+  padding: 0 20px;
+}
+.sofia-modal-mobile__text {
+  margin: 0;
+  color: var(--sofia-text-medium);
+  font-size: var(--sofia-type-body-l-size);
+  line-height: var(--sofia-type-body-l-lh);
+  font-weight: var(--sofia-weight-regular);
+}
+
+/* Modal bottom base · padding 20, CTA a la derecha */
+.sofia-modal-mobile__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  border-radius: 0 0 var(--sofia-radius-lg) var(--sofia-radius-lg);
+  background: var(--sofia-bg-low);
+}

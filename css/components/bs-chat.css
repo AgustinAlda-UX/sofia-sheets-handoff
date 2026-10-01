@@ -1,0 +1,407 @@
+/* ==========================================================================
+   SOFIA · Bottom sheet dentro del chat (mobile 360)
+   Figma: CATCPGSOAIUuXcPBLDY1dK · sección 4055:3912 "Ejemplos y tamaños dentro del chat"
+     CHAT 4055:3915 (sin sheet) · 4055:3928 (25%) · 4055:4379 (50%) · 4055:4453 (75%)
+     · 4055:4523 (100% / modal full screen)
+
+   Este archivo agrega SOLO el shell del chat (.sofia-chat) y la posición de la sheet
+   dentro del chat (.sofia-chat__sheet + .sofia-chat__panel). Las piezas de la sheet se
+   reutilizan tal cual:
+     .sofia-overlay, .sofia-bs-header, .sofia-bs-content → css/components/bs-header.css
+     .sofia-bs-footer                                    → css/components/bs-footer.css
+
+   Estructura:
+     <div class="sofia-chat">
+       <header class="sofia-chat__header"> status bar + app bar </header>
+       <div class="sofia-chat__body"> <div class="sofia-chat__dialog"> … </div> </div>
+       <div class="sofia-chat__input"> fila de input + TyC </div>
+       <div class="sofia-chat__sheet sofia-chat__sheet--25|50|75|100">
+         <div class="sofia-overlay"></div>           (no va en --100)
+         <section class="sofia-chat__panel"> header · content · footer </section>
+       </div>
+     </div>
+
+   Piezas del chat (header / inputSofia / userDialogue): se revisaron las implementaciones
+   de sofia-components-library (header, sofia-input, user-dialog). No coinciden con las
+   instancias de este archivo (status bar con padding 8 e íconos dibujados a mano; input con
+   padding 6/12 y TyC 8/16/4; burbuja con flecha poligonal propia y avatar de 30px), así
+   que se implementan desde get_design_context de este archivo con scope .sofia-chat.
+   EVA primero: íconos eva-3-icon-arrow-bold-left / trolley / list / microphone,
+   botón del micrófono eva-3-btn -md -link -circle y avatar eva-3-avatar -image -md.
+   ========================================================================== */
+
+/* Status bar del header SOFIA: Google Sans Flex Regular 12/14 (como en Figma). Se carga el eje
+   opsz para que el tamaño óptico automático (12) coincida con el render de Figma. */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400&display=swap");
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · bs-chat». */
+
+/* ── Shell del chat ─────────────────────────────────────────────────────── */
+/* Ocupa todo el contenedor (viewport mobile). Header y input fijos, body scrolleable.
+   Orden de apilado (Figma): body < sheet 25% < input < sheet 50/75% < header < sheet 100%. */
+.sofia-chat {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--sofia-bg-low);
+}
+
+/* ── Header (instancia "header": .statusBar + .appBar · 80px) ──────────── */
+.sofia-chat__header {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+/* .statusBar · 24px, padding 4/16 (barra del sistema del dispositivo) */
+.sofia-chat__status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+  padding: 4px 16px;
+  background: var(--sofia-bg-low);
+}
+.sofia-chat__time {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--sofia-chat-status-font);
+  font-size: 12px;
+  font-weight: var(--sofia-weight-regular);
+  line-height: 14px;
+  font-variation-settings: "GRAD" 0, "ROND" 0, "wdth" 100;
+  color: var(--sofia-chat-status-color);
+  white-space: nowrap;
+}
+.sofia-chat__status-icons {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  min-width: 0;
+}
+.sofia-chat__status-group { display: flex; align-items: center; }
+.sofia-chat__status-icons img { display: block; flex-shrink: 0; }
+
+/* .appBar · padding 16, volver a la izquierda y carrito a la derecha (56px) */
+.sofia-chat__app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--sofia-chat-header-bg);
+}
+.sofia-chat__app-bar-start {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.sofia-chat__icon-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sofia-text-high);
+  cursor: pointer;
+}
+.sofia-chat__icon-btn > [class^="eva-3-icon-"] {
+  display: block;
+  font-size: 24px;
+  line-height: 24px;
+}
+.sofia-chat__icon-btn:focus-visible,
+.sofia-chat__menu:focus-visible {
+  outline: 2px solid var(--focus-color, var(--sofia-actionable-primary));
+  outline-offset: 2px;
+}
+
+/* ── Body (conversación) ────────────────────────────────────────────────── */
+/* El primer turno arranca a 24px del header (userDialogue en y=104 = 80 + 24). */
+.sofia-chat__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--sofia-bs-turn-gap);
+  min-height: 0;
+  padding: var(--sofia-bs-turn-gap) 0;
+  overflow-y: auto;
+}
+
+/* userDialogue · burbuja del usuario + cola + avatar, alineado a la derecha */
+.sofia-chat__dialog {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 0 16px;
+}
+/* .globa · 296px (fluido hacia abajo) con la burbuja pegada a la derecha */
+.sofia-chat__dialog-message {
+  display: flex;
+  flex: 0 1 296px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-width: 0;
+}
+.sofia-chat__bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 0;
+  max-width: 328px;
+  margin-right: -4px;            /* se monta 4px sobre la cola (Figma mr -4) */
+  padding: 16px;
+  border-radius: var(--sofia-radius-md);
+  background: var(--sofia-bg-medium);
+}
+/* Body M (Body 2) · Rubik Regular 14/20 · Text/Neutral/high */
+.sofia-chat__bubble-text {
+  max-width: 296px;
+  margin: 0;
+  font-size: var(--sofia-type-body-m-size);
+  font-weight: var(--sofia-weight-regular);
+  line-height: var(--sofia-type-body-m-lh);
+  letter-spacing: 0.007px;
+  color: var(--sofia-text-high);
+  text-align: right;
+}
+/* Cola de la burbuja: asset Polygon 5 de Figma (10.39×8.25) rotado 90° dentro de 11×12 */
+.sofia-chat__bubble-tail {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: flex-start;
+  align-self: stretch;
+  width: 12px;
+  padding: 16px 0;
+}
+.sofia-chat__bubble-tail-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 11px;
+  height: 12px;
+}
+.sofia-chat__bubble-tail-shape {
+  position: relative;
+  flex: none;
+  width: 12px;
+  height: 11px;
+  transform: rotate(90deg);
+}
+.sofia-chat__bubble-tail-shape > img {
+  position: absolute;
+  top: 0;
+  left: 6.7%;
+  display: block;
+}
+/* .sofia-avatar · contenedor con padding vertical 6 */
+.sofia-chat__avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 6px 0;
+  border-radius: var(--sofia-radius-sm);
+}
+/* Ajuste mínimo a EVA .eva-3-avatar.-md (30px): el Avatar Medium de Figma mide 28px.
+   La foto cubre el círculo (object-fit cover, como el fill de Figma). */
+.sofia-chat__avatar .eva-3-avatar {
+  width: var(--sofia-chat-avatar-size);
+  height: var(--sofia-chat-avatar-size);
+}
+.sofia-chat__avatar .avatar-image {
+  display: block;
+  object-fit: cover;
+}
+
+/* ── Input (instancia "inputSofia" · 108px) ─────────────────────────────── */
+.sofia-chat__input {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
+}
+/* Fila: menú + campo. Sombra "sticky" (0 −4 8 · rgba(84,89,98,.1)) hacia arriba. */
+.sofia-chat__input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 16px 8px;
+  background: var(--sofia-bg-low);
+  box-shadow: var(--sofia-shadow-sticky);
+}
+/* .Menu Button Container · 52×52, borde Neutral-400, radio large (24) */
+.sofia-chat__menu {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid var(--sofia-neutral-400);
+  border-radius: var(--sofia-radius-lg);
+  background: var(--sofia-bg-low);
+  color: var(--sofia-text-high);
+  cursor: pointer;
+}
+.sofia-chat__menu > [class^="eva-3-icon-"] {
+  display: block;
+  font-size: 20px;
+  line-height: 20px;
+}
+/* .ChatInput · pill de 52px, borde Neutral-400, padding 12 / 8 / 12 / 20.
+   En Figma el stroke (inside) no ocupa lugar en el layout: el padding horizontal se mide desde el
+   borde exterior. En CSS el borde de 1px sí suma, por eso se descuenta (19 / 7). */
+.sofia-chat__field-wrap {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  height: 52px;
+  padding: 12px 7px 12px 19px;
+  border: 1px solid var(--sofia-neutral-400);
+  border-radius: var(--sofia-radius-full);
+  background: var(--sofia-bg-low);
+}
+/* Body M · placeholder Text/Neutral/low ("Escribe tu consulta...") */
+.sofia-chat__field {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--sofia-type-body-m-size);
+  font-weight: var(--sofia-weight-regular);
+  line-height: var(--sofia-type-body-m-lh);
+  letter-spacing: 0.007px;
+  color: var(--sofia-text-high);
+}
+.sofia-chat__field::placeholder {
+  color: var(--sofia-text-low);
+  opacity: 1;
+}
+/* Micrófono: EVA Button-link Only icon Medium (eva-3-btn -md -link -circle, 36×36, ícono 16).
+   Ajuste mínimo: en Figma el ícono es Neutral-800 (EVA -link lo pinta Brand/Primary-500). */
+.sofia-chat__mic { flex-shrink: 0; }
+.sofia-chat__mic.eva-3-btn.-link .btn-icon { color: var(--sofia-text-high); }
+
+/* TyC · Rubik 10/12, Text/Neutral/low, link Medium Brand/Primary-500 */
+.sofia-chat__terms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  background: var(--sofia-chat-input-bg);
+}
+.sofia-chat__terms-text {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-size: 10px;
+  font-weight: var(--sofia-weight-regular);
+  line-height: 12px;
+  letter-spacing: 0.005px;
+  color: var(--sofia-text-low);
+  text-align: center;
+}
+.sofia-chat__terms-link {
+  font-weight: var(--sofia-weight-medium);
+  color: var(--sofia-actionable-primary);
+  text-decoration: none;
+}
+.sofia-chat__terms-link:hover { text-decoration: underline; }
+
+/* ── Sheet dentro del chat ──────────────────────────────────────────────── */
+/* Capa "bottom sheet" de Figma (Overlay + Bottom Sheet) que cubre todo el chat; el header
+   del chat queda por encima (z-index 4), así el overlay se ve desde el borde inferior del
+   header. En Figma la capa arranca en y=33 (25% / 75%) o y=80 (50%): visualmente es igual. */
+.sofia-chat__sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+/* Panel blanco "Bottom Sheet": anclado abajo, radio superior 24 (large), recorta header y footer. */
+.sofia-chat__panel {
+  position: absolute;
+  right: 0;
+  bottom: var(--sofia-chat-sheet-bottom, 0px);
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: var(--sofia-bs-bg-sheet);
+  border-radius: var(--sofia-radius-lg) var(--sofia-radius-lg) 0 0;
+  overflow: hidden;
+}
+.sofia-chat__panel > * { flex-shrink: 0; }
+/* Content de la sheet: reutiliza .sofia-bs-content; el alto sale de --sofia-bs-content-height
+   (ver cada tamaño) y el padding es el del frame Content de cada ejemplo. */
+.sofia-chat__panel > .sofia-bs-content {
+  padding: var(--sofia-chat-sheet-body-padding);
+}
+/* [Put content here]: placeholder gris BS/bg/section que ocupa todo el Content. */
+.sofia-chat__placeholder {
+  flex: 1 0 0;
+  min-height: 1px;
+  width: 100%;
+  background: var(--sofia-bs-bg-section);
+}
+
+/* 25% (4055:3928): sheet de 160px que queda DEBAJO del input (z-index 1 < input 2):
+   asoman header + inicio del contenido (86px visibles sobre el input). Content 179px con
+   padding 10/8; el resto (y el Action Container, vacío en Figma) queda recortado. */
+.sofia-chat__sheet--25 {
+  z-index: 1;
+  --sofia-chat-sheet-bottom: 34px;
+  --sofia-bs-content-height: 179px;
+  --sofia-chat-sheet-body-padding: 10px 8px;
+}
+.sofia-chat__sheet--25 .sofia-chat__panel { height: 160px; }
+
+/* 50% (4055:4379): header 56 + content 224 + footer 68 = 348px, por encima del input.
+   En Figma la sheet sobresale 2.5px por debajo del frame (queda recortada). */
+.sofia-chat__sheet--50 {
+  --sofia-chat-sheet-bottom: -2.5px;
+  --sofia-bs-content-height: 224px;
+}
+
+/* 75% (4055:4453): header 56 + content 432 + footer 68 = 556px, por encima del input.
+   En Figma sobresale 1px por debajo del frame. */
+.sofia-chat__sheet--75 {
+  --sofia-chat-sheet-bottom: -1px;
+  --sofia-bs-content-height: 432px;
+}
+
+/* 100% (4055:4523) · modal full screen: la sheet ocupa todo el chat (incluido el header),
+   sin overlay ni handle. Content 606px y el Action Container toma el resto (flex 1 → 96px,
+   con el CTA centrado verticalmente). */
+.sofia-chat__sheet--100 {
+  z-index: 5;
+  --sofia-bs-content-height: 606px;
+}
+.sofia-chat__sheet--100 .sofia-chat__panel { top: 0; }
+.sofia-chat__sheet--100 .sofia-chat__panel > .sofia-bs-footer { flex: 1 0 auto; }

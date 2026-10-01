@@ -1,0 +1,112 @@
+{
+  "group": "forms-trip",
+  "title": "Widget persistente · Tu viaje (start_package)",
+  "category": "forms",
+  "order": 40,
+  "css": "css/components/forms-trip.css",
+  "figmaSection": "4181:27790",
+  "description": "Modelo de persistencia → caso widget persistente (4181:27792). Widget \"bottomsheet pack\" que arma el paquete (destino + vuelos + alojamiento) y muestra el costo total. Flujo en Figma: \"Sofia responde con la start_package Se levanta automaticamente el widget\" (4181:28208) → \"El widget se colapsa y permeance persistido\" (4181:28209). Expandido: card flotante en desktop (567) o bottom sheet con scrim en mobile (360). Colapsado: peek bar con el precio, los íconos de estado por producto y el chevron para volver a expandir. Botones e íconos son EVA (eva-3-btn -link -circle / -primary, eva-3-icon-*).",
+  "variants": [
+    {
+      "id": "trip-desktop-expanded-start",
+      "name": "bottomsheet pack · Desktop · Expandido · Solo destino",
+      "figmaNodeId": "4181:28046",
+      "file": "trip-desktop-expanded-start.html",
+      "width": 567,
+      "height": 336,
+      "stage": "#ffffff",
+      "props": {
+        "Plataforma": "Desktop",
+        "Estado": "Expandido",
+        "Productos": "Destino elegido · vuelos y alojamiento pendientes"
+      },
+      "description": "Primer paso del flujo: Sofia responde con la start_package y el widget se levanta solo sobre el chat (frame start_package_expandidos 4181:27793). El destino queda elegido (borde Brand Primary + botón refresh para cambiarlo) y los productos pendientes se muestran con borde punteado y flecha para agregarlos. Íconos de estado: check (destino) + avión y hotel en gris (pendientes).",
+      "notes": "Stroke del contenedor OUTSIDE 1px Borders/medium (medido en el render de Figma: queda 1px fuera del nodo) → box-shadow 0 0 0 1px + ShadowBS 0 0 48px rgba(50,52,57,.3) (--sofia-shadow-bs-float). La preview recorta al tamaño exacto del nodo (567×336), así que ni el stroke outside ni la sombra se ven en la captura (igual que el recorte del nodo en Figma). Las filas usan stroke INSIDE. Botones de fila = EVA eva-3-btn -md -link -circle (36×36, Button-link Only icon Medium) con eva-3-icon-refresh / eva-3-icon-arrow-bold-right; CTA = EVA eva-3-btn -md -primary: <em class=\"btn-text\"> e <i class=\"btn-icon\"> van pegados, sin espacio entre tags (EVA es inline y el espacio suma ~3px vs Figma). Íconos EVA que corresponden a los SVG de Figma: checkmark-circle-filled (check), airplane-going (avión), aparthotel (hotel 16px del header), hotel-resort-ui (hotel 20px de la fila vacía), trolley, chevron-down. Los <i> de EVA no llevan clase sofia- porque base.css pisa font-family en [class*=\" sofia-\"]. Diferencias restantes: el texto de 14px de Rubik queda 1px más arriba en Chrome que en Figma (render de fuente); Chrome dibuja el borde punteado con guiones un poco más cortos (CSS no permite definir el patrón). aria-label de los botones de solo ícono agregados por accesibilidad (no es texto visible). Precio literal de Figma: \"${9.999.999,99}\".",
+      "scripts": []
+    },
+    {
+      "id": "trip-desktop-expanded-complete",
+      "name": "bottomsheet pack · Desktop · Expandido · Viaje completo (capa oculta)",
+      "figmaNodeId": "4181:27845",
+      "file": "trip-desktop-expanded-complete.html",
+      "width": 567,
+      "height": 400,
+      "stage": "#ffffff",
+      "props": {
+        "Plataforma": "Desktop",
+        "Estado": "Expandido",
+        "Productos": "Destino + vuelos + alojamiento"
+      },
+      "description": "Widget desktop con los tres productos agregados: destino, vuelo ida y vuelta (Latam, EZE ⇄ GIG) y hotel (Sheraton Hotel Río · Habitación doble). Las filas de vuelos y hotel se muestran al 80% de opacidad y cada una tiene su botón refresh.",
+      "notes": "En Figma esta instancia está OCULTA (hidden=true) dentro de los frames 4181:27793 y 4181:28047; 4181:28204 es idéntica (mismo contenido y tamaño 567×400), así que no se creó otra variante. get_screenshot de una capa oculta devuelve 1×1 px: se implementó desde get_design_context y se verificó por piezas contra 4181:28046 (header/footer) y 4181:28843/29162 (fila de vuelos). En la capa oculta el text box \"Tu viaje\" tiene ancho fijo 110px (modificador __title--w110) y los íconos de los botones de fila exportan el placeholder genérico del Icon container; se usó eva-3-icon-refresh igual que en las instancias visibles. \"Sheraton Hotel Río\" usa color negro (#000) tal como está en Figma.",
+      "scripts": []
+    },
+    {
+      "id": "trip-desktop-peek",
+      "name": "bottomsheet pack · Desktop · Colapsado (peek bar)",
+      "figmaNodeId": "4181:28205",
+      "file": "trip-desktop-peek.html",
+      "width": 360,
+      "height": 52,
+      "stage": "#ffffff",
+      "props": {
+        "Plataforma": "Desktop",
+        "Estado": "Colapsado"
+      },
+      "description": "Segundo paso del flujo: el widget se colapsa y queda persistido sobre el input del chat (frame start_package_expandidos 4181:28047). Muestra \"Tu viaje\" con el precio, los íconos de estado por producto y el chevron hacia arriba para volver a expandirlo.",
+      "notes": "El MD de referencia (\"Estado colapsado (Peek Bar)\") indica 360×36px, pero en el handoff de Figma la peek bar mide 360×52 (padding 16/20 + línea de 20px): gana el Figma del handoff. Coinciden fondo Background/Low, stroke 1px Actionable/Brand/Primary/Enabled (#4300D2) y sombra sticky 0 -4px 8px rgba(84,89,98,.1) (--sofia-shadow-sticky). En el render de Figma el stroke queda dentro del nodo a los lados pero 1px por fuera arriba y abajo (alto visual 54). Acá se dibuja inside en los 4 lados (::after) para que el borde activo se vea completo en 360×52: es la única diferencia contra el recorte del nodo. El chevron es un botón de 20×20 (reset mínimo) con eva-3-icon-chevron-up: EVA no tiene un icon-button de 20px sin padding. Texto literal de Figma: \"Tu viaje {$9.999.999}\". Íconos: 2× checkmark-circle-filled + aparthotel (pendiente, gris).",
+      "scripts": []
+    },
+    {
+      "id": "trip-mobile-expanded-flights",
+      "name": "BS-paquete · Mobile · Expandido · Vuelos agregados",
+      "figmaNodeId": "4181:28843",
+      "file": "trip-mobile-expanded-flights.html",
+      "width": 360,
+      "height": 728,
+      "stage": "#ffffff",
+      "props": {
+        "Plataforma": "Mobile",
+        "Estado": "Expandido",
+        "Productos": "Destino + vuelos · alojamiento pendiente"
+      },
+      "description": "En mobile la start_package abre el widget como bottom sheet anclado abajo (handle 40×4, stroke Brand Primary, esquinas superiores 24) sobre un scrim. Destino y vuelos agregados, alojamiento pendiente con borde punteado.",
+      "notes": "Composición .sofia-trip-sheet = scrim (Rectangle 4171: mainBg #72777F, mix-blend multiply, 30%, 612px de alto: termina sobre el input) + .sofia-trip-widget--sheet anclado al borde inferior. No es el Overlay EVA (Neutral-800 80%): es el rectángulo propio de este frame. mainBg es el token --sofia-trip-scrim-bg (css/tokens.css → «Tokens de componentes · forms-trip»). Stroke del sheet OUTSIDE 1px Brand Primary (box-shadow spread): se ve la línea superior sobre el scrim y los laterales quedan fuera del frame, igual que en Figma. Footer mobile con padding inferior 24px. En cada tramo de vuelo el botón refresh está dentro del contenedor con gap 16 (logo 48 · detalle · botón), según la metadata de Figma. Logo Latam: caja 24×24 con la imagen en top/bottom 8.33%, left 25%, right 20.83%.",
+      "scripts": []
+    },
+    {
+      "id": "trip-mobile-expanded-complete",
+      "name": "BS-paquete · Mobile · Expandido · Viaje completo",
+      "figmaNodeId": "4181:29162",
+      "file": "trip-mobile-expanded-complete.html",
+      "width": 360,
+      "height": 728,
+      "stage": "#ffffff",
+      "props": {
+        "Plataforma": "Mobile",
+        "Estado": "Expandido",
+        "Productos": "Destino + vuelos + alojamiento",
+        "CTA": "Ir a pagar"
+      },
+      "description": "Bottom sheet mobile con los tres productos resueltos (tres checks en el header) y CTA \"Ir a pagar\".",
+      "notes": "No es idéntico a 4181:28843 (cambian los íconos de estado, la tercera fila y el CTA), por eso es otra variante. En Figma la tercera fila es una fila de destino (\"Río de Janeiro, Brasil · Ago 5-12\" con la misma foto) y no la de hotel: se implementó tal cual.",
+      "scripts": []
+    },
+    {
+      "id": "trip-mobile-peek",
+      "name": "bottomsheet pack · Mobile · Colapsado (peek bar)",
+      "figmaNodeId": "4181:28524",
+      "file": "trip-mobile-peek.html",
+      "width": 328,
+      "height": 52,
+      "stage": "#ffffff",
+      "props": {
+        "Plataforma": "Mobile",
+        "Estado": "Colapsado"
+      },
+      "description": "Peek bar mobile persistida sobre el input de Sofia (frame start_package_colapsado 4181:28210, margen lateral 16px → 328 de ancho).",
+      "notes": "Mismo markup y estilos que trip-desktop-peek: solo cambia el ancho que da el contenedor (328 vs 360). MD de referencia: 360×36; Figma del handoff: 52 de alto → gana Figma. Misma diferencia de stroke superior/inferior que en desktop (Figma lo dibuja 1px por fuera del nodo).",
+      "scripts": []
+    }
+  ]
+}

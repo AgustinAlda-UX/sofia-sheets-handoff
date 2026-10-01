@@ -1,0 +1,216 @@
+/* ==========================================================================
+   SOFIA · Bottom sheet · Estructura base
+   Figma: CATCPGSOAIUuXcPBLDY1dK · sección 49:79 "Bottom sheet estructura base (HEADER)"
+          + sección 4048:4430 "Bottom sheet estructura base (OVERLAY)"
+   Piezas:
+     .sofia-bs-header  → BS_header (4048:3730) · Handle=Title / Slot / Tabs / Icon Only
+     .sofia-overlay    → Overlay (4028:3424)
+     .sofia-bs-content → Content (4116:1021)
+     .sofia-slot       → BS / Slot (4321:19252) · placeholder de contenido
+   EVA primero: título con .eva-3-h5 (Subtitle L), close con .eva-3-icon-close,
+   tabs con .eva-3-tabs (-no-stroke, ítems -subtitle), tags con .eva-3-tag.
+   ========================================================================== */
+
+/* El placeholder "Content / Slot" usa Inter Regular en Figma (BS / Slot). */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · bs-header». */
+
+/* ── BS_header ──────────────────────────────────────────────────────────── */
+.sofia-bs-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  background: var(--sofia-bg-low);
+  border-radius: var(--sofia-bs-header-radius) var(--sofia-bs-header-radius) 0 0;
+  overflow: hidden;
+}
+
+/* Stroke 1px (izq/der/arriba) Borders/medium. En Figma el stroke es "inside" y no
+   desplaza el contenido: se dibuja como capa superior para respetar los paddings. */
+.sofia-bs-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--sofia-border-medium);
+  border-bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+/* Handle=Tabs no tiene stroke en Figma. */
+.sofia-bs-header--tabs::after { content: none; }
+
+/* Handle (drag indicator) · contenedor 12px de alto */
+.sofia-bs-header__handle {
+  display: flex;
+  justify-content: center;
+  padding: 4px 16px;
+  background: var(--sofia-bg-low);
+  border-radius: var(--sofia-bs-header-radius) var(--sofia-bs-header-radius) 0 0;
+}
+.sofia-bs-header__handle-bar {
+  display: block;
+  width: var(--sofia-bs-handle-width);
+  height: var(--sofia-bs-handle-height);
+  border-radius: 100px;
+  background: var(--sofia-bs-handle-color);
+}
+
+/* Contenido del header (padding horizontal 20) */
+.sofia-bs-header__row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: var(--sofia-bs-cta-gap) var(--sofia-bs-spacing-header-h) 0;
+}
+
+/* Fila título + cerrar */
+.sofia-bs-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.sofia-bs-header__title {
+  margin: 0;
+  min-width: 0;
+  color: var(--sofia-bs-color-title);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;   /* títulos largos: una línea (Figma: whitespace-nowrap) */
+  /* tipografía: .eva-3-h5 = Subtitle L (H5) · Rubik Medium 16/20 */
+}
+
+/* Botón cerrar · contenedor 20×20 (16×16 en Handle=Title) con ícono EVA de 24px */
+.sofia-bs-header__close {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: none;
+  color: var(--sofia-actionable-lighten);
+  cursor: pointer;
+  overflow: visible;
+}
+.sofia-bs-header__close > [class^="eva-3-icon-"] {
+  font-size: 24px;
+  line-height: 24px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.sofia-bs-header__close:focus-visible {
+  outline: 2px solid var(--focus-color, var(--sofia-actionable-primary));
+  outline-offset: 2px;
+}
+
+/* ── Handle=Title ───────────────────────────────────────────────────────── */
+.sofia-bs-header--title .sofia-bs-header__row { padding-bottom: var(--sofia-bs-cta-gap); }
+.sofia-bs-header--title .sofia-bs-header__close { width: 16px; height: 16px; }
+
+/* ── Handle=Slot ────────────────────────────────────────────────────────── */
+.sofia-bs-header__slot { width: 100%; }
+.sofia-bs-header__slot.sofia-slot { height: 32px; }
+
+/* ── Handle=Tabs ────────────────────────────────────────────────────────── */
+.sofia-bs-header--tabs .sofia-bs-header__row {
+  height: 102px;
+  padding-top: 8px;
+  gap: 4px;
+}
+.sofia-bs-header__tabs { width: 100%; }
+/* Ajustes mínimos a EVA .eva-3-tabs para coincidir con el ".Tab Container" de Figma
+   (Subnav 320×64, 2 tabs con label secundario, texto alineado a la izquierda):
+   - alto del ítem 64px (EVA: 52px) y padding vertical para centrar las 2 líneas;
+   - text-align:left (EVA centra). El padding lateral 20px, divisor, indicador y colores son EVA. */
+.sofia-bs-header__tabs .tabs-nav-item.-subtitle {
+  height: 64px;
+  padding-top: 16px;
+  padding-bottom: 12px;
+  text-align: left;
+}
+
+/* ── Handle=Icon Only (fila de tags) ────────────────────────────────────── */
+.sofia-bs-header--tags .sofia-bs-header__row { padding-top: 8px; }
+.sofia-bs-header__tags {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  overflow-x: auto;          /* scroll horizontal: el último tag queda cortado a propósito */
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.sofia-bs-header__tags::-webkit-scrollbar { display: none; }
+/* Ajuste mínimo a EVA .eva-3-tag: el Tag de Figma mide 32px de alto (EVA: 36px) y el
+   espaciado lo da el gap del contenedor (EVA agrega margin 0 8px 8px 0). EVA suma 1px de
+   borde al padding de 16px; en Figma el stroke es interior y el tag mide 87px → padding 15px. */
+.sofia-bs-header__tags .eva-3-tag {
+  flex-shrink: 0;
+  height: 32px;
+  margin: 0;
+  padding: 0 15px;
+}
+
+/* ── Overlay ────────────────────────────────────────────────────────────── */
+/* Fill BS/bg/overlay (#323439). En Figma se ve opaco; el tamaño depende del
+   dispositivo: cubre todo el contenedor posicionado (usar position:fixed a pantalla completa). */
+.sofia-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--sofia-bs-overlay-color);
+}
+
+/* ── Content ────────────────────────────────────────────────────────────── */
+.sofia-bs-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: var(--sofia-bs-content-height, 396px);
+  padding: var(--sofia-ss-spacing-action-v) var(--sofia-bs-spacing-header-h);
+  background: var(--sofia-bg-low);
+  overflow-y: auto;
+}
+/* En Figma el BS / Slot mide 326px dentro de Content 360 con padding 20
+   (desborda 3px por lado): se replica en fluido. */
+.sofia-bs-content > .sofia-slot {
+  flex: 1 0 0;
+  min-height: 1px;
+  width: calc(100% + 6px);
+  height: auto;
+}
+
+/* ── BS / Slot (placeholder) ────────────────────────────────────────────── */
+.sofia-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  padding: 16px;
+  border-radius: var(--sofia-radius-xs);
+  background: var(--sofia-slot-bg);
+}
+.sofia-slot,
+.sofia-slot__label {
+  font-family: var(--sofia-slot-font-family);
+}
+.sofia-slot__label {
+  margin: 0;
+  color: var(--sofia-slot-text);
+  font-size: 14px;
+  font-weight: var(--sofia-weight-regular);
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}

@@ -1,0 +1,464 @@
+/* ==========================================================================
+   SOFIA · forms-trip — Widget persistente "Tu viaje" (bottomsheet pack / start_package)
+   Figma: CATCPGSOAIUuXcPBLDY1dK · sección 4181:27790 "Modelo de persistencia"
+          → "caso widget persistente" (4181:27792)
+   Piezas: .sofia-trip-widget (expandido desktop / bottom sheet mobile),
+           .sofia-peekbar (colapsado), .sofia-trip-sheet (composición mobile con scrim).
+   EVA: botones (eva-3-btn -link -circle / -primary) e íconos (eva-3-icon-*) salen de EVA;
+        acá solo va la estructura SOFIA que EVA no cubre.
+   Nota strokes (medidos sobre el render de Figma): el contenedor raíz del widget tiene stroke
+   OUTSIDE 1px (queda fuera del nodo 567 / 360) → se dibuja con box-shadow spread 1px, sin
+   afectar el layout. Las filas tienen stroke INSIDE → border 1px descontando 1px del padding.
+   La peek bar se dibuja con stroke inside (::after) para que el borde activo sea visible.
+   ========================================================================== */
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · forms-trip». */
+
+/* ── Contenedor raíz ─────────────────────────────────────────────────────── */
+.sofia-trip-widget {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  background: var(--sofia-bg-low);
+  border-radius: var(--sofia-radius-lg);
+  color: var(--sofia-text-high);
+}
+
+/* Desktop: card flotante sobre el chat — stroke outside Borders/medium + sombra ShadowBS (0 0 48 · 30%) */
+.sofia-trip-widget--desktop {
+  box-shadow: 0 0 0 1px var(--sofia-border-medium), var(--sofia-shadow-bs-float);
+}
+
+/* Mobile: bottom sheet anclado abajo — stroke outside Brand Primary, esquinas superiores 24 */
+.sofia-trip-widget--sheet {
+  border-radius: var(--sofia-radius-lg) var(--sofia-radius-lg) 0 0;
+  box-shadow: 0 0 0 1px var(--sofia-actionable-primary);
+}
+
+/* ── Header (Bottom sheet / Handle) ──────────────────────────────────────── */
+.sofia-trip-widget__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px 8px;
+  background: var(--sofia-bg-low);
+  border-radius: var(--sofia-radius-lg) var(--sofia-radius-lg) 0 0;
+}
+.sofia-trip-widget--sheet .sofia-trip-widget__header {
+  gap: 10px;
+  padding: 8px 20px;
+}
+.sofia-trip-widget__handle {               /* pill 40×4 · solo mobile */
+  width: 40px;
+  height: 4px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: var(--sofia-neutral-400);
+}
+
+.sofia-trip-widget__heading,
+.sofia-peekbar__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.sofia-trip-widget__heading-main,
+.sofia-peekbar__heading-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.sofia-trip-widget__title,
+.sofia-peekbar__title {
+  margin: 0;
+  font-size: var(--sofia-type-subtitle-m-size);
+  line-height: var(--sofia-type-subtitle-m-lh);
+  font-weight: var(--sofia-weight-medium);
+  letter-spacing: 0.014px;
+  color: var(--sofia-text-high);
+  white-space: nowrap;
+}
+/* 4181:27845 (capa oculta): el text box "Tu viaje" tiene ancho fijo 110px en Figma */
+.sofia-trip-widget__title--w110 {
+  width: 110px;
+}
+
+/* Íconos de estado de productos (Destination Icon 16×16) */
+.sofia-trip-widget__status,
+.sofia-peekbar__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* Los <i> de EVA NO llevan clase sofia-: base.css pisa font-family en [class*=" sofia-"]
+   y rompería la fuente de íconos. Se estilan desde el contenedor. */
+.sofia-trip-widget__status > i,
+.sofia-peekbar__status > i {
+  display: block;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--sofia-text-low);            /* producto pendiente */
+}
+.sofia-trip-widget__status > i.is-done,
+.sofia-peekbar__status > i.is-done {
+  color: var(--sofia-actionable-primary);  /* checkmark-circle Brand Primary */
+}
+
+/* Chevron expandir/colapsar (20×20). EVA no tiene un icon-button de 20px sin padding:
+   reset mínimo de <button> + ícono EVA. */
+.sofia-trip-widget__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sofia-text-high);
+  cursor: pointer;
+}
+.sofia-trip-widget__toggle > i {
+  display: block;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+/* ── Body (Section container) ────────────────────────────────────────────── */
+.sofia-trip-widget__body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 8px 20px 16px;
+}
+.sofia-trip-widget--sheet .sofia-trip-widget__body {
+  padding: 16px 20px;
+}
+
+/* Filas de producto (pacakage row). En destino / hotel / tramo de vuelo el botón vive DENTRO
+   del contenedor con gap 16 (metadata Figma); solo la fila vacía usa el gap 21 de la fila. */
+.sofia-trip-widget__row {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  width: 100%;
+  background: var(--sofia-bg-low);
+  border: 1px solid var(--sofia-actionable-primary);
+  border-radius: var(--sofia-radius-md);
+  padding: 7px;                            /* 8px Figma − 1px stroke */
+}
+/* Producto sin elegir: borde punteado neutral */
+.sofia-trip-widget__row--empty {
+  border-style: dashed;
+  border-color: var(--sofia-border-medium);
+  padding: 11px 7px 11px 15px;             /* 12 / 8 / 12 / 16 − 1px stroke */
+}
+/* Producto agregado (vuelos / hotel): opacidad 80% en Figma */
+.sofia-trip-widget__row--added {
+  opacity: 0.8;
+}
+/* .sofia-trip-widget__row--hotel: hook semántico, sin estilos propios (misma estructura que destino) */
+.sofia-trip-widget__row--flight {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 8px;
+}
+.sofia-trip-widget__row-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1 0 0;
+  min-width: 1px;
+}
+.sofia-trip-widget__row--empty .sofia-trip-widget__row-main {
+  gap: 8px;
+}
+
+.sofia-trip-widget__thumb {                /* foto destino / hotel 48×48 */
+  display: block;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: var(--sofia-radius-sm);
+}
+
+.sofia-trip-widget__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1 0 0;
+  min-width: 1px;
+  letter-spacing: 0.012px;
+}
+.sofia-trip-widget__name {
+  margin: 0;
+  font-size: var(--sofia-type-subtitle-s-size);
+  line-height: var(--sofia-type-subtitle-s-lh);
+  font-weight: var(--sofia-weight-medium);
+  color: var(--sofia-text-high);
+  white-space: nowrap;
+}
+.sofia-trip-widget__meta {
+  margin: 0;
+  font-size: var(--sofia-type-body-s-size);
+  line-height: var(--sofia-type-body-s-lh);
+  font-weight: var(--sofia-weight-regular);
+  color: var(--sofia-text-low);
+}
+
+/* Fila vacía: ícono 20px + label */
+.sofia-trip-widget__row--empty .sofia-trip-widget__row-main > i {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--sofia-text-low);
+}
+.sofia-trip-widget__empty-label {
+  flex: 1 0 0;
+  min-width: 1px;
+  margin: 0;
+  font-size: var(--sofia-type-body-s-size);
+  line-height: var(--sofia-type-body-s-lh);
+  font-weight: var(--sofia-weight-regular);
+  letter-spacing: 0.012px;
+  color: var(--sofia-text-medium);
+}
+
+/* Botón de acción de fila: EVA eva-3-btn -md -link -circle (36×36) */
+.sofia-trip-widget__row-action {
+  flex-shrink: 0;
+}
+
+/* ── Tramo de vuelo ──────────────────────────────────────────────────────── */
+.sofia-trip-widget__segment {             /* logo 48 · detalle (flex 1) · botón 36, gap 16 */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+.sofia-trip-widget__airline {              /* Airline Logo Container 48 × alto del tramo */
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  flex-shrink: 0;
+  padding: 3px 0;                          /* 4px − 1px stroke */
+  border: 1px solid var(--sofia-border-medium);
+  border-radius: var(--sofia-radius-sm);
+}
+.sofia-trip-widget__airline-logo {         /* caja 24×24; el logo ocupa top/bottom 8.33%, left 25%, right 20.83% */
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+.sofia-trip-widget__airline-logo > img {
+  position: absolute;
+  top: 8.33%;
+  bottom: 8.33%;
+  left: 25%;
+  right: 20.83%;
+  width: 54.17%;
+  height: 83.34%;
+  object-fit: cover;
+}
+.sofia-trip-widget__flight {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 0 0;
+  min-width: 1px;
+  justify-content: center;
+}
+.sofia-trip-widget__flight-date {
+  margin: 0;
+  font-size: var(--sofia-type-body-s-size);
+  line-height: var(--sofia-type-body-s-lh);
+  letter-spacing: 0.012px;
+  color: var(--sofia-text-medium);
+  white-space: nowrap;
+}
+.sofia-trip-widget__flight-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.sofia-trip-widget__airports {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1 0 0;
+  min-width: 1px;
+}
+.sofia-trip-widget__airport {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60px;
+  flex-shrink: 0;
+}
+.sofia-trip-widget__airport-code,
+.sofia-trip-widget__stops {
+  margin: 0;
+  font-size: var(--sofia-type-subtitle-s-size);
+  line-height: var(--sofia-type-subtitle-s-lh);
+  font-weight: var(--sofia-weight-medium);
+  letter-spacing: 0.012px;
+  color: var(--sofia-text-high);
+  white-space: nowrap;
+}
+.sofia-trip-widget__airport-time,
+.sofia-trip-widget__duration {
+  margin: 0;
+  font-size: var(--sofia-type-body-s-size);
+  line-height: var(--sofia-type-body-s-lh);
+  letter-spacing: 0.012px;
+  color: var(--sofia-text-low);
+  white-space: nowrap;
+}
+.sofia-trip-widget__flight-summary {        /* Escalas + duración */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+  text-align: right;
+}
+.sofia-trip-widget__duration {
+  letter-spacing: 0.0012px;
+}
+
+/* ── Hotel ───────────────────────────────────────────────────────────────── */
+.sofia-trip-widget__hotel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 1 0 0;
+  min-width: 1px;
+  letter-spacing: 0.012px;
+}
+.sofia-trip-widget__hotel-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sofia-trip-widget__hotel .sofia-trip-widget__name {
+  color: var(--sofia-trip-text-black);     /* Figma: text-black en "Sheraton Hotel Río" */
+}
+.sofia-trip-widget__room {
+  margin: 0;
+  font-size: var(--sofia-type-subtitle-s-size);
+  line-height: var(--sofia-type-subtitle-s-lh);
+  font-weight: var(--sofia-weight-medium);
+  color: var(--sofia-text-high);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Footer (Payment container) ──────────────────────────────────────────── */
+.sofia-trip-widget__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--sofia-bg-low);
+}
+.sofia-trip-widget--sheet .sofia-trip-widget__footer {
+  padding: 16px 20px 24px;
+}
+.sofia-trip-widget__price {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.sofia-trip-widget__price > i {
+  display: block;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--sofia-text-high);
+}
+.sofia-trip-widget__price-text {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  color: var(--sofia-text-high);
+}
+.sofia-trip-widget__price-label {
+  font-size: var(--sofia-type-body-s-size);
+  line-height: var(--sofia-type-body-s-lh);
+  font-weight: var(--sofia-weight-regular);
+  letter-spacing: 0.012px;
+}
+.sofia-trip-widget__price-value {
+  font-size: var(--sofia-type-subtitle-m-size);
+  line-height: var(--sofia-type-subtitle-m-lh);
+  font-weight: var(--sofia-weight-medium);
+  letter-spacing: 0.014px;
+}
+
+/* ── Peek bar (estado colapsado) ─────────────────────────────────────────── */
+.sofia-peekbar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  background: var(--sofia-bg-low);
+  border-radius: var(--sofia-radius-lg);
+  box-shadow: var(--sofia-shadow-sticky);
+}
+.sofia-peekbar::after {                    /* stroke interior 1px Brand Primary (modo activo) */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--sofia-actionable-primary);
+  border-radius: inherit;
+  pointer-events: none;
+}
+.sofia-peekbar__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+/* ── Composición mobile: scrim + bottom sheet (BS-paquete 360×728) ──────── */
+.sofia-trip-sheet {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.sofia-trip-sheet__scrim {                 /* Rectangle 4171: mainBg · multiply · 30% */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 116px;                           /* 612px en el frame de 728: termina sobre el input */
+  background: var(--sofia-trip-scrim-bg);
+  opacity: var(--sofia-trip-scrim-opacity);
+  mix-blend-mode: multiply;
+}
+.sofia-trip-sheet > .sofia-trip-widget {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

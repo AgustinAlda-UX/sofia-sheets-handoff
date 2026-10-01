@@ -1,0 +1,106 @@
+/* ==========================================================================
+   SOFIA · Bottom sheet · Footer (Action Container)
+   Figma: CATCPGSOAIUuXcPBLDY1dK · sección 49:79 · component set 4058:4744 "Action Container"
+     Footer=Single CTA   (4058:4743) → .sofia-bs-footer--single   (MD: SingleCTA)
+     Footer=Dual CTA     (4058:4745) → .sofia-bs-footer--dual     (MD: DualCTA)
+     Footer=CTA + Steps  (4119:1022) → .sofia-bs-footer--steps    (MD: Pagination)
+   El mismo componente se usa en el side sheet desktop a 421px (4121:2093, 4121:2113,
+   4121:2162…): ancho fluido, la fila de acciones queda centrada a 328px.
+   EVA primero: botones EVA eva-3-btn -md -primary (Button-contained · Medium) y
+   eva-3-btn-ghost -md -primary (Button-ghost · Default · Medium). Íconos del paginador
+   eva-3-icon-chevron-left / -right. EVA no tiene un paginador "1 de 3" (pagination es
+   numérica y steppers es de cantidad), por eso el paginador es estructura sofia.
+   ========================================================================== */
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · bs-footer». */
+
+/* ── Action Container ─────────────────────────────────────────────────────── */
+.sofia-bs-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--sofia-ss-spacing-action-v) var(--sofia-bs-spacing-header-h); /* 16 / 20 */
+  background: var(--sofia-bs-bg-action);
+  /* Stroke superior 1px Borders/medium "inside" (no suma alto: el nodo mide 68px)
+     + efecto static-hover (0 12 20 · rgba(84,89,98,.15)). */
+  box-shadow: inset 0 1px 0 0 var(--sofia-bs-color-divider), var(--sofia-shadow-static-hover);
+}
+
+/* Fila de acciones (AC_row) */
+.sofia-bs-footer__actions {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+/* ── Footer=Single CTA ── un Button-contained a lo ancho de la fila de 328px.
+   En Figma el contenedor tiene padding 20px pero la fila (328) es más ancha que el espacio
+   libre a 360px (360 − 2×20 = 320), así que queda centrada a 16px de cada borde; a 421px
+   (side sheet) queda centrada a 46.5px. Se replica con padding horizontal efectivo de 16px
+   + max-width 328px. */
+.sofia-bs-footer--single {
+  padding-inline: 16px;
+}
+.sofia-bs-footer--single .sofia-bs-footer__actions {
+  flex-direction: column;
+  max-width: var(--sofia-bs-footer-row-width);
+}
+.sofia-bs-footer--single .sofia-bs-footer__actions > .eva-3-btn {
+  width: 100%;
+}
+
+/* ── Footer=Dual CTA ── Button-ghost (secundario) + Button-contained (primario),
+   mitad y mitad (160 + 8 + 160 = 328). */
+.sofia-bs-footer--dual .sofia-bs-footer__actions {
+  gap: var(--sofia-bs-footer-dual-gap);
+  max-width: var(--sofia-bs-footer-row-width);
+}
+.sofia-bs-footer--dual .sofia-bs-footer__actions > .eva-3-btn,
+.sofia-bs-footer--dual .sofia-bs-footer__actions > .eva-3-btn-ghost {
+  /* Base explícita (border-box) en vez de flex:1 1 0: con base 0 el borde de 1px del
+     ghost se suma y los botones quedan 161/159 en lugar de 160/160. */
+  flex: 0 0 calc((100% - var(--sofia-bs-footer-dual-gap)) / 2);
+  min-width: 0;
+}
+
+/* ── Footer=CTA + Steps ── CTA a la izquierda y paginador a la derecha. */
+.sofia-bs-footer--steps .sofia-bs-footer__actions {
+  justify-content: space-between;
+}
+
+/* Paginador "‹ 1 de 3 ›" */
+.sofia-bs-footer__steps {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--sofia-bs-footer-steps-gap);
+}
+.sofia-bs-footer__steps-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--sofia-bs-footer-steps-icon);
+  height: var(--sofia-bs-footer-steps-icon);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sofia-text-low);
+  cursor: pointer;
+}
+.sofia-bs-footer__steps-btn > i {
+  display: block;
+  font-size: var(--sofia-bs-footer-steps-icon);
+  line-height: var(--sofia-bs-footer-steps-icon);
+}
+/* Body S (Caption) · Rubik Regular 12/16 · Text/Neutral/low */
+.sofia-bs-footer__steps-label {
+  font-size: var(--sofia-type-body-s-size);
+  line-height: var(--sofia-type-body-s-lh);
+  font-weight: var(--sofia-weight-regular);
+  letter-spacing: 0.012px;
+  color: var(--sofia-text-low);
+  white-space: nowrap;
+}

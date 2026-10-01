@@ -1,0 +1,121 @@
+/* ==========================================================================
+   SOFIA · Bottom sheet completa (mobile 360) → .sofia-bs
+   Figma: CATCPGSOAIUuXcPBLDY1dK
+     Sección 4048:4552 "Bottom sheet estructura base (CONTENIDO)" · frames "Bottom Sheet"
+       4048:4558 · 4050:4655 · 4050:4692 · 4050:4574 · 4050:4612 · 4058:4644
+     Sección 4055:3634 "Bottom sheet completa" · component set 4055:4217 "bottom sheet" (Altura)
+       Altura=Default 4055:4059 · 75% 4280:7321 · 50% 4280:7337 · 25% 4280:7353
+
+   Este archivo SOLO agrega el contenedor y la composición. Las piezas se reutilizan tal cual:
+     .sofia-bs-header (bs-header.css) · .sofia-bs-hero (bs-hero.css) · .sofia-bs-content,
+     .sofia-slot, .sofia-overlay (bs-header.css) · .sofia-bs-footer (bs-footer.css).
+
+   Estructura:
+     <section class="sofia-bs [sofia-bs--h-*]">
+       header (.sofia-bs-header | .sofia-bs-hero)
+       <div class="sofia-bs-content sofia-bs__body"> … </div>   ← scroll interno
+       footer (.sofia-bs-footer)
+     </section>
+   Sin modificador de altura: sheet en el flujo que se ajusta al contenido (frames de estructura base).
+   Con --h-default / --h-75 / --h-50 / --h-25: sheet anclada abajo del contenedor posicionado,
+   sobre .sofia-overlay (component set "Altura").
+   ========================================================================== */
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · bs-sheets». */
+
+/* ── Contenedor ─────────────────────────────────────────────────────────── */
+.sofia-bs {
+  /* Radio superior. Frames de estructura base: 24px (= radius large del MD); en el componente
+     "Altura" el radio está atado al token BS/radius/sheet (16px), ver --h-* más abajo. */
+  --sofia-bs-corner: var(--sofia-radius-lg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  background: var(--sofia-bs-bg-sheet);
+  border-radius: var(--sofia-bs-corner) var(--sofia-bs-corner) 0 0;
+  overflow: hidden; /* Figma: overflow-clip; recorta el header (radio 20) y la sombra del footer */
+}
+/* Header y footer mantienen su alto; solo el body se achica y scrollea. */
+.sofia-bs > * { flex-shrink: 0; }
+
+/* ── Body (Content) · scroll interno ────────────────────────────────────── */
+/* Se aplica sobre .sofia-bs-content (bs-header.css). Ajustes de composición según los frames
+   "Content" de estas sheets: padding 20 en los 4 lados (la pieza suelta usa 16/20) y contenido
+   arrancando arriba (la pieza suelta centra). El alto por defecto (396px) lo da la pieza con
+   --sofia-bs-content-height: se sobreescribe en línea cuando el Figma usa otro alto. */
+.sofia-bs .sofia-bs__body {
+  flex-shrink: 1;
+  min-height: 0;
+  justify-content: flex-start;
+  padding: var(--sofia-bs-body-padding);
+  overflow-x: hidden;
+  overflow-y: auto;          /* "Puede scrollear internamente" (definición del canvas) */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+/* BS / Slot: en Figma mide 326px fijos y queda centrado (desborda 3px por lado con padding 20). */
+.sofia-bs .sofia-bs__body > .sofia-slot {
+  width: min(calc(100% + 6px), var(--sofia-bs-slot-width));
+}
+
+/* [Put content here] (4050:4657 / 4280:7358): placeholder gris BS/bg/section. Reemplazar por el contenido. */
+.sofia-bs__placeholder {
+  flex: 1 0 0;
+  min-height: 1px;
+  width: min(100%, var(--sofia-bs-placeholder-width));
+  background: var(--sofia-bs-bg-section);
+}
+
+/* ── Separación entre secciones ─────────────────────────────────────────── */
+/* En Figma los frames con header Slot (4050:4655) y Tabs (4050:4692) tienen gap 8px entre
+   header, content y footer; el resto va pegado (gap 0). */
+.sofia-bs > .sofia-bs-header--slot ~ *,
+.sofia-bs > .sofia-bs-header--tabs ~ * {
+  margin-top: var(--sofia-bs-sections-gap);
+}
+
+/* ── Footer Dual CTA dentro de la sheet ─────────────────────────────────── */
+/* Instancia 4067:959: la fila AC_row de 328px desborda el padding de 20 y queda centrada a
+   16px de cada borde; esta instancia no tiene stroke superior y usa la sombra "sticky"
+   (0 −4 8 · rgba(84,89,98,.1)) en lugar de static-hover. */
+.sofia-bs > .sofia-bs-footer--dual {
+  padding-inline: 16px;
+  box-shadow: var(--sofia-shadow-sticky);
+}
+
+/* ── Alturas (component set "bottom sheet" · Altura) ───────────────────── */
+/* Sheet anclada al borde inferior del contenedor posicionado (el viewport / shell del chat),
+   por encima de .sofia-overlay. Para pantalla completa usar position: fixed. */
+.sofia-bs--h-default,
+.sofia-bs--h-75,
+.sofia-bs--h-50,
+.sofia-bs--h-25 {
+  --sofia-bs-corner: var(--sofia-bs-radius-sheet); /* BS/radius/sheet · 16px */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-height: 100%;
+}
+
+/* Default: se ajusta al contenido (header + content 396 + footer = 520px). */
+.sofia-bs--h-default > .sofia-bs__body { flex: 0 1 auto; }
+
+/* 75% / 50% / 25%: snap points en % del alto del contenedor; el body toma el espacio libre. */
+.sofia-bs--h-75 { height: 75%; }
+.sofia-bs--h-50 { height: 50%; }
+.sofia-bs--h-25 { height: 25%; }
+.sofia-bs--h-75 > .sofia-bs__body,
+.sofia-bs--h-50 > .sofia-bs__body,
+.sofia-bs--h-25 > .sofia-bs__body {
+  flex: 1 1 0;
+  height: auto;
+  padding: var(--sofia-bs-body-padding-snap);
+}
+/* 25%: el placeholder mide 24px fijos (no ocupa todo el body). */
+.sofia-bs--h-25 .sofia-bs__placeholder {
+  flex: 0 0 var(--sofia-bs-placeholder-h-25);
+}

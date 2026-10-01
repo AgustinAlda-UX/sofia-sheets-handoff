@@ -1,0 +1,79 @@
+{
+  "group": "bs-chat",
+  "title": "Bottom Sheet · Ejemplos y tamaños dentro del chat",
+  "category": "bottom-sheet",
+  "order": 14,
+  "css": "css/components/bs-chat.css",
+  "figmaSection": "4055:3912",
+  "description": "Pantallas CHAT de SOFIA (mobile 360) con el bottom sheet abierto a distintas alturas dentro de la conversación: sin sheet, 25%, 50%, 75% y 100% (modal full screen). El shell del chat (.sofia-chat) arma el header (status bar + app bar), la conversación (userDialogue) y el input; la sheet se apoya en .sofia-chat__sheet (capa con .sofia-overlay) y .sofia-chat__panel, y reutiliza tal cual las piezas .sofia-bs-header, .sofia-bs-content y .sofia-bs-footer. Las alturas están medidas en el área del chat que queda debajo del header (673px en un CHAT de 753px).",
+  "variants": [
+    {
+      "id": "chat-empty",
+      "name": "CHAT · sin bottom sheet",
+      "figmaNodeId": "4055:3915",
+      "file": "chat-empty.html",
+      "width": 360,
+      "height": 753,
+      "stage": "#ffffff",
+      "props": {},
+      "description": "Pantalla de referencia del chat sin sheet: header (status bar \"10:00\" + volver y carrito), el mensaje del usuario \"Quiero ver vuelos a Madrid\" y el input (\"Escribe tu consulta...\" + TyC). En Figma, a la izquierda de este frame hay una regla de alturas que no forma parte del snippet: una barra vertical (Rectangle 1502, 10×673px, fill #130BFD) que va del borde inferior del header (y=80) al final del chat (y=753), con líneas guía horizontales hasta el borde derecho del CHAT y textos Roboto Mono Medium 16/20: 100% en y=80 (673px de alto), 75% en y=248 (505px), 50% en y≈416.5 (336.5px) y 25% en y=575 (178px). Las posiciones se miden desde el borde superior del CHAT y los altos desde el borde inferior.",
+      "notes": "Shell .sofia-chat: columna flex que ocupa todo el contenedor (width/height 100%), con header (80px) e input (108px) fijos y .sofia-chat__body scrolleable en el medio. El primer turno arranca a 24px del header (--sofia-bs-turn-gap; userDialogue en y=104). Se revisaron las piezas de sofia-components-library (header/index.html, sofia-input/index.html, user-dialog/index.html) y no coinciden con estas instancias: el status bar tiene padding 4/8 e íconos dibujados a mano, el input usa padding 6/12 y TyC 8/16/4, y el user-dialog usa una flecha poligonal propia y un avatar de 30px. Por eso se implementaron desde get_design_context de este archivo, con scope .sofia-chat. Header: .statusBar de 24px con padding 4/16 y hora en Google Sans Flex Regular 12/14 rgba(0,0,0,.54) (como en Figma); los 3 íconos de sistema son assets de Figma (assets/icons/chat-status-*.svg, 14×14) porque EVA no los tiene. App bar con padding 16: volver = eva-3-icon-arrow-bold-left y carrito = eva-3-icon-trolley (Icon container Md, 24px, Neutral-800). Burbuja: Neutral-100, padding 16, radio 16, texto Body M (Rubik 14/20) alineado a la derecha, con la cola de Figma (assets/img/chat-dialog-tail.svg) rotada 90°. Avatar: EVA eva-3-avatar -image -md con ajuste mínimo a 28px (EVA -md mide 30px) y la foto de Figma (assets/img/chat-user-avatar.png). Input: menú 52×52 (borde Neutral-400, radio 24, eva-3-icon-list a 20px), un pill de 52px con <input> y botón de micrófono EVA eva-3-btn -md -link -circle (36×36, eva-3-icon-microphone a 16px). Ajuste mínimo: el ícono va en Neutral-800 como en Figma (EVA -link lo pinta Brand/Primary-500). La sombra sticky (0 −4 8) va en la fila del input, y TyC Rubik 10/12 tiene el link \"términos y condiciones.\" en Medium #4300D2. Figma devuelve como asset del micrófono el placeholder genérico del Icon container; se usa el glifo EVA microphone, que es el que se ve en el render. Los tokens --sofia-bs-header-height (101px) y --sofia-bs-input-area-height (124px) del MD no coinciden con estos frames (80 y 108px) y no se usan. Render: los textos Body M (Rubik 14/20: burbuja y placeholder del input) quedan ~1px más arriba que en Figma con la caja de texto en la misma posición (redondeo del half-leading de Rubik en Chrome); no se compensa con padding.",
+      "scripts": []
+    },
+    {
+      "id": "chat-bs-25",
+      "name": "CHAT · bottom sheet 25%",
+      "figmaNodeId": "4055:3928",
+      "file": "chat-bs-25.html",
+      "width": 360,
+      "height": 753,
+      "stage": "#ffffff",
+      "props": { "Altura": "25%" },
+      "description": "Sheet al 25%: el overlay oscurece la conversación y la sheet asoma por encima del input. Se ven el handle, el título y el comienzo del contenido (86px visibles), y el input sigue visible y usable por encima del overlay. Usalo para anticipar contenido sin tapar el input: el usuario arrastra el handle para expandir la sheet.",
+      "notes": "Sheet .sofia-chat__sheet--25 con z-index 1, por debajo del input (z-index 2), igual que el orden de capas de Figma, donde inputSofia está por encima del frame \"bottom sheet\". Panel de 160px fijos a 34px del borde inferior (y 559→719): por eso solo quedan visibles por encima del input (y=645) el header y 20px del contenido. Header = .sofia-bs-header--title (con handle). Content = .sofia-bs-content de 179px con padding 10/8 y placeholder [Put content here] gris (BS/bg/section, 344px de ancho), recortado por el panel. El Action Container de este frame está vacío en Figma y queda fuera de los 160px, por eso no se incluye. Panel con radio superior 24 y overflow hidden. En Figma la capa \"bottom sheet\" arranca en y=33, detrás del header del chat: acá cubre todo el chat (inset 0) y el header queda por encima, y visualmente es lo mismo.",
+      "scripts": []
+    },
+    {
+      "id": "chat-bs-50",
+      "name": "CHAT · bottom sheet 50%",
+      "figmaNodeId": "4055:4379",
+      "file": "chat-bs-50.html",
+      "width": 360,
+      "height": 753,
+      "stage": "#ffffff",
+      "props": { "Altura": "50%" },
+      "description": "Sheet a media altura sobre el chat: header con título + cerrar, contenido de 224px y footer con un CTA primario. Tapa el input; el header del chat queda visible arriba del overlay. Es el tamaño por defecto para tareas cortas: elegir una opción o confirmar.",
+      "notes": "Sheet .sofia-chat__sheet--50 por encima del input. Panel de 348px de alto por contenido: 56 de .sofia-bs-header--title, 224 de .sofia-bs-content (--sofia-bs-content-height: 224px, padding 20 y placeholder gris de 320×184) y 68 de .sofia-bs-footer--single (\"Primary button\", EVA eva-3-btn -md -primary). En Figma la sheet arranca en y=407.5 y sobresale 2.5px por debajo del CHAT (recortada): se replica con --sofia-chat-sheet-bottom: -2.5px. En producción se puede anclar en 0. La capa del overlay en Figma arranca en y=80 (alto 673).",
+      "scripts": []
+    },
+    {
+      "id": "chat-bs-75",
+      "name": "CHAT · bottom sheet 75%",
+      "figmaNodeId": "4055:4453",
+      "file": "chat-bs-75.html",
+      "width": 360,
+      "height": 753,
+      "stage": "#ffffff",
+      "props": { "Altura": "75%" },
+      "description": "Sheet a 3/4 del chat: header con título + cerrar, contenido de 432px y footer con un CTA primario. Deja visible el header del chat y una franja del overlay. Usalo cuando el contenido necesita más espacio (listas, formularios) pero conviene mantener el contexto del chat detrás.",
+      "notes": "Sheet .sofia-chat__sheet--75 por encima del input. Panel de 556px de alto por contenido: 56 de header, 432 de content (--sofia-bs-content-height: 432px, padding 20, placeholder de 320×392) y 68 de footer Single CTA. En Figma la sheet arranca en y=198 y sobresale 1px por debajo del CHAT: se replica con --sofia-chat-sheet-bottom: -1px. La capa \"bottom sheet\" de Figma arranca en y=33, detrás del header del chat.",
+      "scripts": []
+    },
+    {
+      "id": "chat-bs-100",
+      "name": "CHAT · bottom sheet 100% (modal full screen)",
+      "figmaNodeId": "4055:4523",
+      "file": "chat-bs-100.html",
+      "width": 360,
+      "height": 746,
+      "stage": "#ffffff",
+      "props": { "Altura": "100%" },
+      "description": "Modal full screen: si el contenido a utilizar es muy extenso transformamos la bottom en un modal full screen para que el usuario pueda navegar. La sheet ocupa todo el chat, sin overlay ni handle: header con título + cerrar (44px), contenido de 606px y footer con el CTA primario centrado en los 96px restantes.",
+      "guidelines": [
+        "1. Modal full screen — Si el contenido a utilizar es muy extenso transformamos la bottom en un modal full screen para que el usuario pueda navegar."
+      ],
+      "notes": "Texto de la card 4056:4604 de Figma (nota \"1. Modal full screen\"), copiado literal en guidelines. Sheet .sofia-chat__sheet--100 con z-index 5, por encima de todo el chat (en este frame de Figma no hay header del chat, la sheet arranca en y=0). Panel a todo el alto (746px) con radio superior 24. Header = .sofia-bs-header--title SIN el bloque .sofia-bs-header__handle (en Figma la instancia no tiene handle), así queda en 44px (12 + 20 + 12). Content = .sofia-bs-content de 606px con padding 20 y placeholder gris de 320×566. Footer = .sofia-bs-footer--single con flex 1 (en Figma el Action Container es flex-1 y mide 96px), con el CTA centrado verticalmente. No lleva overlay. userDialogue e input siguen en el DOM debajo de la sheet, igual que en Figma.",
+      "scripts": []
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "group": "modal",
+  "title": "Modal · Desktop y Mobile",
+  "category": "modal",
+  "order": 30,
+  "css": "css/components/modal.css",
+  "figmaSection": "4060:4860",
+  "description": "Modal: para decisiones críticas o irreversibles (confirmar eliminar, errores de pago, alertas de seguridad). Necesitás atención total del usuario. En desktop es una capa centrada de 800px sobre un dimmer que interrumpe el flujo; en mobile es una card centrada (Small · Overlay) con margen de 16px. Header con título + cerrar, contenido intercambiable (slot) y Action Container con CTA secundario (ghost) + primario. Animación: js/motion/modal.js (openModal / closeModal: scale 0.92 → 1 + fade, 260 ms, spring suave en la entrada).",
+  "variants": [
+    {
+      "id": "modal-tabs",
+      "name": "Modal_basic · Title + Tabs",
+      "figmaNodeId": "4119:1683",
+      "file": "modal-tabs.html",
+      "width": 800,
+      "height": 460,
+      "stage": "#484b50",
+      "props": {
+        "Header": "Title L (32px)",
+        "Navegación": ".Tab Container Desktop · 6 tabs",
+        "Footer": "Secondary + Primary"
+      },
+      "description": "Modal de 800px con título Title L, fila de 6 tabs EVA (la primera activa), contenido de 262px y Action Container con \"Secondary button\" (ghost) + \"Primary button\". Usalo cuando la decisión requiere alternar entre secciones de igual jerarquía dentro del mismo modal.",
+      "notes": "Tabs = EVA .eva-3-tabs.-no-stroke (tabs-nav / tabs-nav-item.-active). Ajuste mínimo documentado en CSS: el ítem EVA baja de 52 a 51px (EVA agrega 1px de borde inferior por fuera; en Figma el Tab Container mide 52px con el borde por dentro, así el modal conserva 460px) y toma el padding superior de 4px del Tab Label para que el texto quede a la misma altura. Diferencias EVA que se mantienen: EVA dibuja la línea inferior de 1px (Neutral-300) bajo toda la fila de tabs, que en el render de Figma queda tapada; el indicador EVA ocupa 80% del tab (Figma ~82%) y los divisores son pseudo-elementos dentro de cada tab (< 1px de diferencia). Botones EVA -md (36px, padding 16) = Button-ghost / Button-contained Medium; el ghost EVA suma su borde de 1px por fuera del padding (Figma: stroke interior) → queda ~3px más ancho. Radio EVA 24px vs 32px en Figma (ambos pill a 36px). El primario conserva el ancho fijo de 149px del Figma (min-width). Ícono cerrar = fuente EVA eva-3-icon-cross (24px sobre contenedor de 20px, igual que Figma; el glifo coincide con el SVG del Figma). El contenido es el placeholder \"[Put content here]\" (.sofia-modal__slot): reemplazarlo por el panel del tab activo (role=tabpanel); el cambio de tab (clase -active + aria-selected) lo maneja la app. Stage #484b50 = color que muestra el Figma en las esquinas redondeadas (dimmer del frame desktop sobre el canvas).",
+      "scripts": []
+    },
+    {
+      "id": "modal-basic",
+      "name": "Modal_basic · Title",
+      "figmaNodeId": "4119:1662",
+      "file": "modal-basic.html",
+      "width": 800,
+      "height": 398,
+      "stage": "#484b50",
+      "props": {
+        "Header": "Title M (24px)",
+        "Navegación": "—",
+        "Footer": "Secondary + Primary"
+      },
+      "description": "Modal básico de 800px: título Title M (24px, header de 70px), contenido de 262px con padding lateral 16px y Action Container con \"Secondary button\" + \"Primary button\". Es la versión más simple para confirmaciones o alertas.",
+      "notes": "Modificador .sofia-modal--basic: título 24/30 (Title M) → header de 70px y padding de contenido 10px 16px, tal como el Figma. Botones EVA -md sin ajustes (el ghost EVA queda ~3px más ancho por el borde exterior). Mismas notas de ícono cerrar y primario (149px) que modal-tabs.",
+      "scripts": []
+    },
+    {
+      "id": "modal-tags",
+      "name": "Modal_basic · Title + Tags",
+      "figmaNodeId": "4119:1745",
+      "file": "modal-tags.html",
+      "width": 800,
+      "height": 440,
+      "stage": "#484b50",
+      "props": {
+        "Header": "Title L (32px)",
+        "Navegación": "6 Tag (Default · Light · no seleccionado)",
+        "Footer": "Secondary + Primary"
+      },
+      "description": "Modal de 800px con título Title L y una fila de 6 tags \"Tag text\" (filtros/categorías rápidas) debajo del header; contenido de 262px con padding lateral 20px y Action Container con los dos CTAs.",
+      "notes": "Tags = EVA .eva-3-tag (tag-text). Ajuste mínimo documentado en CSS: EVA trae alto 36px y margin 0 8px 8px 0; se fija alto 32px (spec del Tag en Figma) y margin 0 porque el espaciado lo da el gap de 8px de la fila, así el modal conserva 440px. Diferencia EVA que se mantiene: el tag EVA suma el borde de 1px por fuera del padding de 16px (Figma: stroke interior) → cada tag mide 89px en vez de 87px y la fila se corre ~2px por tag. Borde Neutral-400, texto Neutral-800 Subtitle M y radio pill coinciden con EVA. El estado seleccionado sería el modificador EVA -active (no está diseñado en este frame).",
+      "scripts": []
+    },
+    {
+      "id": "modal-context",
+      "name": "Modal · Desktop 1366 con overlay",
+      "figmaNodeId": "4119:1682",
+      "file": "modal-context.html",
+      "width": 1366,
+      "height": 772,
+      "stage": "#72777f",
+      "props": {
+        "Viewport": "1366x772",
+        "Overlay": "rgba(1,1,1,0.37)",
+        "Modal": "Title + Tabs (800x460)"
+      },
+      "description": "Ubicación del modal en desktop: frame de 1366x772 con dimmer y el modal (variante con tabs) centrado horizontal y verticalmente. Muestra cómo se ve la capa bloqueante sobre la pantalla.",
+      "notes": "El dimmer (.sofia-modal-overlay) usa el fill del frame del Figma, rgba(1,1,1,0.37) — distinto del Overlay de bottom sheet (Neutral-800 al 80%) y del overlay EVA rgba(0,0,0,.8). En el snippet el overlay es position:absolute para que la galería lo contenga; en la app usarlo position:fixed (inset 0) sobre el viewport. El stage #72777f (Neutral-600) simula lo que hay debajo del dimmer semitransparente en el canvas de Figma, para que el color compuesto coincida con el screenshot. Animación de entrada/salida: js/motion/modal.js (openModal(modalEl, overlayEl) / closeModal).",
+      "scripts": []
+    },
+    {
+      "id": "modal-mobile",
+      "name": "Modal Mobile · Small (Overlay)",
+      "figmaNodeId": "4321:19656",
+      "file": "modal-mobile.html",
+      "width": 360,
+      "height": 640,
+      "stage": "#c0c4cc",
+      "props": {
+        "Variant": "Small (Overlay)",
+        "Header image": "False",
+        "Bottom CTA": "True",
+        "Navigation": "Title + Close right",
+        "CTA": "x1 (Right) · Large"
+      },
+      "description": "Modal mobile: overlay a pantalla completa y card blanca de 328px (16px de margen) centrada verticalmente, con título \"Título\" (Title S), texto Body L y un único CTA \"Primary\" alineado a la derecha, separado 40px del contenido.",
+      "notes": "En Figma es la instancia EVA \"Modal Mobile\" (Code Connect → modal EVA, variante Small). No se usa .eva-3-modal.-sm porque su estructura difiere del diseño: header con padding 20 20 0 y título 20/26, modal-footer con border-top, margin-top 80px en lugar de centrado vertical y overlay rgba(0,0,0,.8); por eso se implementa con .sofia-modal-mobile replicando Modal header/body/bottom base. El CTA es EVA .eva-3-btn.-lg.-primary: EVA usa padding horizontal 20px y el Figma 16px → el botón queda 8px más ancho (gana EVA). Overlay = fill del Figma rgba(68,68,68,0.8); en la app va position:fixed. Stage #c0c4cc simula el canvas debajo del overlay semitransparente.",
+      "scripts": []
+    }
+  ]
+}

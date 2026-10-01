@@ -1,0 +1,130 @@
+{
+  "group": "side-sheet",
+  "title": "Side Sheet · Desktop",
+  "category": "side-sheet",
+  "order": 20,
+  "css": "css/components/side-sheet.css",
+  "figmaSection": "4119:1787",
+  "description": "Definición (Figma): \"cuando usamos sidesheet → es información que complementa la card por ejemplo\". Es una capa de 421px anclada al borde derecho, sobre un overlay, que ocupa todo el alto del viewport desktop. Sirve para contenido que complementa la vista principal sin reemplazarla: paneles de detalle, filtros avanzados, configuraciones. Se arma con las mismas piezas del bottom sheet: header propio (Side_header, título Title M + cerrar) o hero con imagen (BS_imageBG_tittle), navegación opcional con tabs o tags, Content con BS / Slot y Action Container Single CTA. Animación: js/motion/side-sheet.js (openSideSheet / closeSideSheet: entra deslizando desde la derecha, translateX 100% → 0 + opacidad 0.8 → 1, 340 ms, cubic-bezier(0.32, 0.72, 0, 1); el overlay hace fade). No usar scale ni animar el ancho del panel.",
+  "variants": [
+    {
+      "id": "ss-title",
+      "name": "Side_sheet · Title",
+      "figmaNodeId": "4121:2083",
+      "file": "ss-title.html",
+      "width": 421,
+      "height": 770,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Side_header (Title M)",
+        "Navegación": "—",
+        "Footer": "Single CTA"
+      },
+      "description": "Side sheet básico: Side_header con \"Title\" (Title M, 24/30) y cerrar, Content con el placeholder BS / Slot y Action Container con \"Primary button\". Es la versión por defecto para detalle o información complementaria.",
+      "notes": "Side_header (4121:2084): .sofia-ss__header.sofia-ss-header, padding --sofia-ss-spacing-header-v (10) / --sofia-bs-spacing-header-h (20), alto 50px. Título <h2 class=\"eva-3-h3\"> = Title M (Rubik Medium 24/30, Neutral-800). Cerrar = <button> 16×16 con el ícono EVA eva-3-icon-close a 24px desbordando (equivalente al 'cross' de Figma, igual que bs-header Handle=Title). El handle (Frame 4) está oculto en Figma y no se incluye. Estructura: .sofia-ss (columna de 421px, --sofia-ss-width, a todo el alto del contenedor). El Content (.sofia-bs-content + .sofia-ss__body) es flex:1 y absorbe el alto libre: en Figma cada instancia tiene un alto fijo distinto (652/601/620/468/413px), que es exactamente lo que queda entre header y footer, por eso la preview coincide al alto del nodo. BS / Slot a 326px fijos centrado (en Figma también mide 326 a 421px; se sobreescribe el calc(100% + 6px) de bs-header solo dentro de .sofia-ss). Footer = Action Container Single CTA (.sofia-bs-footer--single, sin cambios): fila de 328px centrada a 46.5px, padding vertical --sofia-ss-spacing-action-v (16px), stroke superior Borders/medium y sombra static-hover (cae fuera del sheet). EVA: no se usa .eva-3-modal-side-sheet porque difiere del Figma (-sm 424px, header 24/24/20 con título 20/26, contenido 0 24 24, footer 20 24 24, overlay rgba(0,0,0,.8) y visibilidad por clases); los átomos sí son EVA. EVA prevalece en el CTA: el label queda ~1px más arriba (line-height EVA) y el borde izquierdo/derecho cae en medio píxel (46.5px).",
+      "scripts": []
+    },
+    {
+      "id": "ss-tabs",
+      "name": "Side_sheet · Title + Tabs",
+      "figmaNodeId": "4121:2144",
+      "file": "ss-tabs.html",
+      "width": 421,
+      "height": 771,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Side_header (Title M)",
+        "Navegación": ".Tab Container Desktop · 6 tabs",
+        "Footer": "Single CTA"
+      },
+      "description": "Side_header + fila de tabs EVA (\"Tab label\", la primera seleccionada) + Content + Action Container. Usalo cuando la información complementaria se divide en secciones del mismo nivel.",
+      "notes": "Side_header (4121:2084): .sofia-ss__header.sofia-ss-header, padding --sofia-ss-spacing-header-v (10) / --sofia-bs-spacing-header-h (20), alto 50px. Título <h2 class=\"eva-3-h3\"> = Title M (Rubik Medium 24/30, Neutral-800). Cerrar = <button> 16×16 con el ícono EVA eva-3-icon-close a 24px desbordando (equivalente al 'cross' de Figma, igual que bs-header Handle=Title). El handle (Frame 4) está oculto en Figma y no se incluye. Tabs = EVA .eva-3-tabs.-no-stroke con 6 .tabs-nav-item \"Tab label\" (el primero -active, role=tablist/tab + aria-selected); el panel .tabs-container se omite porque .Swap-Content está oculto y el contenido vive en el Content (role=tabpanel). Ajuste mínimo (igual que el modal): ítem de 51px + padding-top 4px para que la fila mida 52px como el .Tab Container. EVA prevalece: dibuja la línea inferior Neutral-300 de 1px bajo toda la fila (en el render de Figma no se ve) y el indicador activo queda 1px más arriba, sobre esa línea; el indicador EVA mide 80% del tab (Figma ~86%); los divisores son pseudo-elementos (sin 1px propio). El cambio de tab (-active / aria-selected) y el desplazamiento horizontal (EVA mueve .tabs-nav con las flechas tabs-nav-arrow-first/last, ocultas en Figma) los maneja la app. Side_sheet · Tabs (4121:2176): en Figma el .Subnav conserva el ancho desktop de 1024px (6 tabs de ~170px) y el side sheet lo recorta, así que se ven 2 tabs y media; se replica con width: var(--sofia-ss-subnav-width, 1024px) en .tabs-nav (modificador .sofia-ss--tabs). Estructura: .sofia-ss (columna de 421px, --sofia-ss-width, a todo el alto del contenedor). El Content (.sofia-bs-content + .sofia-ss__body) es flex:1 y absorbe el alto libre: en Figma cada instancia tiene un alto fijo distinto (652/601/620/468/413px), que es exactamente lo que queda entre header y footer, por eso la preview coincide al alto del nodo. BS / Slot a 326px fijos centrado (en Figma también mide 326 a 421px; se sobreescribe el calc(100% + 6px) de bs-header solo dentro de .sofia-ss). Footer = Action Container Single CTA (.sofia-bs-footer--single, sin cambios): fila de 328px centrada a 46.5px, padding vertical --sofia-ss-spacing-action-v (16px), stroke superior Borders/medium y sombra static-hover (cae fuera del sheet). EVA: no se usa .eva-3-modal-side-sheet porque difiere del Figma (-sm 424px, header 24/24/20 con título 20/26, contenido 0 24 24, footer 20 24 24, overlay rgba(0,0,0,.8) y visibilidad por clases); los átomos sí son EVA. EVA prevalece en el CTA: el label queda ~1px más arriba (line-height EVA) y el borde izquierdo/derecho cae en medio píxel (46.5px).",
+      "scripts": []
+    },
+    {
+      "id": "ss-tags",
+      "name": "Side_sheet · Title + Tags",
+      "figmaNodeId": "4121:2103",
+      "file": "ss-tags.html",
+      "width": 421,
+      "height": 790,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Side_header (Title M)",
+        "Navegación": "4 Tag (Default · Light · no seleccionado)",
+        "Footer": "Single CTA"
+      },
+      "description": "Side_header + fila de 4 tags EVA \"Tag text\" (filtros rápidos) + Content + Action Container. Usalo cuando el contenido del panel se puede filtrar.",
+      "notes": "Side_header (4121:2084): .sofia-ss__header.sofia-ss-header, padding --sofia-ss-spacing-header-v (10) / --sofia-bs-spacing-header-h (20), alto 50px. Título <h2 class=\"eva-3-h3\"> = Title M (Rubik Medium 24/30, Neutral-800). Cerrar = <button> 16×16 con el ícono EVA eva-3-icon-close a 24px desbordando (equivalente al 'cross' de Figma, igual que bs-header Handle=Title). El handle (Frame 4) está oculto en Figma y no se incluye. Fila de tags (.sofia-ss__tags): padding 10/20, gap 8px, alto 52px, scroll horizontal sin scrollbar. Tags = EVA .eva-3-tag (Default · Light · Enabled, no seleccionado) con tag-text + tag-icon eva-3-icon-cross (Figma cruz=true; EVA lo muestra solo con -active). Ajuste mínimo: alto 32px (EVA 36px) y margin 0 (el espaciado lo da el gap). EVA prevalece: el borde de 1px se suma por fuera del padding de 16px → cada tag mide 89px en vez de 87px (la fila se corre 2px por tag) y el texto queda ~1px más arriba. Estado seleccionado: agregar -active. Los 4 tags entran en 421px (el último termina a ~20px del borde). Estructura: .sofia-ss (columna de 421px, --sofia-ss-width, a todo el alto del contenedor). El Content (.sofia-bs-content + .sofia-ss__body) es flex:1 y absorbe el alto libre: en Figma cada instancia tiene un alto fijo distinto (652/601/620/468/413px), que es exactamente lo que queda entre header y footer, por eso la preview coincide al alto del nodo. BS / Slot a 326px fijos centrado (en Figma también mide 326 a 421px; se sobreescribe el calc(100% + 6px) de bs-header solo dentro de .sofia-ss). Footer = Action Container Single CTA (.sofia-bs-footer--single, sin cambios): fila de 328px centrada a 46.5px, padding vertical --sofia-ss-spacing-action-v (16px), stroke superior Borders/medium y sombra static-hover (cae fuera del sheet). EVA: no se usa .eva-3-modal-side-sheet porque difiere del Figma (-sm 424px, header 24/24/20 con título 20/26, contenido 0 24 24, footer 20 24 24, overlay rgba(0,0,0,.8) y visibilidad por clases); los átomos sí son EVA. EVA prevalece en el CTA: el label queda ~1px más arriba (line-height EVA) y el borde izquierdo/derecho cae en medio píxel (46.5px).",
+      "scripts": []
+    },
+    {
+      "id": "ss-hero-title",
+      "name": "Side_sheet · Hero + Title",
+      "figmaNodeId": "4121:2218",
+      "file": "ss-hero-title.html",
+      "width": 421,
+      "height": 776,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "BS_imageBG_tittle · Header=Title",
+        "Navegación": "—",
+        "Footer": "Single CTA"
+      },
+      "description": "Side sheet que arranca con el hero de imagen (240px, \"Titulo\" + \"Bajada\" y cerrar circular), Content y Action Container. Usalo para detalle de producto/paquete que lidera con una foto.",
+      "notes": "Hero = BS_imageBG_tittle · Header=Title (instancia a 421px): mismo markup que bs-hero--title sin el span .sofia-bs-hero__handle (oculto en Figma) y con --sofia-bs-hero-radius: 0 (scopeado en .sofia-ss). Foto bs-hero-house.png (mismo archivo que exporta Figma), Rectangle 40 = bs-hero-scrim-bottom.svg (idéntico salvo ids), centrado a 360px como en Figma. Rectangle 38: a 421px Figma exporta otra forma (453×130) → nuevo asset ss-hero-scrim-text.svg, y la máscara del background blur usa ese mismo path (override scopeado en side-sheet.css). Texto a 320px fijos y cerrar circular de 20px arriba a la derecha (15/15). Diferencias residuales: la textura del blur de Chrome es algo más uniforme que la de Figma (documentado en bs-hero) y \"Bajada\" (Body M 14/20) queda ~1px más arriba con la caja en la misma posición (redondeo del half-leading de Rubik en Chrome). Estructura: .sofia-ss (columna de 421px, --sofia-ss-width, a todo el alto del contenedor). El Content (.sofia-bs-content + .sofia-ss__body) es flex:1 y absorbe el alto libre: en Figma cada instancia tiene un alto fijo distinto (652/601/620/468/413px), que es exactamente lo que queda entre header y footer, por eso la preview coincide al alto del nodo. BS / Slot a 326px fijos centrado (en Figma también mide 326 a 421px; se sobreescribe el calc(100% + 6px) de bs-header solo dentro de .sofia-ss). Footer = Action Container Single CTA (.sofia-bs-footer--single, sin cambios): fila de 328px centrada a 46.5px, padding vertical --sofia-ss-spacing-action-v (16px), stroke superior Borders/medium y sombra static-hover (cae fuera del sheet). EVA: no se usa .eva-3-modal-side-sheet porque difiere del Figma (-sm 424px, header 24/24/20 con título 20/26, contenido 0 24 24, footer 20 24 24, overlay rgba(0,0,0,.8) y visibilidad por clases); los átomos sí son EVA. EVA prevalece en el CTA: el label queda ~1px más arriba (line-height EVA) y el borde izquierdo/derecho cae en medio píxel (46.5px).",
+      "scripts": []
+    },
+    {
+      "id": "ss-hero-tags",
+      "name": "Side_sheet · Hero + Tags",
+      "figmaNodeId": "4121:2256",
+      "file": "ss-hero-tags.html",
+      "width": 421,
+      "height": 773,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "BS_imageBG_tittle · Header=Title",
+        "Navegación": "4 Tag (Frame 5)",
+        "Footer": "Single CTA"
+      },
+      "description": "Hero de imagen + fila de 4 tags \"Tag text\" + Content + Action Container.",
+      "notes": "Hero = BS_imageBG_tittle · Header=Title (instancia a 421px): mismo markup que bs-hero--title sin el span .sofia-bs-hero__handle (oculto en Figma) y con --sofia-bs-hero-radius: 0 (scopeado en .sofia-ss). Foto bs-hero-house.png (mismo archivo que exporta Figma), Rectangle 40 = bs-hero-scrim-bottom.svg (idéntico salvo ids), centrado a 360px como en Figma. Rectangle 38: a 421px Figma exporta otra forma (453×130) → nuevo asset ss-hero-scrim-text.svg, y la máscara del background blur usa ese mismo path (override scopeado en side-sheet.css). Texto a 320px fijos y cerrar circular de 20px arriba a la derecha (15/15). Diferencias residuales: la textura del blur de Chrome es algo más uniforme que la de Figma (documentado en bs-hero) y \"Bajada\" (Body M 14/20) queda ~1px más arriba con la caja en la misma posición (redondeo del half-leading de Rubik en Chrome). Debajo del hero, Frame 5 (4121:2283) = la misma fila de tags que ss-tags (no es la fila de 68px de bs-hero--tags: acá mide 52px con padding 10/20). Fila de tags (.sofia-ss__tags): padding 10/20, gap 8px, alto 52px, scroll horizontal sin scrollbar. Tags = EVA .eva-3-tag (Default · Light · Enabled, no seleccionado) con tag-text + tag-icon eva-3-icon-cross (Figma cruz=true; EVA lo muestra solo con -active). Ajuste mínimo: alto 32px (EVA 36px) y margin 0 (el espaciado lo da el gap). EVA prevalece: el borde de 1px se suma por fuera del padding de 16px → cada tag mide 89px en vez de 87px (la fila se corre 2px por tag) y el texto queda ~1px más arriba. Estado seleccionado: agregar -active. Estructura: .sofia-ss (columna de 421px, --sofia-ss-width, a todo el alto del contenedor). El Content (.sofia-bs-content + .sofia-ss__body) es flex:1 y absorbe el alto libre: en Figma cada instancia tiene un alto fijo distinto (652/601/620/468/413px), que es exactamente lo que queda entre header y footer, por eso la preview coincide al alto del nodo. BS / Slot a 326px fijos centrado (en Figma también mide 326 a 421px; se sobreescribe el calc(100% + 6px) de bs-header solo dentro de .sofia-ss). Footer = Action Container Single CTA (.sofia-bs-footer--single, sin cambios): fila de 328px centrada a 46.5px, padding vertical --sofia-ss-spacing-action-v (16px), stroke superior Borders/medium y sombra static-hover (cae fuera del sheet). EVA: no se usa .eva-3-modal-side-sheet porque difiere del Figma (-sm 424px, header 24/24/20 con título 20/26, contenido 0 24 24, footer 20 24 24, overlay rgba(0,0,0,.8) y visibilidad por clases); los átomos sí son EVA. EVA prevalece en el CTA: el label queda ~1px más arriba (line-height EVA) y el borde izquierdo/derecho cae en medio píxel (46.5px).",
+      "scripts": []
+    },
+    {
+      "id": "ss-hero-tabs",
+      "name": "Side_sheet · Hero + Tabs",
+      "figmaNodeId": "4121:2295",
+      "file": "ss-hero-tabs.html",
+      "width": 421,
+      "height": 775,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "BS_imageBG_tittle · Header=Title",
+        "Navegación": ".Tab Container Desktop · 6 tabs (Frame 6)",
+        "Footer": "Single CTA"
+      },
+      "description": "Hero de imagen + fila de tabs EVA \"Tab label\" + Content + Action Container.",
+      "notes": "Hero = BS_imageBG_tittle · Header=Title (instancia a 421px): mismo markup que bs-hero--title sin el span .sofia-bs-hero__handle (oculto en Figma) y con --sofia-bs-hero-radius: 0 (scopeado en .sofia-ss). Foto bs-hero-house.png (mismo archivo que exporta Figma), Rectangle 40 = bs-hero-scrim-bottom.svg (idéntico salvo ids), centrado a 360px como en Figma. Rectangle 38: a 421px Figma exporta otra forma (453×130) → nuevo asset ss-hero-scrim-text.svg, y la máscara del background blur usa ese mismo path (override scopeado en side-sheet.css). Texto a 320px fijos y cerrar circular de 20px arriba a la derecha (15/15). Diferencias residuales: la textura del blur de Chrome es algo más uniforme que la de Figma (documentado en bs-hero) y \"Bajada\" (Body M 14/20) queda ~1px más arriba con la caja en la misma posición (redondeo del half-leading de Rubik en Chrome). Frame 6 (4121:2332): fila de tabs con padding 10/20 y el .Tab Container a 381px. En Figma el auto-layout del Side_sheet tiene espaciado −6px: cada bloque pisa 6px del anterior (el hero se ve 234px y la fila de tabs 66px); se replica con margin-top: var(--sofia-ss-hero-tabs-overlap, -6px) entre hijos de .sofia-ss--hero-tabs. En ese Subnav de 381px Figma centra 6 tabs de 110px (min-width), que desbordan por ambos lados: el primer tab (el seleccionado) queda fuera de vista a −142px y se ve un tab cortado a cada lado; se replica con justify-content:center en .tabs-nav (EVA queda a −139.5px porque sus divisores no ocupan ancho: ±2px). Tabs = EVA .eva-3-tabs.-no-stroke con 6 .tabs-nav-item \"Tab label\" (el primero -active, role=tablist/tab + aria-selected); el panel .tabs-container se omite porque .Swap-Content está oculto y el contenido vive en el Content (role=tabpanel). Ajuste mínimo (igual que el modal): ítem de 51px + padding-top 4px para que la fila mida 52px como el .Tab Container. EVA prevalece: dibuja la línea inferior Neutral-300 de 1px bajo toda la fila (en el render de Figma no se ve) y el indicador activo queda 1px más arriba, sobre esa línea; el indicador EVA mide 80% del tab (Figma ~86%); los divisores son pseudo-elementos (sin 1px propio). El cambio de tab (-active / aria-selected) y el desplazamiento horizontal (EVA mueve .tabs-nav con las flechas tabs-nav-arrow-first/last, ocultas en Figma) los maneja la app. Estructura: .sofia-ss (columna de 421px, --sofia-ss-width, a todo el alto del contenedor). El Content (.sofia-bs-content + .sofia-ss__body) es flex:1 y absorbe el alto libre: en Figma cada instancia tiene un alto fijo distinto (652/601/620/468/413px), que es exactamente lo que queda entre header y footer, por eso la preview coincide al alto del nodo. BS / Slot a 326px fijos centrado (en Figma también mide 326 a 421px; se sobreescribe el calc(100% + 6px) de bs-header solo dentro de .sofia-ss). Footer = Action Container Single CTA (.sofia-bs-footer--single, sin cambios): fila de 328px centrada a 46.5px, padding vertical --sofia-ss-spacing-action-v (16px), stroke superior Borders/medium y sombra static-hover (cae fuera del sheet). EVA: no se usa .eva-3-modal-side-sheet porque difiere del Figma (-sm 424px, header 24/24/20 con título 20/26, contenido 0 24 24, footer 20 24 24, overlay rgba(0,0,0,.8) y visibilidad por clases); los átomos sí son EVA. EVA prevalece en el CTA: el label queda ~1px más arriba (line-height EVA) y el borde izquierdo/derecho cae en medio píxel (46.5px).",
+      "scripts": []
+    },
+    {
+      "id": "ss-context",
+      "name": "Side sheet · Desktop 1366 con overlay",
+      "figmaNodeId": "4119:1825",
+      "file": "ss-context.html",
+      "width": 1366,
+      "height": 772,
+      "stage": "#72777f",
+      "props": {
+        "Viewport": "1366x772",
+        "Overlay": "rgba(1,1,1,0.37)",
+        "Side sheet": "Title (421px, anclado a la derecha)"
+      },
+      "description": "Ubicación del side sheet en desktop: frame de 1366x772 con overlay y el side sheet básico (ss-title) anclado al borde derecho a todo el alto.",
+      "notes": "Overlay = .sofia-overlay (posicionamiento absolute/inset 0 de bs-header) + .sofia-ss-overlay con el fill del frame \"Modal\" (4119:1825): rgba(1,1,1,0.37) (--sofia-ss-overlay-color), igual al dimmer del modal desktop y distinto del Overlay del bottom sheet (#323439). El side sheet (ss-title) lleva .sofia-ss--docked: absolute, top/right/bottom 0, ancho 421px. En la app usar position:fixed sobre el viewport. Overlay y sheet son hermanos para que js/motion/side-sheet.js los anime por separado: openSideSheet(sheetEl, overlayEl) / closeSideSheet(sheetEl, overlayEl) (translateX 100% → 0 + opacidad 0.8 → 1 en 340 ms cubic-bezier(0.32, 0.72, 0, 1); el overlay hace fade 0 → 1). Stage #72777f (Neutral-600) = lo que muestra el canvas de Figma debajo del overlay semitransparente; el compuesto da #484B50 como en el screenshot. Diferencia intencional: en Figma el Side_sheet mide 770px (hug) dentro del frame de 772px y deja ver 2px de overlay abajo; en código el sheet ocupa el 100% del alto y el Content crece 2px (el footer queda 2px más abajo). Estructura: .sofia-ss (columna de 421px, --sofia-ss-width, a todo el alto del contenedor). El Content (.sofia-bs-content + .sofia-ss__body) es flex:1 y absorbe el alto libre: en Figma cada instancia tiene un alto fijo distinto (652/601/620/468/413px), que es exactamente lo que queda entre header y footer, por eso la preview coincide al alto del nodo. BS / Slot a 326px fijos centrado (en Figma también mide 326 a 421px; se sobreescribe el calc(100% + 6px) de bs-header solo dentro de .sofia-ss). Footer = Action Container Single CTA (.sofia-bs-footer--single, sin cambios): fila de 328px centrada a 46.5px, padding vertical --sofia-ss-spacing-action-v (16px), stroke superior Borders/medium y sombra static-hover (cae fuera del sheet). EVA: no se usa .eva-3-modal-side-sheet porque difiere del Figma (-sm 424px, header 24/24/20 con título 20/26, contenido 0 24 24, footer 20 24 24, overlay rgba(0,0,0,.8) y visibilidad por clases); los átomos sí son EVA. EVA prevalece en el CTA: el label queda ~1px más arriba (line-height EVA) y el borde izquierdo/derecho cae en medio píxel (46.5px).",
+      "scripts": []
+    }
+  ]
+}

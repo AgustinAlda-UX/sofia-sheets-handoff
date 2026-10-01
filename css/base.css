@@ -1,0 +1,10 @@
+/* SOFIA · Sheets handoff — base mínima compartida por todos los componentes.
+   Se usa :where() (especificidad 0) para que las clases EVA ganen siempre — en particular
+   la fuente de íconos (eva-3-icon-*) cuando un <i> también lleva una clase sofia-. */
+:where([class^="sofia-"], [class*=" sofia-"]),
+:where([class^="sofia-"], [class*=" sofia-"]) * { box-sizing: border-box; }
+:where([class^="sofia-"], [class*=" sofia-"]) {
+  font-family: var(--sofia-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,179 @@
+/* ==========================================================================
+   SOFIA · Sheets handoff — Tokens
+   Fuente: Figma "SOFIA - Bottom sheet - modal - site sheet" (CATCPGSOAIUuXcPBLDY1dK),
+           página "👍 Hand off" (get_variable_defs) + bottomsheet-dialogue-referencia.md
+           + sofia-ds-tokens.json (codeSyntax WEB).
+   Regla: EVA prevalece. Cada token SOFIA apunta a la variable EVA cuando existe
+   (eva-core.min.css define --brand-*, --color-neutral-*, etc.) con el hex de Figma como fallback.
+   ========================================================================== */
+
+:root {
+  /* ── Tipografía ─────────────────────────────────────────────────────────── */
+  --sofia-font-family: 'Rubik', var(--font-family, sans-serif);
+
+  /* Escala EVA (Figma text styles) — size / line-height / letter-spacing.
+     Figma expresa el letter-spacing en % del tamaño (ej. -0.2% de 32px = -0.064px) → acá en em (-0.002em). */
+  --sofia-type-title-l-size: 32px;   --sofia-type-title-l-lh: 40px;   --sofia-type-title-l-ls: -0.002em;  /* Title L (H2) · Medium */
+  --sofia-type-title-m-size: 24px;   --sofia-type-title-m-lh: 30px;   --sofia-type-title-m-ls: 0;       /* Title M (H3) · Medium */
+  --sofia-type-title-s-size: 20px;   --sofia-type-title-s-lh: 28px;   --sofia-type-title-s-ls: 0;       /* Title S (H4) · Medium */
+  --sofia-type-subtitle-l-size: 16px; --sofia-type-subtitle-l-lh: 20px; --sofia-type-subtitle-l-ls: 0;  /* Subtitle L (H5) · Medium */
+  --sofia-type-subtitle-m-size: 14px; --sofia-type-subtitle-m-lh: 20px; --sofia-type-subtitle-m-ls: 0.001em; /* Subtitle M (H6) · Medium */
+  --sofia-type-subtitle-s-size: 12px; --sofia-type-subtitle-s-lh: 16px; --sofia-type-subtitle-s-ls: 0.001em; /* Subtitle S · Medium */
+  --sofia-type-body-l-size: 16px;    --sofia-type-body-l-lh: 24px;    --sofia-type-body-l-ls: 0;        /* Body L (Body 1) · Regular */
+  --sofia-type-body-m-size: 14px;    --sofia-type-body-m-lh: 20px;    --sofia-type-body-m-ls: 0.0005em;   /* Body M (Body 2) · Regular */
+  --sofia-type-body-s-size: 12px;    --sofia-type-body-s-lh: 16px;    --sofia-type-body-s-ls: 0.001em;    /* Body S (Caption) · Regular */
+  --sofia-type-overline-m-size: 12px; --sofia-type-overline-m-lh: 16px; --sofia-type-overline-m-ls: 0.01em; /* Overline M · Medium */
+  --sofia-weight-regular: 400;
+  --sofia-weight-medium: 500;
+
+  /* ── Color · semánticos EVA usados en el handoff ────────────────────────── */
+  --sofia-text-high:    var(--color-neutral-800, #323439); /* Text/Neutral/high */
+  --sofia-text-medium:  var(--color-neutral-700, #565A60); /* Text/Neutral/medium */
+  --sofia-text-low:     var(--color-neutral-600, #72777F); /* Text/Neutral/low */
+  --sofia-text-invert:  var(--color-white, #FFFFFF);       /* Text/Neutral/invert */
+  --sofia-bg-low:       var(--color-white, #FFFFFF);       /* Background/low */
+  --sofia-bg-medium:    var(--color-neutral-100, #F2F4F5); /* Background/medium */
+  --sofia-border-medium: var(--color-neutral-300, #DDE1E8); /* Borders/medium */
+  --sofia-neutral-400:  var(--color-neutral-400, #C0C4CC);
+  --sofia-actionable-primary: var(--brand-primary-3, #4300D2); /* Actionable/Brand/Primary/enabled */
+  --sofia-actionable-primary-hover: var(--brand-primary-4, #270570);
+  --sofia-brand-primary-1: var(--brand-primary-1, #EBE5F5);    /* Brand/Primary-100 */
+  --sofia-accent-primary-500: var(--accent-primary-500, #6832DB);
+  --sofia-actionable-lighten: #323439;   /* Actionable/Lighten/enabled */
+  --sofia-actionable-darken: #FFFFFF;    /* Actionable/Darken/enabled */
+  --sofia-actionable-darken-disabled: #C0C4CC; /* Actionable/Darken/disabled */
+  --sofia-success-500: var(--color-success-500, #028574);
+  --sofia-success-100: var(--color-success-100, #E6FBFB);
+  --sofia-warning-500: var(--color-warning-500, #AE6504);
+  --sofia-error-500:   var(--color-error-500, #CB4032);
+  --sofia-surface-success: #C9F0ED;      /* Surface/Status/success */
+  --sofia-accent-surface-4: var(--brand-tertiary-4, #077A7A); /* Accent/Surface/4 · "cupon XSell" */
+
+  /* ── Bottom Sheet (BS) · variables SOFIA del archivo ────────────────────── */
+  --sofia-bs-bg-sheet: var(--color-white, #FFFFFF);
+  --sofia-bs-bg-section: var(--color-neutral-300, #DDE1E8);
+  --sofia-bs-bg-action: var(--color-white, #FFFFFF);
+  --sofia-bs-bg-main: var(--color-neutral-700, #565A60);
+  --sofia-bs-color-title: var(--color-neutral-800, #323439);
+  --sofia-bs-color-divider: var(--color-neutral-300, #DDE1E8);
+  --sofia-bs-handle-color: var(--brand-primary-1, #EBE5F5);
+  --sofia-bs-stroke-width: 4px;
+  --sofia-bs-radius-sheet: 16px;
+  --sofia-bs-spacing-header-h: 20px;
+  --sofia-bs-spacing-header-v: 20px;
+  --sofia-bs-spacing-action-v: 4px;
+  --sofia-bs-overlay-color: var(--color-neutral-800, #323439);
+  --sofia-bs-overlay-opacity: 0.8;            /* Overlay-Primary EVA = Neutral-800 al 80% */
+  --sofia-bs-cta-primary-bg: var(--brand-primary-3, #4300D2);
+  --sofia-bs-cta-primary-bg-hover: var(--brand-primary-4, #270570);
+  --sofia-bs-cta-primary-bg-pressed: var(--brand-primary-4, #270570);
+  --sofia-bs-cta-primary-bg-disabled: var(--color-neutral-400, #C0C4CC);
+  --sofia-bs-cta-primary-text: var(--color-white, #FFFFFF);
+  --sofia-bs-cta-secondary-text: var(--brand-primary-3, #4300D2);
+  --sofia-bs-cta-secondary-text-hover: var(--brand-primary-4, #270570);
+  --sofia-bs-cta-gap: 12px;
+  --sofia-bs-header-height: 101px;            /* MD (Librería SOFIA): alto del header del shell. En este handoff el header mide 80px → --sofia-chat-header-height */
+  --sofia-bs-input-area-height: 124px;        /* MD (Librería SOFIA): alto del área de input. En este handoff inputSofia mide 108px → --sofia-chat-input-height */
+  --sofia-bs-turn-gap: 24px;                  /* separación entre turnos */
+
+  /* ── Side Sheet (SS) ───────────────────────────────────────────────────── */
+  --sofia-ss-width: 421px;
+  --sofia-ss-spacing-header-v: 10px;
+  --sofia-ss-spacing-action-v: 16px;
+  --sofia-ss-spacing-buttons-gap: 12px;
+  --sofia-ss-bg-image-placeholder: #F7F2F2;
+
+  /* ── Chat shell ────────────────────────────────────────────────────────── */
+  --sofia-chat-header-bg: var(--color-white, #FFFFFF);
+  --sofia-chat-input-bg: var(--color-white, #FFFFFF);
+  --sofia-chat-header-height: 80px;           /* instancia "header" mobile (4055:3916) */
+  --sofia-chat-input-height: 108px;           /* instancia "inputSofia" mobile (4055:3917) */
+
+  /* ── Radius (EVA shape) ────────────────────────────────────────────────── */
+  --sofia-radius-xs: 4px;    /* extra-small */
+  --sofia-radius-sm: 8px;    /* small */
+  --sofia-radius-md: 16px;   /* medium */
+  --sofia-radius-lg: 24px;   /* large */
+  --sofia-radius-full: 99px; /* full */
+
+  /* ── Elevation (EVA effects del archivo) ───────────────────────────────── */
+  --sofia-shadow-static:       0 4px 8px 0 rgba(84, 89, 98, 0.10);   /* static */
+  --sofia-shadow-static-hover: 0 12px 20px 0 rgba(84, 89, 98, 0.15); /* static-hover */
+  --sofia-shadow-line-hover:   0 12px 20px 0 rgba(84, 89, 98, 0.10); /* line-hover */
+  --sofia-shadow-sticky:       0 -4px 8px 0 rgba(84, 89, 98, 0.10);  /* sticky (peek bar / footer) */
+  --sofia-shadow-bs:           0 -8px 48px 0 rgba(50, 52, 57, 0.20); /* shadow_BS */
+  --sofia-shadow-bs-float:     0 0 48px 0 rgba(50, 52, 57, 0.30);    /* ShadowBS */
+
+  /* ── Motion (valores del código JS del handoff) ────────────────────────── */
+  --sofia-motion-bs-duration: 320ms;
+  --sofia-motion-bs-easing: cubic-bezier(0.32, 0.72, 0, 1);
+  --sofia-motion-modal-duration: 260ms;
+  --sofia-motion-modal-easing-in: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --sofia-motion-modal-easing-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --sofia-motion-ss-duration: 340ms;
+  --sofia-motion-ss-easing: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ==========================================================================
+   Tokens de componentes — valores del Figma del handoff sin variable EVA/SOFIA publicada.
+   Consolidados desde cada css/components/<grupo>.css.
+   ========================================================================== */
+:root {
+  /* ── bs-chat ─────────────────────────────────────────── */
+  --sofia-chat-status-font: 'Google Sans Flex', 'Roboto', sans-serif; /* .statusBar · hora */
+  --sofia-chat-status-color: rgba(0, 0, 0, 0.54);   /* Android/Text Secondary al 54% */
+  --sofia-chat-avatar-size: 28px;                    /* Avatar Medium del userDialogue (EVA -md = 30px) */
+  --sofia-chat-sheet-body-padding: 20px;             /* Content de la sheet en 50% / 75% / 100% */
+  /* ── bs-footer ─────────────────────────────────────────── */
+  --sofia-bs-footer-row-width: 328px;   /* AC_row · ancho fijo de la fila de CTAs (360 y 421) */
+  --sofia-bs-footer-dual-gap: 8px;      /* AC_row Dual CTA · gap entre botones (el MD dice cta/gap 12px; Figma usa 8px) */
+  --sofia-bs-footer-steps-gap: 8px;     /* stepper · gap chevron / texto / chevron */
+  --sofia-bs-footer-steps-icon: 16px;   /* Previous / Next Chevron · 16×16 */
+  /* ── bs-header ─────────────────────────────────────────── */
+  --sofia-bs-header-radius: 20px;                  /* BS_header · rounded-tl/tr 20px */
+  --sofia-bs-handle-width: 40px;                   /* Handle 40×4 */
+  --sofia-bs-handle-height: 4px;
+  --sofia-slot-bg: rgba(146, 116, 217, 0.2);       /* BS / Slot · fill */
+  --sofia-slot-text: #6633CC;                      /* BS / Slot · texto */
+  --sofia-slot-font-family: 'Inter', sans-serif;   /* BS / Slot · Inter Regular 14 */
+  /* ── bs-hero ─────────────────────────────────────────── */
+  /* radio superior del hero en BS mobile (Figma rounded-tl/tr 20px) */
+  --sofia-bs-hero-radius: 20px;
+  /* alto del hero y de la fila de tabs/tags (Figma) */
+  --sofia-bs-hero-media-h: 240px;
+  --sofia-bs-hero-bar-h: 68px;
+  /* ── bs-sheets ─────────────────────────────────────────── */
+  --sofia-bs-body-padding: 20px;               /* Content · p-20 (frames de estructura base y Altura=Default) */
+  --sofia-bs-body-padding-snap: 10px 8px;      /* Content · py-10 px-8 (Altura=75% / 50% / 25%) */
+  --sofia-bs-sections-gap: 8px;                /* gap del frame "Bottom Sheet" con header Slot / Tabs */
+  --sofia-bs-slot-width: 326px;                /* BS / Slot · w-326 fijo en todos los frames */
+  --sofia-bs-placeholder-width: 320px;         /* [Put content here] · 320px */
+  --sofia-bs-placeholder-h-25: 24px;           /* [Put content here] en Altura=25% · h-24 */
+  /* ── forms-coupon ─────────────────────────────────────────── */
+  /* variable "mainBg" del archivo (scrim del BS mobile del cupón) */
+  --sofia-main-bg: var(--color-neutral-600, #72777F);
+  --sofia-coupon-scrim-opacity: 0.5;
+  /* ── forms-trip ─────────────────────────────────────────── */
+  /* variable "mainBg" del archivo (scrim del BS mobile) */
+  --sofia-trip-scrim-bg: var(--color-neutral-600, #72777F);
+  --sofia-trip-scrim-opacity: 0.3;
+  /* "Sheraton Hotel Río" usa text-black (sin variable) en Figma */
+  --sofia-trip-text-black: #000000;
+  /* ── modal ─────────────────────────────────────────── */
+  --sofia-modal-width: 800px;                          /* Modal_basic */
+  --sofia-modal-overlay-desktop: rgba(1, 1, 1, 0.37);  /* fill del frame "Modal" 1366x772 (4119:1682) */
+  --sofia-modal-overlay-mobile: rgba(68, 68, 68, 0.8); /* fill de "Modal Mobile" (4321:19572) */
+  --sofia-modal-slot-height: 242px;                    /* "[Put content here]" */
+  --sofia-modal-footer-height: 66px;                   /* Action Container */
+  --sofia-modal-content-pv: 10px;                      /* Content · padding vertical */
+  --sofia-modal-mobile-gap: 40px;                      /* Frame 1552 · gap entre contenido y CTA */
+  /* ── side-sheet ─────────────────────────────────────────── */
+  /* fill del frame "Modal" 1366×772 (4119:1825), igual al dimmer del modal desktop */
+  --sofia-ss-overlay-color: rgba(1, 1, 1, 0.37);
+  /* ancho del .Subnav desktop dentro de .Tab Container (4121:2176) */
+  --sofia-ss-subnav-width: 1024px;
+  /* BS / Slot mide 326px fijos también en el side sheet */
+  --sofia-ss-slot-width: 326px;
+  /* auto-layout del Side_sheet con Hero + Tabs (4121:2295): espaciado −6px */
+  --sofia-ss-hero-tabs-overlap: -6px;
+}

@@ -1,0 +1,181 @@
+{
+  "group": "bs-sheets",
+  "title": "Bottom Sheet · Sheets completas (mobile 360)",
+  "category": "bottom-sheet",
+  "order": 13,
+  "css": "css/components/bs-sheets.css",
+  "figmaSection": "4048:4552",
+  "description": "Bottom sheets armadas con las piezas base: header (BS_header o BS_imageBG_tittle), Content con scroll interno y footer (Action Container). El contenedor .sofia-bs solo agrega el fondo, el radio superior, el recorte y el scroll interno del body (.sofia-bs__body); cada pieza conserva sus propias clases y estilos. Sin modificador de altura, la sheet se ajusta a su contenido (frames de la sección \"Bottom sheet estructura base (CONTENIDO)\"). Con --h-default, --h-75, --h-50 o --h-25 queda anclada al borde inferior del contenedor, sobre .sofia-overlay (component set \"bottom sheet\" · Altura, sección \"Bottom sheet completa\"). Animación de apertura y cierre: js/motion/bottom-sheet.js (openBottomSheet(sheetEl, overlayEl) / closeBottomSheet).",
+  "variants": [
+    {
+      "id": "sheet-title-dual",
+      "name": "Bottom Sheet · Header Title + Dual CTA",
+      "figmaNodeId": "4048:4558",
+      "file": "sheet-title-dual.html",
+      "width": 360,
+      "height": 520,
+      "stage": "#d8d8d8",
+      "props": {
+        "Header": "Title",
+        "Footer": "Dual CTA",
+        "Altura": "Según contenido"
+      },
+      "description": "Header con título y cerrar, Content (396px) con el placeholder BS / Slot y footer con \"Secondary button\" + \"Primary button\". Usalo cuando el sheet termina con una elección entre dos caminos, por ejemplo cancelar o confirmar. Alto total 520px.",
+      "notes": "Contenedor .sofia-bs: fondo BS/bg/sheet, radio superior 24px (radius large; el frame de Figma tiene rounded-tl/tr 24 y overflow-clip, que recorta el radio 20 del header y la sombra del footer). Body = .sofia-bs-content + .sofia-bs__body: padding 20 en los 4 lados y contenido arriba (la pieza suelta Content usa 16/20 y centra), overflow-y:auto para el scroll interno; el BS / Slot queda en 326px centrado como en Figma. Footer Dual CTA: en esta instancia (4067:959) el Figma no tiene stroke superior y usa la sombra sticky (0 −4 8 · rgba(84,89,98,.1)) en vez de static-hover; además la fila AC_row de 328px queda centrada a 16px de cada borde. Se ajusta solo dentro de .sofia-bs (.sofia-bs > .sofia-bs-footer--dual). Sin gap entre secciones. EVA prevalece: el label de los botones queda ~1px más arriba (line-height EVA) y hay diferencias de antialiasing de texto.",
+      "scripts": []
+    },
+    {
+      "id": "sheet-slot-single",
+      "name": "Bottom Sheet · Header Slot + Single CTA",
+      "figmaNodeId": "4050:4655",
+      "file": "sheet-slot-single.html",
+      "width": 360,
+      "height": 568,
+      "stage": "#d8d8d8",
+      "props": {
+        "Header": "Slot",
+        "Footer": "Single CTA",
+        "Altura": "Según contenido"
+      },
+      "description": "Header con título, cerrar y una fila libre \"Content / Slot\", Content (396px) con el placeholder \"[Put content here]\" y footer con un único \"Primary button\". Usalo cuando el header necesita contenido propio (buscador, resumen, marca). Alto total 568px.",
+      "notes": "Contenedor .sofia-bs: fondo BS/bg/sheet, radio superior 24px (radius large; el frame de Figma tiene rounded-tl/tr 24 y overflow-clip, que recorta el radio 20 del header y la sombra del footer). Body = .sofia-bs-content + .sofia-bs__body: padding 20 en los 4 lados y contenido arriba (la pieza suelta Content usa 16/20 y centra), overflow-y:auto para el scroll interno; el BS / Slot queda en 326px centrado como en Figma. En Figma este frame tiene gap 8px entre header, content y footer: se aplica automáticamente cuando el header es --slot o --tabs (.sofia-bs > .sofia-bs-header--slot ~ *). El Content trae el placeholder gris \"[Put content here]\" (BS/bg/section #DDE1E8, .sofia-bs__placeholder) en lugar de BS / Slot: reemplazarlo por el contenido. Footer Single CTA tal cual la pieza (stroke superior + static-hover). EVA prevalece: label del botón ~1px más arriba.",
+      "scripts": []
+    },
+    {
+      "id": "sheet-tabs-single",
+      "name": "Bottom Sheet · Header Tabs + Single CTA",
+      "figmaNodeId": "4050:4692",
+      "file": "sheet-tabs-single.html",
+      "width": 360,
+      "height": 594,
+      "stage": "#d8d8d8",
+      "props": {
+        "Header": "Tabs",
+        "Footer": "Single CTA",
+        "Altura": "Según contenido"
+      },
+      "description": "Header con título, cerrar y 2 tabs EVA (\"Titulo\" / \"Bajada\"), Content (396px) con BS / Slot y footer con \"Primary button\". El contenido de la tab activa va en el body. Alto total 594px.",
+      "notes": "Contenedor .sofia-bs: fondo BS/bg/sheet, radio superior 24px (radius large; el frame de Figma tiene rounded-tl/tr 24 y overflow-clip, que recorta el radio 20 del header y la sombra del footer). Body = .sofia-bs-content + .sofia-bs__body: padding 20 en los 4 lados y contenido arriba (la pieza suelta Content usa 16/20 y centra), overflow-y:auto para el scroll interno; el BS / Slot queda en 326px centrado como en Figma. Gap 8px entre header, content y footer como en Figma (automático con header --tabs). Tabs = pieza bs-header (EVA .eva-3-tabs con los ajustes documentados ahí); el indicador activo es el de EVA (80% del tab). El cambio de tab (-active / aria-selected) y el contenido de cada tab los maneja la app dentro del body. EVA prevalece: label del botón ~1px más arriba.",
+      "scripts": []
+    },
+    {
+      "id": "sheet-hero-title",
+      "name": "Bottom Sheet · Header imagen Title + Single CTA",
+      "figmaNodeId": "4050:4574",
+      "file": "sheet-hero-title.html",
+      "width": 360,
+      "height": 712,
+      "stage": "#d8d8d8",
+      "props": {
+        "Header": "Imagen · Title",
+        "Footer": "Single CTA",
+        "Altura": "Según contenido"
+      },
+      "description": "Hero con foto, \"Titulo\" + \"Bajada\", handle y cerrar circular (BS_imageBG_tittle · Header=Title), Content de 404px con BS / Slot y footer con \"Primary button\". Para sheets de producto o paquete que arrancan con una imagen. Alto total 712px.",
+      "notes": "Contenedor .sofia-bs: fondo BS/bg/sheet, radio superior 24px (radius large; el frame de Figma tiene rounded-tl/tr 24 y overflow-clip, que recorta el radio 20 del header y la sombra del footer). Body = .sofia-bs-content + .sofia-bs__body: padding 20 en los 4 lados y contenido arriba (la pieza suelta Content usa 16/20 y centra), overflow-y:auto para el scroll interno; el BS / Slot queda en 326px centrado como en Figma. Content de 404px (en Figma este frame usa 404 en lugar de 396): se fija en línea con --sofia-bs-content-height: 404px, la variable que expone la pieza Content. En Figma el frame repite un \"Close Button Container\" (4055:3894) suelto en x325/y15, exactamente encima del cerrar propio del hero: no se duplica en el HTML (un solo botón Cerrar, el de .sofia-bs-hero). Diferencias del blur/degradado del hero heredadas de bs-hero (ver esa pieza). EVA prevalece: label del botón ~1px más arriba.",
+      "scripts": []
+    },
+    {
+      "id": "sheet-hero-tags",
+      "name": "Bottom Sheet · Header imagen Tags + Single CTA",
+      "figmaNodeId": "4050:4612",
+      "file": "sheet-hero-tags.html",
+      "width": 360,
+      "height": 772,
+      "stage": "#d8d8d8",
+      "props": {
+        "Header": "Imagen · Tags",
+        "Footer": "Single CTA",
+        "Altura": "Según contenido"
+      },
+      "description": "Hero con foto y fila de tags EVA \"Tag text\" con scroll horizontal (BS_imageBG_tittle · Header=Tags), Content (396px) con BS / Slot y footer con \"Primary button\". Alto total 772px.",
+      "notes": "Contenedor .sofia-bs: fondo BS/bg/sheet, radio superior 24px (radius large; el frame de Figma tiene rounded-tl/tr 24 y overflow-clip, que recorta el radio 20 del header y la sombra del footer). Body = .sofia-bs-content + .sofia-bs__body: padding 20 en los 4 lados y contenido arriba (la pieza suelta Content usa 16/20 y centra), overflow-y:auto para el scroll interno; el BS / Slot queda en 326px centrado como en Figma. Sin gap entre secciones (como en Figma). Tags = pieza bs-hero (EVA .eva-3-tag con los ajustes mínimos documentados ahí: 32px de alto y 87px de ancho como en Figma), así que el corte del último tag cae en el mismo lugar. Diferencias del blur del hero heredadas de bs-hero.",
+      "scripts": []
+    },
+    {
+      "id": "sheet-hero-tabs",
+      "name": "Bottom Sheet · Header imagen Tabs + Single CTA",
+      "figmaNodeId": "4058:4644",
+      "file": "sheet-hero-tabs.html",
+      "width": 360,
+      "height": 772,
+      "stage": "#d8d8d8",
+      "props": {
+        "Header": "Imagen · Tabs",
+        "Footer": "Single CTA",
+        "Altura": "Según contenido"
+      },
+      "description": "Hero con foto y fila de 2 tabs EVA (BS_imageBG_tittle · Header=Tabs), Content (396px) con BS / Slot y footer con \"Primary button\". Alto total 772px.",
+      "notes": "Contenedor .sofia-bs: fondo BS/bg/sheet, radio superior 24px (radius large; el frame de Figma tiene rounded-tl/tr 24 y overflow-clip, que recorta el radio 20 del header y la sombra del footer). Body = .sofia-bs-content + .sofia-bs__body: padding 20 en los 4 lados y contenido arriba (la pieza suelta Content usa 16/20 y centra), overflow-y:auto para el scroll interno; el BS / Slot queda en 326px centrado como en Figma. Sin gap entre secciones (como en Figma). Tabs = pieza bs-hero (EVA .eva-3-tabs con los ajustes mínimos documentados ahí: ítem de 64px y texto alineado a la izquierda como en Figma); el indicador activo es el de EVA (80% del tab). Diferencias del blur del hero heredadas de bs-hero.",
+      "scripts": []
+    },
+    {
+      "id": "height-default",
+      "name": "bottom sheet · Altura=Default",
+      "figmaNodeId": "4055:4059",
+      "file": "height-default.html",
+      "width": 360,
+      "height": 737,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Title",
+        "Footer": "Single CTA",
+        "Altura": "Default"
+      },
+      "description": "Sheet completa sobre el overlay, anclada abajo, con el alto de su contenido: header Title + Content de 396px + footer Single CTA (520px). Es la altura por defecto.",
+      "notes": "Snippet = .sofia-overlay + .sofia-bs.sofia-bs--h-default, ambos absolutos dentro del contenedor posicionado (en la preview, el viewport de 360×737; en producción el shell del chat o position:fixed). Radio superior = token BS/radius/sheet (--sofia-bs-radius-sheet, 16px), que es el que tiene atado el componente; los frames de estructura base usan 24px. Overlay opaco #323439 como en Figma (pieza bs-header). La sheet no tiene sombra propia en Figma: solo la del footer (static-hover, cae fuera del viewport). Diferencia de posición: en Figma todas las alturas terminan en y=739, 2px por debajo del frame de 737 (desbordan); acá la sheet se ancla a bottom:0, así que el footer queda 2px más arriba que en el render de Figma. Default se ajusta al contenido: header Title 56 + Content 396 (padding 20) + footer 68 = 520px, y con max-height:100% el body se achica y scrollea en pantallas bajas. Con el desplazamiento de 2px compensado, el render coincide con Figma salvo antialiasing de texto. EVA prevalece: label del botón ~1px más arriba.",
+      "scripts": []
+    },
+    {
+      "id": "height-75",
+      "name": "bottom sheet · Altura=75%",
+      "figmaNodeId": "4280:7321",
+      "file": "height-75.html",
+      "width": 360,
+      "height": 737,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Title",
+        "Footer": "Single CTA",
+        "Altura": "75%"
+      },
+      "description": "Sheet anclada abajo que ocupa el 75% del alto del contenedor. El body toma el espacio libre entre header y footer y scrollea si el contenido no entra.",
+      "notes": "Snippet = .sofia-overlay + .sofia-bs.sofia-bs--h-75, ambos absolutos dentro del contenedor posicionado (en la preview, el viewport de 360×737; en producción el shell del chat o position:fixed). Radio superior = token BS/radius/sheet (--sofia-bs-radius-sheet, 16px), que es el que tiene atado el componente; los frames de estructura base usan 24px. Overlay opaco #323439 como en Figma (pieza bs-header). La sheet no tiene sombra propia en Figma: solo la del footer (static-hover, cae fuera del viewport). Diferencia de posición: en Figma todas las alturas terminan en y=739, 2px por debajo del frame de 737 (desbordan); acá la sheet se ancla a bottom:0, así que el footer queda 2px más arriba que en el render de Figma. Alto = 75% del contenedor (height:75%); el body (padding 10/8 como en Figma) ocupa el espacio entre header y footer con overflow-y:auto. En Figma la sheet mide 557px sobre 737 (Content 433px), unos 4px más que el 75% exacto: por eso el header queda ~2px más abajo y el footer 2px más arriba que en el render de Figma; se priorizó el porcentaje para que el snap point funcione en cualquier alto de pantalla. El BS / Slot mantiene 326px centrado (con padding 8 no se estira). EVA prevalece: label del botón ~1px más arriba.",
+      "scripts": []
+    },
+    {
+      "id": "height-50",
+      "name": "bottom sheet · Altura=50%",
+      "figmaNodeId": "4280:7337",
+      "file": "height-50.html",
+      "width": 360,
+      "height": 737,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Title",
+        "Footer": "Single CTA",
+        "Altura": "50%"
+      },
+      "description": "Sheet anclada abajo que ocupa el 50% del alto del contenedor. El body toma el espacio libre entre header y footer y scrollea si el contenido no entra.",
+      "notes": "Snippet = .sofia-overlay + .sofia-bs.sofia-bs--h-50, ambos absolutos dentro del contenedor posicionado (en la preview, el viewport de 360×737; en producción el shell del chat o position:fixed). Radio superior = token BS/radius/sheet (--sofia-bs-radius-sheet, 16px), que es el que tiene atado el componente; los frames de estructura base usan 24px. Overlay opaco #323439 como en Figma (pieza bs-header). La sheet no tiene sombra propia en Figma: solo la del footer (static-hover, cae fuera del viewport). Diferencia de posición: en Figma todas las alturas terminan en y=739, 2px por debajo del frame de 737 (desbordan); acá la sheet se ancla a bottom:0, así que el footer queda 2px más arriba que en el render de Figma. Alto = 50% del contenedor (height:50%); el body (padding 10/8 como en Figma) ocupa el espacio entre header y footer con overflow-y:auto. En Figma la sheet mide 373px sobre 737 (Content 249px), unos 4px más que el 50% exacto: por eso el header queda ~2px más abajo y el footer 2px más arriba que en el render de Figma; se priorizó el porcentaje para que el snap point funcione en cualquier alto de pantalla. El BS / Slot mantiene 326px centrado (con padding 8 no se estira). EVA prevalece: label del botón ~1px más arriba.",
+      "scripts": []
+    },
+    {
+      "id": "height-25",
+      "name": "bottom sheet · Altura=25%",
+      "figmaNodeId": "4280:7353",
+      "file": "height-25.html",
+      "width": 360,
+      "height": 737,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Title",
+        "Footer": "Single CTA",
+        "Altura": "25%"
+      },
+      "description": "Sheet anclada abajo que ocupa el 25% del alto del contenedor, para contenido muy breve (una línea o un dato). El body contiene el placeholder \"[Put content here]\" de 24px.",
+      "notes": "Snippet = .sofia-overlay + .sofia-bs.sofia-bs--h-25, ambos absolutos dentro del contenedor posicionado (en la preview, el viewport de 360×737; en producción el shell del chat o position:fixed). Radio superior = token BS/radius/sheet (--sofia-bs-radius-sheet, 16px), que es el que tiene atado el componente; los frames de estructura base usan 24px. Overlay opaco #323439 como en Figma (pieza bs-header). La sheet no tiene sombra propia en Figma: solo la del footer (static-hover, cae fuera del viewport). Diferencia de posición: en Figma todas las alturas terminan en y=739, 2px por debajo del frame de 737 (desbordan); acá la sheet se ancla a bottom:0, así que el footer queda 2px más arriba que en el render de Figma. Alto = 25% del contenedor (height:25%); el body (padding 10/8 como en Figma) ocupa el espacio entre header y footer con overflow-y:auto. En Figma la sheet mide 188px sobre 737 (Content 64px), unos 4px más que el 25% exacto: por eso el header queda ~2px más abajo y el footer 2px más arriba que en el render de Figma; se priorizó el porcentaje para que el snap point funcione en cualquier alto de pantalla. El body trae el placeholder \"[Put content here]\" de 320×24 (BS/bg/section) arriba, no estirado (.sofia-bs--h-25 .sofia-bs__placeholder). EVA prevalece: label del botón ~1px más arriba.",
+      "scripts": []
+    }
+  ]
+}

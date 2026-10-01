@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bottomsheet form · Formulario &quot;Seleccioná tu destino&quot; (tap en accionable → form)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://www.despegar.com/eva-core/static/eva/eva-core.min.css?">
+<link rel="stylesheet" href="https://www.despegar.com/eva-core/static/eva/eva.min.css?">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components/bs-chat.css">
+<link rel="stylesheet" href="../css/components/bs-footer.css">
+<link rel="stylesheet" href="../css/components/bs-header.css">
+<link rel="stylesheet" href="../css/components/bs-hero.css">
+<link rel="stylesheet" href="../css/components/bs-sheets.css">
+<link rel="stylesheet" href="../css/components/forms-coupon.css">
+<link rel="stylesheet" href="../css/components/forms-trip.css">
+<link rel="stylesheet" href="../css/components/modal.css">
+<link rel="stylesheet" href="../css/components/side-sheet.css">
+<style>html,body{margin:0;padding:0;background:#ffffff;}
+.sofia-preview-stage{position:relative;width:575px;height:284px;overflow:hidden;}</style>
+</head><body>
+<div class="sofia-preview-stage" data-group="forms-coupon" data-variant="destination-form">
+<!-- SOFIA · bottomsheet form · Formulario "Seleccioná tu destino" (desktop) · Figma 4181:30206 -->
+<section class="sofia-bs-form sofia-bs-form--destination" role="dialog" aria-labelledby="sofia-destination-title">
+  <header class="sofia-bs-form__header">
+    <div class="sofia-bs-form__heading">
+      <h2 class="sofia-bs-form__title" id="sofia-destination-title">{Título}</h2>
+      <button type="button" class="sofia-bs-form__close" aria-label="Cerrar">
+        <i class="eva-3-icon-close" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+  <div class="sofia-bs-form__body">
+    <div class="sofia-bs-form__group" role="group" aria-labelledby="sofia-destination-question">
+      <p class="sofia-bs-form__question" id="sofia-destination-question">Seleccioná tu destino</p>
+      <div class="sofia-bs-form__fields">
+        <div class="eva-3-input-field -not-empty">
+          <div class="input-container">
+            <input id="sofia-destination-origin" class="input-tag" type="text" placeholder="" value="Buenos Aires">
+            <label class="input-label" for="sofia-destination-origin">Origen</label>
+          </div>
+        </div>
+        <div class="eva-3-input-field -not-empty">
+          <div class="input-container">
+            <input id="sofia-destination-destination" class="input-tag" type="text" placeholder="" value="Beijing">
+            <label class="input-label" for="sofia-destination-destination">Destino</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="sofia-bs-form__footer">
+    <div class="sofia-bs-form__stepper">
+      <button type="button" class="sofia-bs-form__step-btn" aria-label="Paso anterior">
+        <i class="eva-3-icon-chevron-left" aria-hidden="true"></i>
+      </button>
+      <span class="sofia-bs-form__step-label">1 de 3</span>
+      <button type="button" class="sofia-bs-form__step-btn" aria-label="Paso siguiente">
+        <i class="eva-3-icon-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+    <button type="button" class="eva-3-btn -md -primary">
+      <em class="btn-text">Siguiente</em>
+    </button>
+  </footer>
+</section>
+
+</div>
+
+</body></html>

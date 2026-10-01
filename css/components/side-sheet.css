@@ -1,0 +1,184 @@
+/* ==========================================================================
+   SOFIA · Side sheet (desktop)
+   Figma: CATCPGSOAIUuXcPBLDY1dK · sección 4119:1787 "Desktop_ sidesheet"
+     Side_sheet · Title        (4121:2083) → .sofia-ss--title
+     Side_sheet · Tabs         (4121:2144) → .sofia-ss--tabs
+     Side_sheet · Tags         (4121:2103) → .sofia-ss--tags
+     Side_sheet · Hero + Title (4121:2218) → .sofia-ss--hero-title
+     Side_sheet · Hero + Tags  (4121:2256) → .sofia-ss--hero-tags
+     Side_sheet · Hero + Tabs  (4121:2295) → .sofia-ss--hero-tabs
+     Frame "Modal" 1366×772 con overlay (4119:1825) → .sofia-ss-overlay + .sofia-ss--docked
+
+   Reutiliza las piezas del bottom sheet porque en Figma son instancias de los mismos
+   componentes: BS_imageBG_tittle → .sofia-bs-hero, Content → .sofia-bs-content + .sofia-slot,
+   Action Container → .sofia-bs-footer, Overlay → .sofia-overlay (solo posicionamiento).
+   Los ajustes para el side sheet van scopeados bajo .sofia-ss (no se toca el CSS de otros grupos).
+
+   EVA: .eva-3-modal-side-sheet NO se usa porque su estructura difiere del Figma (ancho -sm 424px,
+   header 24/24/20 con título 20/26, contenido 0 24 24, footer 20 24 24, overlay rgba(0,0,0,.8) y
+   visibilidad/transform manejados por clases). Se implementa con .sofia-ss; los átomos sí son EVA:
+   título .eva-3-h3 (Title M), ícono .eva-3-icon-close, tabs .eva-3-tabs, tags .eva-3-tag, botones .eva-3-btn.
+   ========================================================================== */
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · side-sheet». */
+
+/* ── Side_sheet ─────────────────────────────────────────────────────────── */
+/* Columna de 421px a todo el alto del contenedor: header / navegación / Content / Action Container.
+   El Content absorbe el alto disponible (en Figma cada instancia tiene un alto fijo distinto:
+   652 / 601 / 620 / 468 / 413 px, que es justamente lo que queda libre). */
+.sofia-ss {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: var(--sofia-ss-width);
+  max-width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--sofia-bg-low);
+}
+.sofia-ss > * { flex-shrink: 0; }
+
+/* Content (4116:1021) → .sofia-bs-content: ocupa el alto libre y scrollea */
+.sofia-ss__body.sofia-bs-content {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}
+/* BS / Slot: en Figma mide 326px fijos centrado (a 360 desborda 3px por lado; a 421 queda a 47.5px) */
+.sofia-ss .sofia-bs-content > .sofia-slot {
+  width: var(--sofia-ss-slot-width);
+  max-width: calc(100% + 6px);
+}
+
+/* ── Side_header (4121:2084) ── título Title M + cerrar · padding 10/20 · alto 50px */
+.sofia-ss-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--sofia-ss-spacing-header-v) var(--sofia-bs-spacing-header-h);
+  background: var(--sofia-bg-low);
+}
+.sofia-ss__title {
+  margin: 0;
+  min-width: 0;
+  color: var(--sofia-bs-color-title);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* tipografía: .eva-3-h3 = Title M (H3) · Rubik Medium 24/30 */
+}
+/* Close Button Container 16×16 con el ícono cross de 24px desbordando (igual que Figma) */
+.sofia-ss__close {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--sofia-radius-md);
+  background: none;
+  color: var(--sofia-actionable-lighten);
+  cursor: pointer;
+  overflow: visible;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.sofia-ss__close > [class^="eva-3-icon-"] {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+}
+.sofia-ss__close:focus-visible {
+  outline: 2px solid var(--focus-color, var(--sofia-actionable-primary));
+  outline-offset: 2px;
+}
+
+/* ── Tabs · EVA .eva-3-tabs.-no-stroke (.Tab Container Desktop · 6 tabs, el primero seleccionado) ── */
+.sofia-ss__tabs {
+  width: 100%;
+  background: var(--sofia-bg-low);
+}
+.sofia-ss__tabs .tabs-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Ajuste mínimo a EVA (igual que el modal): EVA suma 52px de ítem + 1px de borde inferior (53px); en
+   Figma el Tab Container mide 52px con el borde por dentro. Ítem de 51px + el "padding superior 4px"
+   del Tab Label para que el texto quede a la misma altura. */
+.sofia-ss__tabs .tabs-nav-item {
+  height: 51px;
+  padding-top: 4px;
+  line-height: 47px;
+}
+/* Side_sheet · Tabs (4121:2176): el .Subnav conserva el ancho desktop de 1024px (6 tabs de ~170px) y el
+   side sheet lo recorta a 421px → se ven 2 tabs y media. */
+.sofia-ss--tabs .sofia-ss__tabs .tabs-nav {
+  width: var(--sofia-ss-subnav-width);
+}
+/* Side_sheet · Hero + Tabs (Frame 6 · 4121:2332): fila con padding 10/20 y el Tab Container a 381px.
+   En Figma el .Subnav de 381px centra 6 tabs de 110px (min-width), que desbordan por ambos lados:
+   el primer tab queda a −142px. Se replica con justify-content:center sobre .tabs-nav. */
+.sofia-ss--hero-tabs .sofia-ss__tabs {
+  padding: var(--sofia-ss-spacing-header-v) var(--sofia-bs-spacing-header-h);
+}
+.sofia-ss--hero-tabs .sofia-ss__tabs .tabs-nav {
+  justify-content: center;
+}
+
+/* ── Tags (Frame 2610590 · 4121:2123 / Frame 5 · 4121:2283) · EVA .eva-3-tag ── padding 10/20 · gap 8 · alto 52 */
+.sofia-ss__tags {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: var(--sofia-ss-spacing-header-v) var(--sofia-bs-spacing-header-h);
+  background: var(--sofia-bg-low);
+  overflow-x: auto;          /* fila inline con scroll horizontal (spec del Tag) */
+  scrollbar-width: none;
+}
+.sofia-ss__tags::-webkit-scrollbar { display: none; }
+/* Ajuste mínimo a EVA .eva-3-tag: alto 32px (EVA 36px) y margin 0 (el espaciado lo da el gap de 8px) */
+.sofia-ss__tags .eva-3-tag {
+  flex-shrink: 0;
+  height: 32px;
+  margin: 0;
+}
+
+/* ── Hero (BS_imageBG_tittle · Header=Title, instancias 4121:2238 / 4121:2257 / 4121:2296) ──
+   Mismo markup que .sofia-bs-hero--title sin el handle (oculto en Figma) y sin radio. */
+.sofia-ss .sofia-bs-hero {
+  --sofia-bs-hero-radius: 0;
+}
+/* Rectangle 38 a 421px: Figma exporta otra forma (453×130, ss-hero-scrim-text.svg). La máscara del
+   background blur usa ese mismo path (mismo feGaussianBlur 8 y espejado que en bs-hero.css). */
+.sofia-ss .sofia-bs-hero__scrim--text .sofia-bs-hero__scrim-blur {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='453' height='130' viewBox='0 0 453 130' preserveAspectRatio='none'%3E%3Cfilter id='f' x='-4' y='-4' width='461' height='138' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cg transform='matrix(-1 0 0 1 453 0)'%3E%3Cpath filter='url(%23f)' d='M108.511 69.8342H253.921C272.878 69.8342 289.775 57.8778 296.082 40L307.776 16H372.096H437V114H16L108.511 69.8342Z'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='453' height='130' viewBox='0 0 453 130' preserveAspectRatio='none'%3E%3Cfilter id='f' x='-4' y='-4' width='461' height='138' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cg transform='matrix(-1 0 0 1 453 0)'%3E%3Cpath filter='url(%23f)' d='M108.511 69.8342H253.921C272.878 69.8342 289.775 57.8778 296.082 40L307.776 16H372.096H437V114H16L108.511 69.8342Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Side_sheet · Hero + Tabs: el auto-layout de Figma usa espaciado −6px → cada bloque pisa 6px del
+   anterior (hero visible 234px, fila de tabs 66px). position:relative para respetar el orden de pintado. */
+.sofia-ss--hero-tabs > * { position: relative; }
+.sofia-ss--hero-tabs > * + * { margin-top: var(--sofia-ss-hero-tabs-overlap); }
+
+/* ── Contexto desktop: overlay + side sheet anclado a la derecha ─────────── */
+/* .sofia-overlay aporta el posicionamiento (absolute, inset 0); el fill es el del frame "Modal". */
+.sofia-overlay.sofia-ss-overlay {
+  background: var(--sofia-ss-overlay-color);
+}
+/* Side sheet anclado al borde derecho a todo el alto. En la galería es absolute dentro del stage;
+   en la app usar position:fixed (top/right/bottom 0) sobre el viewport. */
+.sofia-ss--docked {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+}

@@ -1,0 +1,81 @@
+{
+  "group": "forms-coupon",
+  "title": "Formularios · Cupón de descuento y formulario de destino (bottomsheet form)",
+  "category": "forms",
+  "order": 41,
+  "css": "css/components/forms-coupon.css",
+  "figmaSection": "4181:27790",
+  "description": "Componente \"bottomsheet form\" de la sección \"Modelo de persistencia\": card flotante de 575px que SOFIA levanta sobre el chat en desktop (cupón de descuento o formulario de pasos) y su versión bottom sheet mobile. Cubre tres casos del archivo. Caso widget NO persistente (4181:29165): 1) \"En contexto de cupones, Sofia responde con la tool de search_hotel Se levanta automaticamente el widget\" · 2) \"En contexto de cupones, Sofia responde con la tool de search_hotel Se levanta automaticamente el widget\" · 3) \"El usuario cierra el bottomsheet, este desaparace\" · 4) \"El usuario vuelve a “traer” el BS con el trigger en el cluster corresponciente\". Caso tap en accionable → form (4181:30153): 1) \"El usuario hace tap en un accionable y activa el bottom sheet\" · 2) \"El usuario ve un form para completar\" · 3) \"Si cierra o completa el BS desaparece\". Caso widget semi persistente (4181:30347): 1) \"En contexto de cupones, Sofia responde con la tool de earch_hotel Se levanta automaticamente el widget\" · 2) \"El usuario hace clik en la cruz y minimiza el cupón\" · 3) \"Lo puede cerrar por completo y usar el trigger para traerlo de nuevo\". La card es de ancho fluido (width: 100%): el ancho de 575px lo da el contenedor.",
+  "variants": [
+    {
+      "id": "coupon-desktop",
+      "name": "bottomsheet form · Cupón de descuento (widget NO persistente)",
+      "figmaNodeId": "4181:29648",
+      "figmaNodeIds": ["4181:29648", "4181:29808"],
+      "file": "coupon-desktop.html",
+      "width": 575,
+      "height": 312,
+      "stage": "#ffffff",
+      "props": {"Caso": "widget NO persistente", "Acción header": "cross (cerrar)"},
+      "description": "Card del cupón que se levanta sola sobre el chat. Header \"Tu cupón de descuento\" en Accent/Surface/4 + cruz para cerrar; banda Accent/Surface/4 con la ilustración del cupón, el código \"RIOXSELL56K\" y \"$ 56.000 de descuento\" (Title M); texto \"Copiá el código y pegalo en el checkout al momento de pagar.\" y dos condiciones con checkmark-circle; footer con el botón primario \"Copiar código RIOXSELL56K\" + ícono copiar. Pasos del caso: 2) \"En contexto de cupones, Sofia responde con la tool de search_hotel Se levanta automaticamente el widget\" (4181:29648) · 3) \"El usuario cierra el bottomsheet, este desaparace\" (la card se quita del DOM) · 4) \"El usuario vuelve a “traer” el BS con el trigger en el cluster corresponciente\" (4181:29808, la misma card).",
+      "notes": "4181:29808 es idéntico a 4181:29648 (misma instancia, mismo contenido y sombra): se documentan como una sola variante. Stroke Borders/medium de 1px EXTERIOR al nodo (el nodo mide 575×312 sin el borde) → box-shadow 0 0 0 1px + ShadowBS (0 0 48 · 30%); en la preview recortada a 575×312 el borde y la sombra quedan fuera del área capturada. La banda tiene stroke del mismo color que el fondo (se dibuja con outline interior para no sumar alto) y sombra static (0 4 8 · 10%). Ilustración \"coupon 2\" (72×72) descargada de Figma como assets/img/coupon-illustration.svg, ubicada al 4.47% / 6.44% del contenedor; la máscara de Figma es un rectángulo 72×72 completo, equivalente al overflow: hidden del contenedor. Íconos: cross → eva-3-icon-close (20px), checkmark-circle → eva-3-icon-checkmark-circle (20px, Accent/Surface/4), copy → eva-3-icon-copy dentro del botón EVA eva-3-btn -md -primary (EVA prevalece: el glifo copy de EVA difiere levemente del SVG del archivo y el radio del botón EVA es 24px vs 32px de Figma, sin diferencia visible a 36px de alto). Los textos entre llaves ({alojamientos}, {30 de Junio}) son placeholders del contenido dinámico, tal como están en Figma.",
+      "scripts": []
+    },
+    {
+      "id": "coupon-desktop-semi",
+      "name": "bottomsheet form · Cupón de descuento (widget semi persistente)",
+      "figmaNodeId": "4181:30986",
+      "figmaNodeIds": ["4181:30986"],
+      "file": "coupon-desktop-semi.html",
+      "width": 575,
+      "height": 312,
+      "stage": "#ffffff",
+      "props": {"Caso": "widget semi persistente", "Acción header": "chevron-down (minimizar)"},
+      "description": "Misma card del cupón para el caso semi persistente: en el header el ícono es chevron-down (minimiza la card a la peek bar \"Tu cupón de descuento\") y la sombra es shadow_BS (0 -8 48 · 20%). Pasos del caso: 1) \"En contexto de cupones, Sofia responde con la tool de earch_hotel Se levanta automaticamente el widget\" (esta card) · 2) \"El usuario hace clik en la cruz y minimiza el cupón\" (→ variante coupon-peek) · 3) \"Lo puede cerrar por completo y usar el trigger para traerlo de nuevo\".",
+      "notes": "Difiere de 4181:29648 solo en el ícono del header (chevron-down en lugar de cross) y en la sombra (shadow_BS en lugar de ShadowBS); por eso es variante propia (.sofia-bs-form--semi). El botón del header lleva aria-expanded=\"true\" y al minimizar se reemplaza la card por la peek bar. Resto de notas igual a coupon-desktop (stroke exterior, banda, ilustración, íconos y botón EVA).",
+      "scripts": []
+    },
+    {
+      "id": "destination-form",
+      "name": "bottomsheet form · Formulario \"Seleccioná tu destino\" (tap en accionable → form)",
+      "figmaNodeId": "4181:30206",
+      "figmaNodeIds": ["4181:30206"],
+      "file": "destination-form.html",
+      "width": 575,
+      "height": 284,
+      "stage": "#ffffff",
+      "props": {"Caso": "tap en accionable → form", "Paso": "1 de 3"},
+      "description": "Formulario en card flotante que se abre al tocar un accionable. Header \"{Título}\" + cruz; cuerpo de 160px con scroll vertical: pregunta \"Seleccioná tu destino\" (Subtitle L) y dos Input-field EVA en fila (Origen: \"Buenos Aires\", Destino: \"Beijing\", estado Enabled / filled); footer sticky con sombra hacia arriba, stepper \"1 de 3\" con chevrons anterior/siguiente y botón primario \"Siguiente\". Pasos del caso: 1) \"El usuario hace tap en un accionable y activa el bottom sheet\" · 2) \"El usuario ve un form para completar\" (esta card) · 3) \"Si cierra o completa el BS desaparece\".",
+      "notes": "Inputs → EVA eva-3-input-field con input-tag + input-label flotante (se agrega -not-empty para Safari porque el campo viene con valor). EVA prevalece: el label flotante de EVA queda ~1px más abajo que en Figma y el valor se ubica con padding-top 32px de EVA. Stroke exterior Borders/medium + ShadowBS en la card; header, cuerpo y footer tienen fondo Background/low propio (en Figma la card no tiene fill). El frame interno del contenido mide 322px de alto en Figma (espacio vacío que solo genera scroll): no se fija ese alto, se mantiene el alto fijo de 160px del Section container con overflow-y: auto. Chevrons del stepper → eva-3-icon-chevron-left / -chevron-right (16px, Text/Neutral/low) como dos botones con aria-label (en Figma el stepper es un único botón). Footer con sombra sticky (0 -4 8 · 10%). Botón \"Siguiente\" → eva-3-btn -md -primary.",
+      "scripts": []
+    },
+    {
+      "id": "coupon-peek",
+      "name": "bottomsheet form · Cupón minimizado (peek bar)",
+      "figmaNodeId": "4181:30667",
+      "figmaNodeIds": ["4181:30667"],
+      "file": "coupon-peek.html",
+      "width": 360,
+      "height": 52,
+      "stage": "#ffffff",
+      "props": {"Caso": "widget semi persistente", "Estado": "minimizado"},
+      "description": "Estado minimizado del cupón semi persistente: barra de 52px con \"Tu cupón de descuento\" en Accent/Surface/4 y cruz para cerrarlo por completo. Paso del caso: 2) \"El usuario hace clik en la cruz y minimiza el cupón\" → se muestra esta barra · 3) \"Lo puede cerrar por completo y usar el trigger para traerlo de nuevo\".",
+      "notes": "Reutiliza .sofia-peekbar (__header / __heading / __title) definido en css/components/forms-trip.css y agrega solo el modificador .sofia-peekbar--coupon: stroke 1px brand-tertiary-4 EXTERIOR (box-shadow spread, se anula el ::after interior de forms-trip), sombra shadow_BS (0 -8 48 · 20%), título en brand-tertiary-4 alineado a la izquierda con gap 8. En la preview recortada a 360×52 el stroke y la sombra quedan fuera del área capturada. Cruz → eva-3-icon-close (20px).",
+      "scripts": []
+    },
+    {
+      "id": "coupon-mobile",
+      "name": "BS · Cupón de descuento (mobile)",
+      "figmaNodeId": "4181:30068",
+      "figmaNodeIds": ["4181:30068"],
+      "file": "coupon-mobile.html",
+      "width": 360,
+      "height": 800,
+      "stage": "#ffffff",
+      "props": {"Caso": "widget NO persistente", "Dispositivo": "mobile"},
+      "description": "Versión mobile del cupón: scrim mainBg al 50% sobre la pantalla y bottom sheet anclado abajo (378px) con handle 40×4, \"Tu cupón de descuento\" + cruz, banda a sangre con ilustración, \"RIOXSELL56K\" y \"$ 56.000 de descuento\" (Title S), texto y tres condiciones (\"Solo para {alojamientos}\", \"Válido hasta {30 de Junio}\", \"Se aplica al pagar\"); footer con el código \"RIOXSELL56K\" (Title S, Accent/Surface/4) y botón ghost \"Copiar\" + ícono copiar.",
+      "notes": "Scrim: rectángulo 360×796 con mainBg (#72777F) al 50% (token --sofia-main-bg en css/tokens.css); termina 4px antes del borde inferior, tapado por el sheet. El sheet usa .sofia-bs-form--mobile dentro de .sofia-bs-form-layer (position absolute, bottom 0). La banda del cupón mide 360px (desborda el padding de 24px del contenido, como en Figma) → margin 0 -24px. Botón \"Copiar\" → EVA eva-3-btn-ghost -md -primary con eva-3-icon-copy a la derecha (en Figma la prop dice icon=\"No icon\" pero el ícono copy es visible; se respeta lo visible). Cruz → eva-3-icon-close 20px. En la sección también existe el frame 4181:30013 (Bottom sheet / Handle + text content + Sticky, 360×286) posicionado detrás del input del chat en el mockup 4181:29809: no forma parte de esta variante.",
+      "scripts": []
+    }
+  ]
+}

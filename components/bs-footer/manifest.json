@@ -1,0 +1,56 @@
+{
+  "group": "bs-footer",
+  "title": "Bottom Sheet · Footer (Action Container)",
+  "category": "bottom-sheet",
+  "order": 12,
+  "css": "css/components/bs-footer.css",
+  "figmaSection": "49:79",
+  "description": "Footer de acciones del bottom sheet (componente Action Container, propiedad Footer). Equivalencias con el MD de referencia (BS / Footer): SingleCTA = Footer=Single CTA, DualCTA = Footer=Dual CTA, Pagination = Footer=CTA + Steps. Botones EVA tamaño Medium (36px). Es de ancho fluido: el mismo CSS sirve en el bottom sheet mobile (360px) y en el side sheet desktop (421px), donde la fila de CTAs queda centrada a 328px.",
+  "variants": [
+    {
+      "id": "footer-single",
+      "name": "Action Container · Footer=Single CTA",
+      "figmaNodeId": "4058:4743",
+      "file": "footer-single.html",
+      "width": 360,
+      "height": 68,
+      "stage": "#ffffff",
+      "props": {
+        "Footer": "Single CTA"
+      },
+      "description": "Una sola acción primaria a lo ancho (SingleCTA del MD). Usalo cuando el sheet tiene un único paso siguiente claro: confirmar, aplicar, continuar. Es la variante que usan los side sheets desktop (421px).",
+      "notes": "Botón = EVA eva-3-btn -md -primary (Button-contained · Primary · Medium · No icon), 328×36, radio EVA 24px (pill). Fila AC_row de 328px fija: en Figma el contenedor tiene padding 20px pero la fila desborda y queda centrada a 16px de cada borde; se implementa con padding horizontal efectivo 16px + max-width 328px, así a 421px queda centrada a 46.5px como en las instancias del side sheet (4121:2093, 4121:2113, 4121:2162). Stroke superior 1px Borders/medium interior (inset box-shadow, no suma alto) + sombra static-hover (0 12 20 · rgba(84,89,98,.15)); la sombra cae fuera del nodo, por eso no se ve en la preview recortada a 68px. En Figma existe un Button-ghost oculto dentro del wrapper: no se implementa porque no es visible. EVA prevalece: el label del botón (line-height 36px de EVA) queda ~1px más arriba que en Figma.",
+      "scripts": []
+    },
+    {
+      "id": "footer-dual",
+      "name": "Action Container · Footer=Dual CTA",
+      "figmaNodeId": "4058:4745",
+      "file": "footer-dual.html",
+      "width": 368,
+      "height": 68,
+      "stage": "#ffffff",
+      "props": {
+        "Footer": "Dual CTA"
+      },
+      "description": "Acción secundaria + acción primaria lado a lado, mitad y mitad (DualCTA del MD). Usalo cuando el usuario elige entre dos caminos, por ejemplo cancelar / confirmar. La primaria va siempre a la derecha.",
+      "notes": "Secundario = EVA eva-3-btn-ghost -md -primary (Button-ghost · Default · Medium: borde y texto #4300D2, fondo transparente); primario = eva-3-btn -md -primary. Cada botón 160×36 (flex 1), gap 8px entre botones: el MD indica cta/gap 12px (--sofia-bs-cta-gap) pero en Figma el AC_row usa 8px, se respeta Figma (token local --sofia-bs-footer-dual-gap). En Figma el nodo mide 368px (hug: 20 + 328 + 20); con más ancho la fila queda centrada a 328px. Stroke superior 1px Borders/medium interior + sombra static-hover. EVA prevalece: diferencias de antialiasing de texto/borde únicamente; anchos 160/160 verificados.",
+      "scripts": []
+    },
+    {
+      "id": "footer-steps",
+      "name": "Action Container · Footer=CTA + Steps",
+      "figmaNodeId": "4119:1022",
+      "file": "footer-steps.html",
+      "width": 360,
+      "height": 68,
+      "stage": "#ffffff",
+      "props": {
+        "Footer": "CTA + Steps"
+      },
+      "description": "Acción primaria a la izquierda + paginador \"‹ 1 de 3 ›\" a la derecha (Pagination del MD). Usalo en flujos de varios pasos dentro del mismo sheet: el botón avanza y los chevrons permiten ir y volver entre pasos. La app actualiza el texto \"N de M\".",
+      "notes": "CTA = EVA eva-3-btn -md -primary \"Siguiente\" (97×36). En Figma la instancia tiene la prop icon=\"Right\" pero no se ve ningún ícono (el ancho de 97px corresponde a solo texto): se respeta lo visible. Paginador = estructura sofia (EVA pagination es numérica y steppers es de cantidad +/−, ninguno coincide): chevrons EVA eva-3-icon-chevron-left / -right 16×16 en Text/Neutral/low como botones con aria-label, gap 8px, texto Body S (Rubik Regular 12/16, Text/Neutral/low). Contenedor 320px con space-between (fluido). La sombra del Figma es static-hover (0 12 20 · 15%), no la sticky (0 −4 8). Stroke superior 1px Borders/medium interior + sombra static-hover. EVA prevalece: label del botón y texto \"1 de 3\" con ±1px de diferencia por render de fuente.",
+      "scripts": []
+    }
+  ]
+}

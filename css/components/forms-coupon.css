@@ -1,0 +1,390 @@
+/* ==========================================================================
+   SOFIA · forms-coupon — "bottomsheet form": cupón de descuento + formulario de destino
+   Figma: CATCPGSOAIUuXcPBLDY1dK · sección 4181:27790 "Modelo de persistencia"
+          → "caso widget NO persistente" (4181:29165), "tap en accionable → form" (4181:30153),
+            "caso widget semi persistente" (4181:30347).
+   Piezas: .sofia-bs-form (card flotante desktop 575px; --coupon / --destination / --semi),
+           .sofia-coupon (banda del cupón + condiciones; --mobile),
+           .sofia-bs-form-layer (composición mobile 360×800: scrim + bottom sheet),
+           .sofia-peekbar--coupon (modificador del .sofia-peekbar de forms-trip.css).
+   EVA: botones (eva-3-btn -md -primary / eva-3-btn-ghost -md -primary), input-field
+        (eva-3-input-field) e íconos (eva-3-icon-close / -chevron-down / -chevron-left /
+        -chevron-right / -checkmark-circle / -copy) salen de EVA; acá solo va la estructura SOFIA.
+   Strokes: en estos nodos el stroke de 1px del contenedor raíz es EXTERIOR (no suma al tamaño
+            del nodo: 575×312 / 575×284 / 360×52) → se dibuja con box-shadow spread 1px.
+            El stroke de la banda del cupón es del mismo color que su fondo → outline interior.
+   ========================================================================== */
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · forms-coupon». */
+
+/* ── Card flotante desktop (bottomsheet form) ────────────────────────────── */
+.sofia-bs-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  background: var(--sofia-bg-low);
+  border-radius: var(--sofia-radius-lg);
+  /* stroke exterior Borders/medium + ShadowBS (0 0 48 · 30%) */
+  box-shadow: 0 0 0 1px var(--sofia-border-medium), var(--sofia-shadow-bs-float);
+  color: var(--sofia-text-high);
+}
+/* Semi persistente (4181:30986): misma card con sombra shadow_BS (0 -8 48 · 20%) */
+.sofia-bs-form--semi {
+  box-shadow: 0 0 0 1px var(--sofia-border-medium), var(--sofia-shadow-bs);
+}
+
+/* Header (Bottom sheet / Handle) */
+.sofia-bs-form__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px 8px;
+  background: var(--sofia-bg-low);
+  border-radius: var(--sofia-radius-lg) var(--sofia-radius-lg) 0 0;
+}
+.sofia-bs-form--destination .sofia-bs-form__header {
+  padding: 20px 20px 16px;
+}
+.sofia-bs-form__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+}
+.sofia-bs-form__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--sofia-type-subtitle-m-size);
+  line-height: var(--sofia-type-subtitle-m-lh);
+  font-weight: var(--sofia-weight-medium);
+  letter-spacing: 0.014px;
+  color: var(--sofia-text-high);
+}
+.sofia-bs-form--coupon .sofia-bs-form__title {
+  color: var(--sofia-accent-surface-4);       /* brand-tertiary-4 · "cupon XSell" */
+}
+
+/* Botón de ícono 20×20 (cross / chevron-down). EVA no tiene un icon-button de 20px sin
+   padding: reset mínimo de <button> + ícono EVA. */
+.sofia-bs-form__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sofia-text-high);
+  cursor: pointer;
+}
+.sofia-bs-form__close > i {
+  display: block;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+/* Body (Section container) */
+.sofia-bs-form__body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding-bottom: 16px;
+}
+.sofia-bs-form--destination .sofia-bs-form__body {
+  height: 160px;                               /* alto fijo del Section container en Figma */
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 8px 20px 16px;
+  background: var(--sofia-bg-low);
+}
+
+/* Formulario de destino */
+.sofia-bs-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.sofia-bs-form__question {
+  margin: 0;
+  font-size: var(--sofia-type-subtitle-l-size);
+  line-height: var(--sofia-type-subtitle-m-lh); /* Subtitle L con interline Subtitle/medium (20) */
+  font-weight: var(--sofia-weight-medium);
+  color: var(--sofia-text-high);
+}
+.sofia-bs-form__fields {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+.sofia-bs-form__fields > .eva-3-input-field {
+  flex: 1 0 0;
+  min-width: 1px;
+}
+
+/* Footer */
+.sofia-bs-form__footer {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--sofia-bg-low);
+  border-radius: 0 0 var(--sofia-radius-lg) var(--sofia-radius-lg);
+}
+.sofia-bs-form--destination .sofia-bs-form__footer {
+  justify-content: space-between;
+  box-shadow: var(--sofia-shadow-sticky);      /* sticky 0 -4 8 · 10% */
+}
+
+/* Stepper "1 de 3" con chevrons 16px */
+.sofia-bs-form__stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sofia-bs-form__step-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sofia-text-low);
+  cursor: pointer;
+}
+.sofia-bs-form__step-btn > i {
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+}
+.sofia-bs-form__step-label {
+  font-size: var(--sofia-type-body-s-size);
+  line-height: var(--sofia-type-body-s-lh);
+  font-weight: var(--sofia-weight-regular);
+  letter-spacing: 0.012px;
+  color: var(--sofia-text-low);
+  white-space: nowrap;
+}
+
+/* ── Cupón ───────────────────────────────────────────────────────────────── */
+.sofia-coupon {
+  color: var(--sofia-text-high);
+}
+/* Banda "widget desktop": fondo Accent/Surface/4 + stroke del mismo color (interior) + static */
+.sofia-coupon__band {
+  display: flex;
+  align-items: center;
+  padding: 8px 24px;
+  background: var(--sofia-accent-surface-4);
+  outline: 1px solid var(--sofia-accent-surface-4);
+  outline-offset: -1px;
+  box-shadow: var(--sofia-shadow-static);
+}
+.sofia-coupon__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+/* Ilustración "coupon 2" 72×72: el grupo va a 4.47% / 6.44% del contenedor. La máscara de
+   Figma (Clip path group) es un rectángulo 72×72 completo → equivale al overflow: hidden. */
+.sofia-coupon__art {
+  position: relative;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+}
+.sofia-coupon__art > img {
+  position: absolute;
+  top: 6.44%;
+  left: 4.47%;
+  display: block;
+  max-width: none;
+}
+.sofia-coupon__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--sofia-text-invert);
+  white-space: nowrap;
+}
+.sofia-coupon__code {
+  margin: 0;
+  font-size: var(--sofia-type-subtitle-m-size);
+  line-height: var(--sofia-type-subtitle-m-lh);
+  font-weight: var(--sofia-weight-medium);
+  letter-spacing: 0.014px;
+}
+.sofia-coupon__amount {
+  margin: 0;
+  font-size: var(--sofia-type-title-m-size);   /* Title M 24/30 (desktop) */
+  line-height: var(--sofia-type-title-m-lh);
+  font-weight: var(--sofia-weight-medium);
+}
+
+/* Texto + condiciones */
+.sofia-coupon__details {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 0 20px;
+}
+.sofia-coupon__text {
+  margin: 0;
+  font-size: var(--sofia-type-body-l-size);
+  line-height: var(--sofia-type-body-l-lh);
+  font-weight: var(--sofia-weight-regular);
+  color: var(--sofia-text-high);
+}
+.sofia-coupon__conditions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 4px 0;                              /* py = var(--stroke) 4px en Figma */
+  list-style: none;
+}
+.sofia-coupon__condition {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--sofia-type-body-m-size);
+  line-height: var(--sofia-type-body-m-lh);
+  font-weight: var(--sofia-weight-regular);
+  letter-spacing: 0.007px;
+  color: var(--sofia-text-medium);
+  white-space: nowrap;
+}
+/* checkmark-circle 20px · brand-tertiary-4. El ícono EVA no lleva clase sofia-* propia:
+   base.css aplica la fuente Rubik a todo [class*=" sofia-"] y pisaría la fuente de íconos. */
+.sofia-coupon__condition > i {
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--sofia-accent-surface-4);
+}
+
+/* Código + botón copiar (footer mobile) */
+.sofia-bs-form__copy {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  min-width: 1px;
+}
+.sofia-bs-form__copy-code {
+  font-size: var(--sofia-type-title-s-size);
+  line-height: var(--sofia-type-title-s-lh);
+  font-weight: var(--sofia-weight-medium);
+  color: var(--sofia-accent-surface-4);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ── Composición mobile (BS 360×800): scrim + bottom sheet ───────────────── */
+.sofia-bs-form-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.sofia-bs-form-layer__scrim {                  /* Rectangle mainBg · 50% (360×796) */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  background: var(--sofia-main-bg);
+  opacity: var(--sofia-coupon-scrim-opacity);
+}
+.sofia-bs-form-layer > .sofia-bs-form {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Bottom sheet mobile: esquinas superiores 24, sin stroke ni sombra, handle 40×4 */
+.sofia-bs-form--mobile {
+  border-radius: var(--sofia-radius-lg) var(--sofia-radius-lg) 0 0;
+  box-shadow: none;
+}
+.sofia-bs-form--mobile .sofia-bs-form__header {
+  gap: 10px;
+  padding: 8px 24px;
+}
+.sofia-bs-form__handle {
+  width: 40px;
+  height: 4px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: var(--sofia-neutral-400);
+}
+.sofia-bs-form--mobile .sofia-bs-form__title {
+  color: var(--sofia-text-high);
+}
+.sofia-bs-form--mobile .sofia-bs-form__body {
+  gap: 8px;
+  padding: 0 24px 16px;
+}
+.sofia-bs-form--mobile .sofia-bs-form__footer {
+  padding: 16px 20px;
+  border-radius: 0;
+}
+
+/* Cupón mobile: banda a sangre (360px), centrada, py 16 y monto Title S 20/28 */
+.sofia-coupon--mobile .sofia-coupon__band {
+  justify-content: center;
+  margin: 0 -24px;
+  padding: 16px 24px;
+}
+.sofia-coupon--mobile .sofia-coupon__amount {
+  font-size: var(--sofia-type-title-s-size);
+  line-height: var(--sofia-type-title-s-lh);
+}
+.sofia-coupon--mobile .sofia-coupon__details {
+  padding: 0;
+}
+.sofia-coupon--mobile .sofia-coupon__conditions {
+  padding: 0;
+}
+
+/* ── Peek bar del cupón (semi persistente minimizado, 360×52) ────────────── */
+/* Reutiliza .sofia-peekbar / __header / __heading / __title de forms-trip.css.
+   Diferencias Figma 4181:30667: stroke exterior brand-tertiary-4, sombra shadow_BS,
+   header alineado a la izquierda con gap 8 y título en brand-tertiary-4. */
+.sofia-peekbar.sofia-peekbar--coupon {
+  box-shadow: 0 0 0 1px var(--sofia-accent-surface-4), var(--sofia-shadow-bs);
+}
+.sofia-peekbar.sofia-peekbar--coupon::after {
+  content: none;
+}
+.sofia-peekbar--coupon .sofia-peekbar__header {
+  align-items: flex-start;
+  justify-content: center;
+  padding: 16px 20px;
+}
+.sofia-peekbar--coupon .sofia-peekbar__heading {
+  gap: 8px;
+}
+.sofia-peekbar--coupon .sofia-peekbar__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--sofia-accent-surface-4);
+}

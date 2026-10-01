@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Side_sheet · Hero + Tabs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://www.despegar.com/eva-core/static/eva/eva-core.min.css?">
+<link rel="stylesheet" href="https://www.despegar.com/eva-core/static/eva/eva.min.css?">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components/bs-chat.css">
+<link rel="stylesheet" href="../css/components/bs-footer.css">
+<link rel="stylesheet" href="../css/components/bs-header.css">
+<link rel="stylesheet" href="../css/components/bs-hero.css">
+<link rel="stylesheet" href="../css/components/bs-sheets.css">
+<link rel="stylesheet" href="../css/components/forms-coupon.css">
+<link rel="stylesheet" href="../css/components/forms-trip.css">
+<link rel="stylesheet" href="../css/components/modal.css">
+<link rel="stylesheet" href="../css/components/side-sheet.css">
+<style>html,body{margin:0;padding:0;background:#ffffff;}
+.sofia-preview-stage{position:relative;width:421px;height:775px;overflow:hidden;}</style>
+</head><body>
+<div class="sofia-preview-stage" data-group="side-sheet" data-variant="ss-hero-tabs">
+<aside class="sofia-ss sofia-ss--hero-tabs" role="dialog" aria-modal="true" aria-labelledby="sofia-ss-hero-tabs-label">
+  <div class="sofia-bs-hero sofia-bs-hero--title">
+    <div class="sofia-bs-hero__media">
+      <div class="sofia-bs-hero__photo">
+        <img src="../assets/img/bs-hero-house.png" alt="">
+      </div>
+      <div class="sofia-bs-hero__scrim sofia-bs-hero__scrim--bottom" aria-hidden="true">
+        <div class="sofia-bs-hero__scrim-blur"></div>
+        <img class="sofia-bs-hero__scrim-fill" src="../assets/img/bs-hero-scrim-bottom.svg" alt="">
+      </div>
+      <div class="sofia-bs-hero__content">
+        <div class="sofia-bs-hero__scrim sofia-bs-hero__scrim--text" aria-hidden="true">
+          <div class="sofia-bs-hero__scrim-blur"></div>
+          <img class="sofia-bs-hero__scrim-fill" src="../assets/img/ss-hero-scrim-text.svg" alt="">
+        </div>
+        <div class="sofia-bs-hero__text">
+          <p class="sofia-bs-hero__title" id="sofia-ss-hero-tabs-label">Titulo</p>
+          <p class="sofia-bs-hero__subtitle">Bajada</p>
+        </div>
+      </div>
+      <button type="button" class="sofia-bs-hero__close" aria-label="Cerrar">
+        <i class="eva-3-icon-close" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="sofia-ss__tabs">
+    <div class="eva-3-tabs -no-stroke">
+      <div class="tabs-nav-corners-container">
+        <div class="tabs-nav-container">
+          <ul class="tabs-nav" role="tablist">
+            <li class="tabs-nav-item -active" role="tab" aria-selected="true" tabindex="0">Tab label</li>
+            <li class="tabs-nav-item" role="tab" aria-selected="false" tabindex="-1">Tab label</li>
+            <li class="tabs-nav-item" role="tab" aria-selected="false" tabindex="-1">Tab label</li>
+            <li class="tabs-nav-item" role="tab" aria-selected="false" tabindex="-1">Tab label</li>
+            <li class="tabs-nav-item" role="tab" aria-selected="false" tabindex="-1">Tab label</li>
+            <li class="tabs-nav-item" role="tab" aria-selected="false" tabindex="-1">Tab label</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sofia-ss__body sofia-bs-content" role="tabpanel">
+    <!-- BS / Slot: reemplazar el placeholder por el contenido del side sheet -->
+    <div class="sofia-slot">
+      <p class="sofia-slot__label">Content / Slot</p>
+    </div>
+  </div>
+  <footer class="sofia-bs-footer sofia-bs-footer--single">
+    <div class="sofia-bs-footer__actions">
+      <button type="button" class="eva-3-btn -md -primary"><em class="btn-text">Primary button</em></button>
+    </div>
+  </footer>
+</aside>
+
+</div>
+
+</body></html>

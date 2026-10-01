@@ -1,0 +1,245 @@
+/* ==========================================================================
+   SOFIA · BS_imageBG_tittle (Figma 4048:4371) → .sofia-bs-hero
+   Variantes: Header=Title (4048:3986) · Header=Tabs (4048:4396) · Header=Tags (4048:4372)
+   Ancho fluido: 360px en bottom sheet mobile, 421px en side sheet desktop
+   (instancias 4121:2238 / 4121:2257 / 4121:2296). Alto del hero: 240px siempre.
+
+   Nota de implementación: en Figma el frame "Image" está espejado (rotate 180 + scaleY -1)
+   y algunos hijos vuelven a espejarse. Acá todo está expresado en coordenadas visuales
+   finales, sin transforms, para no romper backdrop-filter.
+   ========================================================================== */
+
+/* Tokens del grupo: ver css/tokens.css → «Tokens de componentes · bs-hero». */
+
+/* ── Raíz ─────────────────────────────────────────────────────────────── */
+.sofia-bs-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--sofia-bs-hero-radius) var(--sofia-bs-hero-radius) 0 0;
+  background: var(--sofia-bs-bg-sheet);
+}
+
+/* ── Frame "Image": foto + scrims + título + handle + cerrar ──────────── */
+.sofia-bs-hero__media {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  height: var(--sofia-bs-hero-media-h);
+  overflow: hidden;
+  /* clip-path hace de este frame el "backdrop root" de los blurs. Sin esto, Chrome ignora el
+     mask-image de un backdrop-filter cuando algún ancestro tiene border-radius + overflow
+     (el sheet redondeado), y el blur aparece con borde duro. */
+  clip-path: inset(0);
+  background: var(--sofia-ss-bg-image-placeholder);
+}
+
+/* Asset (4048:4023): inset -1.25% / -13.15% / -1.67% / -12.84% (visual T R B L),
+   escala con el ancho → sirve igual a 360 y 421. */
+.sofia-bs-hero__photo {
+  position: absolute;
+  top: -1.25%;
+  right: -13.15%;
+  bottom: -1.67%;
+  left: -12.84%;
+  pointer-events: none;
+}
+.sofia-bs-hero__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+/* Scrims (Rectangle 40 / Rectangle 38). Cada uno tiene dos capas, igual que el SVG de Figma:
+   1) __scrim-blur → background blur de Figma (foreignObject con backdrop-filter en el SVG).
+      Se hace en CSS porque dentro de <img> el backdrop-filter del SVG no ve la foto.
+      Figma aplica además el layer blur a la forma, así que el borde del background blur es
+      difuso: se replica con mask-image = la misma forma del SVG (path de Figma) con el mismo
+      feGaussianBlur, en opaco. El box de la capa es el mismo que el del SVG (forma + margen).
+   2) __scrim-fill → el SVG de Figma tal cual (relleno negro con layer blur). */
+.sofia-bs-hero__scrim {
+  position: absolute;
+  pointer-events: none;
+}
+.sofia-bs-hero__scrim-blur,
+.sofia-bs-hero__scrim-fill {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+.sofia-bs-hero__scrim-blur {
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* Rectangle 40 (4048:4027): 360×106 centrado abajo · bg blur 40 → blur(20px) · layer blur 25 · negro 24% */
+.sofia-bs-hero__scrim--bottom {
+  bottom: 0;
+  left: calc(50% - 180px);
+  width: 360px;
+  height: 106px;
+}
+.sofia-bs-hero__scrim--bottom .sofia-bs-hero__scrim-blur,
+.sofia-bs-hero__scrim--bottom .sofia-bs-hero__scrim-fill {
+  /* SVG 460×206: 50px de margen para el blur (Figma inset -47.17% / -13.89% de 106×360) */
+  top: -50px;
+  left: -50px;
+  width: calc(100% + 100px);
+  height: calc(100% + 100px);
+}
+.sofia-bs-hero__scrim--bottom .sofia-bs-hero__scrim-blur {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='206' viewBox='0 0 460 206' preserveAspectRatio='none'%3E%3Cfilter id='f' x='0' y='0' width='460' height='206' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='25'/%3E%3C/filter%3E%3Cpath filter='url(%23f)' d='M50 50H124H267H336.085H410V156H50V50Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='206' viewBox='0 0 460 206' preserveAspectRatio='none'%3E%3Cfilter id='f' x='0' y='0' width='460' height='206' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='25'/%3E%3C/filter%3E%3Cpath filter='url(%23f)' d='M50 50H124H267H336.085H410V156H50V50Z'/%3E%3C/svg%3E");
+}
+
+/* Bloque de texto (4048:4024): ancho completo, 112px de alto apoyado abajo, padding 24/20 */
+.sofia-bs-hero__content {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 20px;
+}
+
+/* Rectangle 38 (4048:4025): top 14px dentro del bloque de texto, forma espejada (cubre
+   el lateral izquierdo bajo el título + la banda inferior) · bg blur 20 → blur(10px) · layer blur 8 · negro 20% */
+.sofia-bs-hero__scrim--text {
+  top: 14px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.sofia-bs-hero__scrim--text .sofia-bs-hero__scrim-blur,
+.sofia-bs-hero__scrim--text .sofia-bs-hero__scrim-fill {
+  /* SVG 392×130: 16px de margen para el blur (Figma inset -16.33% / -4.44% de 98×360) */
+  top: -16px;
+  left: -16px;
+  width: calc(100% + 32px);
+  height: calc(100% + 32px);
+}
+.sofia-bs-hero__scrim--text .sofia-bs-hero__scrim-blur {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  /* Path de Figma espejado (matrix(-1 0 0 1 392 0)) como en el nodo (-scale-x-100) */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='392' height='130' viewBox='0 0 392 130' preserveAspectRatio='none'%3E%3Cfilter id='f' x='-4' y='-4' width='400' height='138' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cg transform='matrix(-1 0 0 1 392 0)'%3E%3Cpath filter='url(%23f)' d='M95.1071 69.8342H215.338C233.84 69.8342 250.157 57.7132 255.5 40L265.5 16H320.5H376V114H16L95.1071 69.8342Z'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='392' height='130' viewBox='0 0 392 130' preserveAspectRatio='none'%3E%3Cfilter id='f' x='-4' y='-4' width='400' height='138' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='8'/%3E%3C/filter%3E%3Cg transform='matrix(-1 0 0 1 392 0)'%3E%3Cpath filter='url(%23f)' d='M95.1071 69.8342H215.338C233.84 69.8342 250.157 57.7132 255.5 40L265.5 16H320.5H376V114H16L95.1071 69.8342Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.sofia-bs-hero__scrim--text .sofia-bs-hero__scrim-fill {
+  transform: scaleX(-1); /* espejado como en Figma (-scale-x-100) */
+}
+
+.sofia-bs-hero__text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 320px;           /* Figma: 320px fijo (también en la instancia de 421px) */
+  max-width: 100%;
+}
+.sofia-bs-hero__title {
+  margin: 0;
+  color: var(--sofia-text-invert);
+  font-size: var(--sofia-type-title-l-size);
+  font-weight: var(--sofia-weight-medium);
+  line-height: var(--sofia-type-title-l-lh);
+  letter-spacing: var(--sofia-type-title-l-ls);
+  word-break: break-word;
+}
+.sofia-bs-hero__subtitle {
+  margin: 0;
+  color: var(--sofia-text-invert);
+  font-size: var(--sofia-type-body-m-size);
+  font-weight: var(--sofia-weight-regular);
+  line-height: var(--sofia-type-body-m-lh);
+  letter-spacing: var(--sofia-type-body-m-ls);
+  white-space: nowrap;
+}
+
+/* Handle (4048:4034): 40×4, top 12, centrado. En side sheet está oculto (no se incluye). */
+.sofia-bs-hero__handle {
+  position: absolute;
+  top: 12px;
+  left: calc(50% - 20px);
+  width: 40px;
+  height: 4px;
+  border-radius: var(--sofia-radius-full);
+  background: var(--sofia-neutral-400);
+}
+
+/* Close Button Container (4058:4607): 20×20, top 15 / right 15, fondo BS main, ícono 16px */
+.sofia-bs-hero__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--sofia-radius-md);
+  background: var(--sofia-bs-bg-main);
+  color: var(--sofia-text-invert);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.sofia-bs-hero__close i {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ── Frame 5: fila inferior de 68px (Tabs / Tags) ─────────────────────── */
+.sofia-bs-hero__tabs,
+.sofia-bs-hero__tags {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: var(--sofia-bs-hero-bar-h);
+  padding: 10px 16px;
+}
+
+/* Tabs → EVA eva-3-tabs -no-stroke (.Tab Container Mobile · Stroke No · 2 tabs con subtítulo) */
+.sofia-bs-hero__tabs .eva-3-tabs {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+/* Ajustes mínimos a EVA (los mismos que en .sofia-bs-header__tabs, para que las dos piezas
+   con tabs se vean iguales): el ítem del ".Tab Container" de Figma mide 64px (EVA 52px)
+   y alinea el texto a la izquierda (EVA centra). Divisor, indicador y colores son EVA. */
+.sofia-bs-hero__tabs .tabs-nav-item.-subtitle {
+  height: 64px;
+  padding-top: 16px;
+  padding-bottom: 12px;
+  text-align: left;
+}
+
+/* Tags → EVA eva-3-tag (Default · Light · Enabled). Fila inline con scroll horizontal:
+   el último tag queda cortado por el borde del sheet como en Figma. */
+.sofia-bs-hero__tags {
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.sofia-bs-hero__tags::-webkit-scrollbar { display: none; }
+.sofia-bs-hero__tags .eva-3-tag {
+  flex-shrink: 0;
+  height: 32px;   /* ajuste: el Tag de Figma mide 32px (EVA 36px) */
+  margin: 0;      /* ajuste: EVA trae margin 0 8px 8px 0; el espaciado lo da el gap de 8px de Figma */
+  padding: 0 15px; /* ajuste: EVA suma 1px de borde al padding de 16px; en Figma el stroke es interior y el tag mide 87px */
+}

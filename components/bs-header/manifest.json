@@ -1,0 +1,97 @@
+{
+  "group": "bs-header",
+  "title": "Bottom Sheet · Estructura base (Header, Overlay, Content)",
+  "category": "bottom-sheet",
+  "order": 10,
+  "css": "css/components/bs-header.css",
+  "figmaSection": "49:79",
+  "description": "Piezas base para armar cualquier bottom sheet de SOFIA: el header (BS_header, con 4 variantes según la propiedad Handle), el overlay que oscurece el chat detrás del sheet y el área de contenido con el placeholder BS / Slot. El header es de ancho fluido: se usa igual en el bottom sheet mobile (360px) y en el side sheet desktop (421px).",
+  "variants": [
+    {
+      "id": "header-title",
+      "name": "BS_header · Handle=Title",
+      "figmaNodeId": "4048:3733",
+      "file": "header-title.html",
+      "width": 360,
+      "height": 56,
+      "stage": "#d8d8d8",
+      "props": {
+        "Handle": "Title"
+      },
+      "description": "Header por defecto: handle de arrastre + título + botón cerrar. Usalo cuando el sheet solo necesita nombrar su contenido (formularios, detalle, confirmaciones). Alto 56px.",
+      "notes": "Título con la clase EVA .eva-3-h5 (Subtitle L · Rubik Medium 16/20, Neutral-800). Cerrar = ícono EVA eva-3-icon-close a 24px dentro de un contenedor de 16×16 (en Figma, en esta variante el contenedor mide 16 y en las demás 20). El stroke Borders/medium (izq/der/arriba) se dibuja con ::after para no desplazar el contenido, igual que el stroke inside de Figma. Handle 40×4 color --sofia-bs-handle-color (#EBE5F5); el MD de referencia menciona Neutral/400 pero en Figma el handle usa #EBE5F5. Stage gris solo para que se vean las esquinas redondeadas (radio 20px).",
+      "scripts": []
+    },
+    {
+      "id": "header-slot",
+      "name": "BS_header · Handle=Slot",
+      "figmaNodeId": "4048:4321",
+      "file": "header-slot.html",
+      "width": 360,
+      "height": 88,
+      "stage": "#d8d8d8",
+      "props": {
+        "Handle": "Slot"
+      },
+      "description": "Header con título + cerrar y una fila libre (\"Content / Slot\", 32px de alto) debajo. Usalo cuando el header necesita contenido propio además del título (header de marca, buscador, resumen). Reemplazá el placeholder .sofia-slot por tu contenido. Alto 88px.",
+      "notes": "El slot es el placeholder BS / Slot (fill rgba(146,116,217,.2), radio 4px, texto Inter Regular 14 #6633CC); en producción se reemplaza por contenido real. Separación título → slot 12px.",
+      "scripts": []
+    },
+    {
+      "id": "header-tabs",
+      "name": "BS_header · Handle=Tabs",
+      "figmaNodeId": "4048:4339",
+      "file": "header-tabs.html",
+      "width": 360,
+      "height": 114,
+      "stage": "#d8d8d8",
+      "props": {
+        "Handle": "Tabs"
+      },
+      "description": "Header con título + cerrar y una barra de 2 tabs con título y bajada (\"Titulo\" / \"Bajada\"). Usalo cuando el sheet tiene secciones del mismo nivel entre las que el usuario alterna sin salir del sheet (por ejemplo, opciones de ida y vuelta). El contenido de cada tab va en el Content del sheet. Alto 114px.",
+      "notes": "Tabs = componente EVA .eva-3-tabs -no-stroke con ítems -subtitle (2 .tab-label); el panel .tabs-container se omite porque en Figma el Swap-Content está oculto y el contenido vive en el Content del sheet. Ajustes mínimos documentados en el CSS: alto del ítem 64px (EVA 52px) y text-align:left (EVA centra). El indicador activo es el de EVA (80% del ancho del tab, 128px) y en Figma mide ~136px. Esta variante no tiene stroke en Figma. El cambio de tab (-active / aria-selected) lo maneja la app.",
+      "scripts": []
+    },
+    {
+      "id": "header-tags",
+      "name": "BS_header · Handle=Icon Only (tags)",
+      "figmaNodeId": "4321:19271",
+      "file": "header-tags.html",
+      "width": 360,
+      "height": 84,
+      "stage": "#d8d8d8",
+      "props": {
+        "Handle": "Icon Only"
+      },
+      "description": "Header con título + cerrar y una fila de tags (\"Tag text\") con scroll horizontal. Usalo cuando el sheet muestra resultados que se pueden filtrar rápido (tags de EVA). El último tag queda cortado a propósito para indicar que hay más. Alto 84px.",
+      "notes": "En Figma la propiedad se llama \"Icon Only\" pero la variante muestra la fila de tags (anotación \"Header con tags\"). Tags = EVA .eva-3-tag (Light, Default, no seleccionado; incluye el tag-icon cross que EVA muestra solo en -active). Ajustes mínimos: alto 32px (EVA 36px), margin 0 (el gap de 8px lo da el contenedor) y padding horizontal 15px: EVA suma 1px de borde al padding de 16px y en Figma el stroke es interior, así cada tag mide 87px como en Figma. Son los mismos ajustes que usa la fila de tags del hero (bs-hero).",
+      "scripts": []
+    },
+    {
+      "id": "overlay",
+      "name": "Overlay",
+      "figmaNodeId": "4028:3424",
+      "file": "overlay.html",
+      "width": 360,
+      "height": 720,
+      "stage": "#ffffff",
+      "props": {},
+      "description": "Fondo oscuro que va detrás del bottom sheet (y de modales/side sheets) para bloquear la conversación. Cubre todo el viewport; el tamaño varía según el dispositivo, lo que hay que respetar es el color.",
+      "notes": "Fill BS/bg/overlay = --sofia-bs-overlay-color (#323439). En Figma se ve opaco (sin opacidad de capa); el MD de referencia menciona overlay/opacity 0.8 pero no está aplicado en el nodo, y js/motion/bottom-sheet.js anima la opacidad del overlay de 0 a 1. En el snippet usa position:absolute; inset:0 respecto del contenedor posicionado; para pantalla completa usar position:fixed.",
+      "scripts": []
+    },
+    {
+      "id": "content-slot",
+      "name": "Content · BS / Slot",
+      "figmaNodeId": "4116:1021",
+      "file": "content-slot.html",
+      "width": 360,
+      "height": 396,
+      "stage": "#ffffff",
+      "props": {},
+      "description": "Área de contenido del bottom sheet (scrolleable) con el placeholder BS / Slot. Va entre el header y el footer (Action Container). Reemplazá .sofia-slot por el contenido real del sheet.",
+      "notes": "Padding 16px vertical (--sofia-ss-spacing-action-v) y 20px horizontal. El alto es 396px por defecto (variable --sofia-bs-content-height) y se puede sobreescribir según la altura del sheet. En Figma el Slot mide 326px dentro de un Content de 360 con padding 20 (desborda 3px por lado); se replica con width calc(100% + 6px). El texto del placeholder usa Inter Regular 14 como en Figma.",
+      "scripts": []
+    }
+  ]
+}

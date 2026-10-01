@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Side sheet · Desktop 1366 con overlay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://www.despegar.com/eva-core/static/eva/eva-core.min.css?">
+<link rel="stylesheet" href="https://www.despegar.com/eva-core/static/eva/eva.min.css?">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components/bs-chat.css">
+<link rel="stylesheet" href="../css/components/bs-footer.css">
+<link rel="stylesheet" href="../css/components/bs-header.css">
+<link rel="stylesheet" href="../css/components/bs-hero.css">
+<link rel="stylesheet" href="../css/components/bs-sheets.css">
+<link rel="stylesheet" href="../css/components/forms-coupon.css">
+<link rel="stylesheet" href="../css/components/forms-trip.css">
+<link rel="stylesheet" href="../css/components/modal.css">
+<link rel="stylesheet" href="../css/components/side-sheet.css">
+<style>html,body{margin:0;padding:0;background:#72777f;}
+.sofia-preview-stage{position:relative;width:1366px;height:772px;overflow:hidden;}</style>
+</head><body>
+<div class="sofia-preview-stage" data-group="side-sheet" data-variant="ss-context">
+<div class="sofia-overlay sofia-ss-overlay" aria-hidden="true"></div>
+<aside class="sofia-ss sofia-ss--title sofia-ss--docked" role="dialog" aria-modal="true" aria-labelledby="sofia-ss-context-label">
+  <header class="sofia-ss__header sofia-ss-header">
+    <h2 class="sofia-ss__title eva-3-h3" id="sofia-ss-context-label">Title</h2>
+    <button type="button" class="sofia-ss__close" aria-label="Cerrar"><i class="eva-3-icon-close" aria-hidden="true"></i></button>
+  </header>
+  <div class="sofia-ss__body sofia-bs-content">
+    <!-- BS / Slot: reemplazar el placeholder por el contenido del side sheet -->
+    <div class="sofia-slot">
+      <p class="sofia-slot__label">Content / Slot</p>
+    </div>
+  </div>
+  <footer class="sofia-bs-footer sofia-bs-footer--single">
+    <div class="sofia-bs-footer__actions">
+      <button type="button" class="eva-3-btn -md -primary"><em class="btn-text">Primary button</em></button>
+    </div>
+  </footer>
+</aside>
+
+</div>
+
+</body></html>

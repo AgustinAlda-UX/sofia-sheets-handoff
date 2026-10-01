@@ -1,0 +1,56 @@
+{
+  "group": "bs-hero",
+  "title": "Bottom Sheet · Header con imagen (BS_imageBG_tittle)",
+  "category": "bottom-sheet",
+  "order": 11,
+  "css": "css/components/bs-hero.css",
+  "figmaSection": "49:79",
+  "description": "Header hero con foto a sangre, degradado/blur sobre la imagen, título + bajada, handle y botón cerrar circular. Se usa en sheets de producto/paquete que arrancan con una imagen full-bleed. Tiene ancho fluido: el mismo componente se usa en el bottom sheet mobile (360px) y en el side sheet desktop (421px); el alto del hero es siempre 240px y la foto cubre con object-fit: cover.",
+  "variants": [
+    {
+      "id": "hero-title",
+      "name": "BS_imageBG_tittle · Header=Title",
+      "figmaNodeId": "4048:3986",
+      "file": "hero-title.html",
+      "width": 360,
+      "height": 240,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Title"
+      },
+      "description": "Solo hero (240px): foto de fondo, scrims con blur, \"Titulo\" (Title L) + \"Bajada\" (Body M) en blanco, handle arriba al centro y botón cerrar circular arriba a la derecha. Reemplazá el src de la foto por la imagen del producto.",
+      "notes": "Blur/degradado: en Figma son dos vectores (Rectangle 40 abajo, 360x106 centrado, y Rectangle 38 detrás del texto, forma espejada) con background blur + layer blur. Cada uno se implementa con dos capas: (1) backdrop-filter en CSS (blur 20px / 10px, los valores del SVG exportado) enmascarado con mask-image = el mismo path de Figma con el mismo feGaussianBlur (25 / 8) para que el borde del blur sea difuso como en Figma; (2) el SVG de Figma tal cual para el relleno negro difuminado (bs-hero-scrim-bottom.svg / bs-hero-scrim-text.svg). El backdrop-filter va en CSS porque dentro de <img> el foreignObject del SVG no ve la foto. __media lleva clip-path: inset(0): sin eso Chrome ignora el mask-image de un backdrop-filter cuando un ancestro tiene border-radius + overflow (el sheet redondeado). Rectangle 39 (4048:4026) queda fuera del frame (left 422px) y con 1% de opacidad: no es visible y no se incluye. Reutilización en side sheet (421px, nodos 4121:2238/2257/2296): mismo markup sin el span .sofia-bs-hero__handle (oculto en Figma) y con --sofia-bs-hero-radius: 0; la foto escala en % y el texto mantiene 320px como en Figma. Cerrar usa el ícono EVA eva-3-icon-close (equivalente al 'cross' de Figma). Diferencias residuales: la textura del blur de Chrome es algo más uniforme que el render de Figma (zona inferior ~5-10% más clara); 'Bajada' queda 1px más arriba por métricas de la fuente Rubik web. El letter-spacing usa los tokens en em (-0.002em / 0.0005em), que dan exactamente los -0.064px / 0.007px de Figma.",
+      "scripts": []
+    },
+    {
+      "id": "hero-tabs",
+      "name": "BS_imageBG_tittle · Header=Tabs",
+      "figmaNodeId": "4048:4396",
+      "file": "hero-tabs.html",
+      "width": 360,
+      "height": 308,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Tabs"
+      },
+      "description": "Hero de 240px + fila de 68px con tabs EVA (.Tab Container Mobile, sin stroke, 2 tabs con subtítulo \"Titulo\" / \"Bajada\", la primera seleccionada). Al cambiar de tab se mueve la clase -active (y aria-selected) al <li> correspondiente, como en EVA.",
+      "notes": "Tabs → EVA eva-3-tabs -no-stroke con ítems -subtitle. Ajustes mínimos (los mismos que en el header con tabs de bs-header, para que ambas piezas se vean iguales): alto del ítem 64px (EVA 52px) con padding 16/12 y text-align:left (EVA centra), como el .Tab Container de Figma. EVA prevalece en el indicador activo (80% del ancho del tab, ~130px; en Figma ~139px), el divisor y los colores. El panel de contenido (.Swap-Content) está oculto en Figma, por eso no se incluye .tabs-container. La fila mantiene el alto de 68px y el padding 10/16 de Figma; el ítem de 64px se centra verticalmente y la línea inferior cae en y=306 como en Figma.",
+      "scripts": []
+    },
+    {
+      "id": "hero-tags",
+      "name": "BS_imageBG_tittle · Header=Tags",
+      "figmaNodeId": "4048:4372",
+      "file": "hero-tags.html",
+      "width": 360,
+      "height": 308,
+      "stage": "#ffffff",
+      "props": {
+        "Header": "Tags"
+      },
+      "description": "Hero de 240px + fila de 68px con tags EVA \"Tag text\" (Default · Light · Enabled, sin seleccionar) en línea con scroll horizontal; el último tag queda cortado por el borde para indicar que hay más.",
+      "notes": "Tags → EVA eva-3-tag con tag-text y el ícono cruz (tag-icon eva-3-icon-cross, visible solo con -active), igual que la prop cruz=true de Figma. Ajustes mínimos (los mismos que en el header con tags de bs-header): alto 32px (EVA 36px), margin 0 (el espaciado lo da el gap de 8px de Figma) y padding horizontal 15px, porque EVA suma 1px de borde al padding de 16px y en Figma el stroke es interior (tag de 87px). EVA prevalece en el borde Neutral-400 y la tipografía del label (diferencia de antialiasing). Estado seleccionado: agregar -active al .eva-3-tag. Cada tag es role=\"button\" con tabindex para que sea operable con teclado.",
+      "scripts": []
+    }
+  ]
+}
