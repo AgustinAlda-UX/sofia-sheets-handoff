@@ -381,6 +381,7 @@ SECTIONS = [
     ('inicio', 'Inicio'),
     ('cuando-usar', 'Cuándo usar cada superficie'),
     ('fundamentos', 'Fundamentos'),
+    ('grilla', 'Grilla del chat'),
     ('bottom-sheet', 'Bottom Sheet'),
     ('side-sheet', 'Side Sheet'),
     ('modal', 'Modal'),
@@ -793,6 +794,243 @@ class Site:
   </div>
 </section>'''
 
+    def s_grilla(self):
+        bp_rows = [
+            ['Mobile',  '1–767',   '2',  '16px', '16px', '360px'],
+            ['Tablet',  '768–1023','12', '24px', '24px', '—'],
+            ['Desktop', '1024–∞',  '12', '24px', '24px', '1366px'],
+        ]
+        bp_table = table(['Breakpoint', 'Rango (px)', 'Columnas', 'Gutter', 'Margen', 'Artboard ref.'], bp_rows)
+
+        spacing_rows = [
+            ['Entre tools (input + compose + board + follow-up)', '48px',
+             '<span class="eva-3-tag docs-chip"><span class="tag-text">Definido</span></span>'],
+            ['Input → compose', '24px',
+             '<span class="eva-3-tag docs-chip"><span class="tag-text">Definido</span></span>'],
+            ['Compose → board', '16px',
+             '<span class="eva-3-tag docs-chip"><span class="tag-text">Definido</span></span>'],
+            ['Board → follow-up', '16px',
+             '<span class="eva-3-tag docs-chip docs-chip--pending"><span class="tag-text">⚠ Propuesta, sin confirmar</span></span>'],
+        ]
+        spacing_table = table(['Tramo', 'Medida', 'Estado'], spacing_rows)
+
+        cards_rows = [
+            ['1366', '~613px', '242px fija · scroll'],
+            ['1440+', '~628px', '242px fija · scroll'],
+            ['768', '~314px', '242px fija · scroll'],
+            ['360', '~328px (2 col)', '242px fija · scroll'],
+        ]
+        cards_table = table(['Viewport', 'Compose (6 col)', 'Card'], cards_rows)
+
+        alt_rows = [
+            ['6 col, card = 2 col', '188–193px', 'Todo calza en la grilla de 12, incluido board full. Se aleja de los 242px de Figma.'],
+            ['Cards fijas 242px', '242px', 'Respeta Figma. Para ver 3 enteras hace falta compose ≥ 758px (8 columnas ~825–845px).'],
+        ]
+        alt_table = table(['Opción', 'Ancho card', 'Trade-off'], alt_rows)
+
+        css_props = ''':root {
+  /* ── Grilla EVA · chat de SOFIA ─────────────────────────────── */
+  --grid-cols-mobile:   2;    --grid-gutter-mobile:  16px; --grid-margin-mobile:  16px;
+  --grid-cols-tablet:  12;    --grid-gutter-tablet:  24px; --grid-margin-tablet:  24px;
+  --grid-cols-desktop: 12;    --grid-gutter-desktop: 24px; --grid-margin-desktop: 24px;
+
+  --grid-container-max: 1280px;   /* contenedor large */
+  --grid-rail:           68px;    /* rail lateral (no se superpone) */
+
+  /* En el artboard 1366: 1366 − 68 − 2×24 = 1250px */
+  --grid-container-w: min(var(--grid-container-max), 100% - var(--grid-rail) - 2 * var(--grid-margin-desktop));
+
+  /* Compose = 6 columnas (4–9), centrado */
+  --grid-compose-cols:    6;
+  --grid-compose-span: calc(
+    (var(--grid-compose-cols) / var(--grid-cols-desktop)) * var(--grid-container-w)
+  );
+}
+
+/* Ancho de columna (fórmula) */
+/* col = (container − (cols − 1) × gutter) / cols */
+/* En 1366: (1250 − 11×24) / 12 = (1250 − 264) / 12 = 986 / 12 ≈ 82.2px/col */'''
+
+        demo_html = '''<div class="grilla-demo" id="grilla-demo">
+  <div class="grilla-demo__bar">
+    <div class="grilla-demo__vp-btns" role="group" aria-label="Viewport">
+      <button class="grilla-demo__vp-btn is-active" data-vp="360">360 <span>Mobile</span></button>
+      <button class="grilla-demo__vp-btn" data-vp="768">768 <span>Tablet</span></button>
+      <button class="grilla-demo__vp-btn" data-vp="1366">1366 <span>Desktop</span></button>
+    </div>
+    <label class="grilla-demo__overlay-toggle">
+      <input type="checkbox" id="grilla-overlay" checked> Overlay columnas <kbd>G</kbd>
+    </label>
+  </div>
+  <div class="grilla-demo__stage-wrap">
+    <div class="grilla-demo__stage" id="grilla-stage">
+      <div class="grilla-demo__overlay" id="grilla-overlay-el" aria-hidden="true"></div>
+      <div class="grilla-demo__content">
+        <div class="grilla-demo__rail" title="Rail lateral 68px"></div>
+        <div class="grilla-demo__container" id="grilla-container">
+          <div class="grilla-demo__block grilla-demo__block--compose" id="grilla-compose">
+            <span class="grilla-demo__lbl" id="grilla-lbl-compose">Compose · 6 col</span>
+          </div>
+          <div class="grilla-demo__block grilla-demo__block--full" id="grilla-full">
+            <span class="grilla-demo__lbl">Board full · contenedor</span>
+          </div>
+          <div class="grilla-demo__measurements" id="grilla-measurements"></div>
+        </div>
+      </div>
+    </div>
+    <p class="docs-muted grilla-demo__hint">Ancho simulado; el overlay dibuja columnas reales para el viewport seleccionado.</p>
+  </div>
+</div>
+<script>
+(function(){
+  var GRIDS = {
+    360:  { cols: 2,  gutter: 16, margin: 16, container: null,  rail: 0,   label: 'Mobile' },
+    768:  { cols: 12, gutter: 24, margin: 24, container: null,  rail: 0,   label: 'Tablet' },
+    1366: { cols: 12, gutter: 24, margin: 24, container: 1280,  rail: 68,  label: 'Desktop' },
+  };
+  var compose_cols = 6;
+  var stage = document.getElementById('grilla-stage');
+  var overlay = document.getElementById('grilla-overlay-el');
+  var container = document.getElementById('grilla-container');
+  var composeEl = document.getElementById('grilla-compose');
+  var fullEl = document.getElementById('grilla-full');
+  var lblCompose = document.getElementById('grilla-lbl-compose');
+  var measureEl = document.getElementById('grilla-measurements');
+  var currentVp = 360;
+
+  function colWidth(g, w) {
+    return (w - (g.cols - 1) * g.gutter) / g.cols;
+  }
+  function containerW(g, stageW) {
+    var avail = stageW - g.rail - 2 * g.margin;
+    return g.container ? Math.min(g.container, avail) : avail;
+  }
+
+  function render(vp) {
+    var g = GRIDS[vp];
+    var stageW = stage.getBoundingClientRect().width || 640;
+    var cw = containerW(g, stageW);
+    var col = colWidth(g, cw);
+    var composeCols = (g.cols >= 12) ? compose_cols : g.cols;
+    var composeW = composeCols * col + (composeCols - 1) * g.gutter;
+
+    container.style.width = cw + 'px';
+    container.style.marginLeft = g.rail ? g.rail + 'px' : 'auto';
+    container.style.marginRight = 'auto';
+    composeEl.style.width = composeW + 'px';
+    composeEl.style.marginLeft = 'auto';
+    composeEl.style.marginRight = 'auto';
+    fullEl.style.width = cw + 'px';
+    lblCompose.textContent = 'Compose · ' + composeCols + ' col · ' + Math.round(composeW) + 'px';
+
+    measureEl.innerHTML =
+      '<span>Contenedor: <strong>' + Math.round(cw) + 'px</strong></span>' +
+      (g.rail ? '<span>Rail: <strong>' + g.rail + 'px</strong></span>' : '') +
+      '<span>Col: <strong>' + col.toFixed(1) + 'px</strong></span>' +
+      '<span>Compose (' + composeCols + ' col): <strong>' + Math.round(composeW) + 'px</strong></span>';
+
+    // overlay columns
+    var cols = '';
+    for (var i = 0; i < g.cols; i++) {
+      var left = i * (col + g.gutter);
+      cols += '<span class="grilla-demo__col" style="left:' + left + 'px;width:' + col + 'px"></span>';
+    }
+    overlay.innerHTML = cols;
+    overlay.style.left = (g.rail || (stageW - cw)/2) + 'px';
+    overlay.style.width = cw + 'px';
+  }
+
+  document.querySelectorAll('.grilla-demo__vp-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.grilla-demo__vp-btn').forEach(function(b){ b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      currentVp = parseInt(btn.dataset.vp);
+      render(currentVp);
+    });
+  });
+  document.getElementById('grilla-overlay').addEventListener('change', function(){
+    overlay.hidden = !this.checked;
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'g' || e.key === 'G') {
+      var cb = document.getElementById('grilla-overlay');
+      cb.checked = !cb.checked;
+      overlay.hidden = !cb.checked;
+    }
+  });
+  window.addEventListener('resize', function(){ render(currentVp); });
+  setTimeout(function(){ render(currentVp); }, 100);
+})();
+</script>'''
+
+        return f'''
+<section class="docs-section" id="grilla">
+  <h2 class="docs-section__title">Grilla del chat</h2>
+
+  <div class="docs-card docs-intro">
+    <p>La grilla que usa el chat de SOFIA es la <strong>grilla de EVA Foundations</strong>, con los valores exactos que quedaron definidos en la sesión de Grid Inspector (1–2 oct 2026).
+    Antes de publicar, verificar contra <a href="https://www.figma.com/design/lFKYrtVFFtv5Un9UHHTlbY/Home---SOFIA?node-id=1940-7999" target="_blank" rel="noopener">Home — SOFIA · diseño del chat (1940:7999)</a>
+    y <a href="https://www.figma.com/design/9rtCLd5yqc4RKZYn76ByXy/Foundations?node-id=3903-2045" target="_blank" rel="noopener">Foundations · Spacing, Grid &amp; Container (3903:2045)</a>.</p>
+  </div>
+
+  <div class="docs-card">
+    <h3>Breakpoints y geometría</h3>
+    {bp_table}
+    <ul class="docs-list" style="margin-top:12px">
+      <li>Contenedor large <strong>1280px</strong> (medium 1062, small 844 — el chat usa <em>large</em>).</li>
+      <li>Rail lateral <strong>68px</strong>: el contenedor lo reserva, no se superpone.</li>
+      <li>En el artboard 1366: <code>1366 − 68 − 2×24 = 1250px</code> (no llega al tope de 1280).</li>
+      <li>Compose: span centrado de <strong>6 columnas</strong> (col 4 a col 9).</li>
+    </ul>
+  </div>
+
+  <div class="docs-card">
+    <h3>Fórmulas como custom properties</h3>
+    <p class="docs-muted">Copiá esto en tu <code>:root</code>. El ancho de columna se calcula con la fórmula estándar de EVA: <code>(contenedor − (cols − 1) × gutter) / cols</code>.</p>
+    {code_block(css_props, 'css', True, 'CSS · :root')}
+  </div>
+
+  <div class="docs-card">
+    <h3>Demo interactiva</h3>
+    <p class="docs-muted">Seleccioná un viewport para ver el contenedor, el compose (6 col) y el overlay de columnas. Atajo: <kbd>G</kbd> para toggle del overlay.</p>
+    {demo_html}
+  </div>
+
+  <div class="docs-card">
+    <h3>Reglas de producto</h3>
+    <h4 style="margin-top:16px">Ancho de boards</h4>
+    <ul class="docs-list">
+      <li>≤ 3 ítems → ancho del <strong>compose</strong> (6 col).</li>
+      <li>≥ 4 ítems → <strong>full</strong> (ancho del contenedor).</li>
+      <li>Mapa → siempre <strong>full</strong>.</li>
+      <li>Estado de vuelo → siempre <strong>compose</strong> (un solo cluster).</li>
+    </ul>
+    <h4>Una tool</h4>
+    <p>Cada componente es: input del usuario + compose (≥ 2 oraciones) + board + follow-up (pregunta en texto, mismo ancho que el compose). Los chips de sugerencia van arriba del composer y no pertenecen a ninguna tool.</p>
+    <h4>Espaciado vertical</h4>
+    {spacing_table}
+  </div>
+
+  <div class="docs-card">
+    <h3>Cards de carrusel</h3>
+    <p>Foundations dice que los carruseles <em>no</em> se adhieren a la grilla de EVA: el contenedor del carrusel sí, pero las cards tienen ancho fijo. En Figma (Cards / Vuelo) ese ancho es <strong>242px</strong>.</p>
+    <h4>Estado actual</h4>
+    {cards_table}
+    <p class="docs-muted">3 × 242 + 2 × 24 = 774px &gt; compose de 6 col (~613px en 1366): las cards no llenan el compose, el carrusel scrollea.</p>
+    <h4>Alternativas evaluadas <span class="docs-chip-pending">(en discusión)</span></h4>
+    {alt_table}
+  </div>
+
+  <div class="docs-card docs-card--warn">
+    <h3>⚠ Pendiente de definición</h3>
+    <ul class="docs-list">
+      <li>Confirmar el espaciado board → follow-up (hoy 16px, marcado como propuesta sin confirmar).</li>
+      <li>Elegir una sola regla de cards: <strong>6 col + card = 2 col (188–193px)</strong> vs <strong>cards fijas 242px</strong>.</li>
+    </ul>
+    <p class="docs-muted">Estos ítems quedan marcados en esta sección como pendientes hasta que diseño los confirme.</p>
+  </div>
+</section>'''
+
     def surface_section(self, sid, title, lead_html, category, motion=None, playground=None):
         groups = ''.join(self.group_block(g) for g in self.groups_of(category))
         mot = self.motion_block(*motion) if motion else ''
@@ -995,6 +1233,7 @@ class Site:
             self.s_inicio(),
             self.s_cuando_usar(),
             self.s_fundamentos(),
+            self.s_grilla(),
             self.surface_section('bottom-sheet', 'Bottom Sheet', bs_lead, 'bottom-sheet', ('bottomSheet', 'bottom-sheet.js'), 'bottom-sheet'),
             self.surface_section('side-sheet', 'Side Sheet', ss_lead, 'side-sheet', ('sideSheet', 'side-sheet.js'), 'side-sheet'),
             self.surface_section('modal', 'Modal', modal_lead, 'modal', ('modal', 'modal.js'), 'modal'),

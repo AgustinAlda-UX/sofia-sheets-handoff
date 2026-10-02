@@ -40,7 +40,7 @@
         <input id="docs-search-input" type="search" placeholder="Nombre, id o nodo (ej. 4048:3733)" autocomplete="off"></div>
       <p class="docs-search__status" aria-live="polite" data-total="64"></p>
     </div>
-    <nav class="docs-nav" aria-label="Secciones"><ul><li><a href="#inicio" data-nav="inicio" class="docs-nav__sec">Inicio</a></li><li><a href="#cuando-usar" data-nav="cuando-usar" class="docs-nav__sec">Cuándo usar cada superficie</a></li><li><a href="#fundamentos" data-nav="fundamentos" class="docs-nav__sec">Fundamentos</a></li><li><a href="#bottom-sheet" data-nav="bottom-sheet" class="docs-nav__sec">Bottom Sheet</a><ul class="docs-nav__sub"><li><a href="#g-bs-header" data-nav="g-bs-header">Estructura base (Header, Overlay, Content) <span class="docs-nav__count">12</span></a></li><li><a href="#g-bs-hero" data-nav="g-bs-hero">Header con imagen (BS_imageBG_tittle) <span class="docs-nav__count">3</span></a></li><li><a href="#g-bs-footer" data-nav="g-bs-footer">Footer (Action Container) <span class="docs-nav__count">3</span></a></li><li><a href="#g-bs-sheets" data-nav="g-bs-sheets">Sheets completas (mobile 360) <span class="docs-nav__count">10</span></a></li><li><a href="#g-bs-chat" data-nav="g-bs-chat">Ejemplos y tamaños dentro del chat <span class="docs-nav__count">5</span></a></li><li><a href="#g-bs-dialogue" data-nav="g-bs-dialogue">Dialogue (layout completo) <span class="docs-nav__count">8</span></a></li><li><a href="#motion-bottomSheet" data-nav="motion-bottomSheet">Motion</a></li></ul></li><li><a href="#side-sheet" data-nav="side-sheet" class="docs-nav__sec">Side Sheet</a><ul class="docs-nav__sub"><li><a href="#g-side-sheet" data-nav="g-side-sheet">Desktop <span class="docs-nav__count">7</span></a></li><li><a href="#motion-sideSheet" data-nav="motion-sideSheet">Motion</a></li></ul></li><li><a href="#modal" data-nav="modal" class="docs-nav__sec">Modal</a><ul class="docs-nav__sub"><li><a href="#g-modal" data-nav="g-modal">Desktop y Mobile <span class="docs-nav__count">5</span></a></li><li><a href="#motion-modal" data-nav="motion-modal">Motion</a></li></ul></li><li><a href="#formularios" data-nav="formularios" class="docs-nav__sec">Formularios y widgets</a><ul class="docs-nav__sub"><li><a href="#g-forms-trip" data-nav="g-forms-trip">Tu viaje (start_package) <span class="docs-nav__count">6</span></a></li><li><a href="#g-forms-coupon" data-nav="g-forms-coupon">Cupón de descuento y formulario de destino (bottomsheet form) <span class="docs-nav__count">5</span></a></li></ul></li><li><a href="#persistencia" data-nav="persistencia" class="docs-nav__sec">Modelo de persistencia</a></li><li><a href="#spec" data-nav="spec" class="docs-nav__sec">Spec (MD) vs Figma</a></li><li><a href="#recursos" data-nav="recursos" class="docs-nav__sec">Recursos</a></li></ul></nav>
+    <nav class="docs-nav" aria-label="Secciones"><ul><li><a href="#inicio" data-nav="inicio" class="docs-nav__sec">Inicio</a></li><li><a href="#cuando-usar" data-nav="cuando-usar" class="docs-nav__sec">Cuándo usar cada superficie</a></li><li><a href="#fundamentos" data-nav="fundamentos" class="docs-nav__sec">Fundamentos</a></li><li><a href="#grilla" data-nav="grilla" class="docs-nav__sec">Grilla del chat</a></li><li><a href="#bottom-sheet" data-nav="bottom-sheet" class="docs-nav__sec">Bottom Sheet</a><ul class="docs-nav__sub"><li><a href="#g-bs-header" data-nav="g-bs-header">Estructura base (Header, Overlay, Content) <span class="docs-nav__count">12</span></a></li><li><a href="#g-bs-hero" data-nav="g-bs-hero">Header con imagen (BS_imageBG_tittle) <span class="docs-nav__count">3</span></a></li><li><a href="#g-bs-footer" data-nav="g-bs-footer">Footer (Action Container) <span class="docs-nav__count">3</span></a></li><li><a href="#g-bs-sheets" data-nav="g-bs-sheets">Sheets completas (mobile 360) <span class="docs-nav__count">10</span></a></li><li><a href="#g-bs-chat" data-nav="g-bs-chat">Ejemplos y tamaños dentro del chat <span class="docs-nav__count">5</span></a></li><li><a href="#g-bs-dialogue" data-nav="g-bs-dialogue">Dialogue (layout completo) <span class="docs-nav__count">8</span></a></li><li><a href="#motion-bottomSheet" data-nav="motion-bottomSheet">Motion</a></li></ul></li><li><a href="#side-sheet" data-nav="side-sheet" class="docs-nav__sec">Side Sheet</a><ul class="docs-nav__sub"><li><a href="#g-side-sheet" data-nav="g-side-sheet">Desktop <span class="docs-nav__count">7</span></a></li><li><a href="#motion-sideSheet" data-nav="motion-sideSheet">Motion</a></li></ul></li><li><a href="#modal" data-nav="modal" class="docs-nav__sec">Modal</a><ul class="docs-nav__sub"><li><a href="#g-modal" data-nav="g-modal">Desktop y Mobile <span class="docs-nav__count">5</span></a></li><li><a href="#motion-modal" data-nav="motion-modal">Motion</a></li></ul></li><li><a href="#formularios" data-nav="formularios" class="docs-nav__sec">Formularios y widgets</a><ul class="docs-nav__sub"><li><a href="#g-forms-trip" data-nav="g-forms-trip">Tu viaje (start_package) <span class="docs-nav__count">6</span></a></li><li><a href="#g-forms-coupon" data-nav="g-forms-coupon">Cupón de descuento y formulario de destino (bottomsheet form) <span class="docs-nav__count">5</span></a></li></ul></li><li><a href="#persistencia" data-nav="persistencia" class="docs-nav__sec">Modelo de persistencia</a></li><li><a href="#spec" data-nav="spec" class="docs-nav__sec">Spec (MD) vs Figma</a></li><li><a href="#recursos" data-nav="recursos" class="docs-nav__sec">Recursos</a></li></ul></nav>
   </aside>
   <div class="docs-backdrop" hidden></div>
   <main class="docs-main" id="docs-main">
@@ -206,6 +206,203 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
     <p>Estos tres patrones comparten una misma filosofía: la animación debe comunicar de dónde viene el elemento y adónde va cuando desaparece. El usuario nunca debe sentir que algo &quot;aparece de la nada&quot;. Cada movimiento tiene una razón espacial.</p>
     <div class="docs-principles"><div class="docs-principle"><h5>Dirección = origen espacial</h5><p>Cada elemento entra desde el lugar donde &quot;vive&quot; cuando está oculto. El usuario desarrolla un modelo mental del espacio de la interfaz.</p></div><div class="docs-principle"><h5>La salida es el espejo de la entrada</h5><p>Lo que subió, baja. Lo que vino de la derecha, sale por la derecha. La consistencia de dirección reduce la carga cognitiva.</p></div><div class="docs-principle"><h5>El overlay nunca lidera ni retrasa</h5><p>El overlay arranca al mismo tiempo que el componente principal. Un overlay que aparece antes o después del contenido rompe la cohesión visual.</p></div><div class="docs-principle"><h5>Duraciones escalonadas por complejidad de movimiento</h5><ul class="docs-list"><li>Modal (escala + fade, recorrido mínimo): 260 ms</li><li>Bottom sheet (desliza vertical, recorrido medio): 320 ms</li><li>Side sheet (desliza horizontal, recorrido completo): 340 ms</li></ul></div><div class="docs-principle"><h5>Easings con intención</h5><ul class="docs-list"><li>Spring leve en entradas: comunica que el elemento llegó y está asentado.</li><li>Ease-out limpio en salidas: la salida no necesita personalidad; el usuario ya decidió.</li></ul></div></div>
     <p class="docs-muted">Fuente: DESIGN_DOC.md. El detalle de cada animación está en <a href="#motion-bottomSheet">bottom sheet</a>, <a href="#motion-sideSheet">side sheet</a> y <a href="#motion-modal">modal</a>.</p>
+  </div>
+</section>
+<section class="docs-section" id="grilla">
+  <h2 class="docs-section__title">Grilla del chat</h2>
+
+  <div class="docs-card docs-intro">
+    <p>La grilla que usa el chat de SOFIA es la <strong>grilla de EVA Foundations</strong>, con los valores exactos que quedaron definidos en la sesión de Grid Inspector (1–2 oct 2026).
+    Antes de publicar, verificar contra <a href="https://www.figma.com/design/lFKYrtVFFtv5Un9UHHTlbY/Home---SOFIA?node-id=1940-7999" target="_blank" rel="noopener">Home — SOFIA · diseño del chat (1940:7999)</a>
+    y <a href="https://www.figma.com/design/9rtCLd5yqc4RKZYn76ByXy/Foundations?node-id=3903-2045" target="_blank" rel="noopener">Foundations · Spacing, Grid &amp; Container (3903:2045)</a>.</p>
+  </div>
+
+  <div class="docs-card">
+    <h3>Breakpoints y geometría</h3>
+    <div class="docs-table-wrap"><table class="docs-table "><thead><tr><th>Breakpoint</th><th>Rango (px)</th><th>Columnas</th><th>Gutter</th><th>Margen</th><th>Artboard ref.</th></tr></thead><tbody><tr><td>Mobile</td><td>1–767</td><td>2</td><td>16px</td><td>16px</td><td>360px</td></tr><tr><td>Tablet</td><td>768–1023</td><td>12</td><td>24px</td><td>24px</td><td>—</td></tr><tr><td>Desktop</td><td>1024–∞</td><td>12</td><td>24px</td><td>24px</td><td>1366px</td></tr></tbody></table></div>
+    <ul class="docs-list" style="margin-top:12px">
+      <li>Contenedor large <strong>1280px</strong> (medium 1062, small 844 — el chat usa <em>large</em>).</li>
+      <li>Rail lateral <strong>68px</strong>: el contenedor lo reserva, no se superpone.</li>
+      <li>En el artboard 1366: <code>1366 − 68 − 2×24 = 1250px</code> (no llega al tope de 1280).</li>
+      <li>Compose: span centrado de <strong>6 columnas</strong> (col 4 a col 9).</li>
+    </ul>
+  </div>
+
+  <div class="docs-card">
+    <h3>Fórmulas como custom properties</h3>
+    <p class="docs-muted">Copiá esto en tu <code>:root</code>. El ancho de columna se calcula con la fórmula estándar de EVA: <code>(contenedor − (cols − 1) × gutter) / cols</code>.</p>
+    <div class="docs-code"><div class="docs-code__bar"><span class="docs-code__label">CSS · :root</span><button type="button" class="eva-3-btn-ghost -sm docs-copy" data-copy-target="prev"><em class="btn-text">Copiar</em></button></div><pre><code class="docs-lang-css">:root {
+  /* ── Grilla EVA · chat de SOFIA ─────────────────────────────── */
+  --grid-cols-mobile:   2;    --grid-gutter-mobile:  16px; --grid-margin-mobile:  16px;
+  --grid-cols-tablet:  12;    --grid-gutter-tablet:  24px; --grid-margin-tablet:  24px;
+  --grid-cols-desktop: 12;    --grid-gutter-desktop: 24px; --grid-margin-desktop: 24px;
+
+  --grid-container-max: 1280px;   /* contenedor large */
+  --grid-rail:           68px;    /* rail lateral (no se superpone) */
+
+  /* En el artboard 1366: 1366 − 68 − 2×24 = 1250px */
+  --grid-container-w: min(var(--grid-container-max), 100% - var(--grid-rail) - 2 * var(--grid-margin-desktop));
+
+  /* Compose = 6 columnas (4–9), centrado */
+  --grid-compose-cols:    6;
+  --grid-compose-span: calc(
+    (var(--grid-compose-cols) / var(--grid-cols-desktop)) * var(--grid-container-w)
+  );
+}
+
+/* Ancho de columna (fórmula) */
+/* col = (container − (cols − 1) × gutter) / cols */
+/* En 1366: (1250 − 11×24) / 12 = (1250 − 264) / 12 = 986 / 12 ≈ 82.2px/col */</code></pre></div>
+  </div>
+
+  <div class="docs-card">
+    <h3>Demo interactiva</h3>
+    <p class="docs-muted">Seleccioná un viewport para ver el contenedor, el compose (6 col) y el overlay de columnas. Atajo: <kbd>G</kbd> para toggle del overlay.</p>
+    <div class="grilla-demo" id="grilla-demo">
+  <div class="grilla-demo__bar">
+    <div class="grilla-demo__vp-btns" role="group" aria-label="Viewport">
+      <button class="grilla-demo__vp-btn is-active" data-vp="360">360 <span>Mobile</span></button>
+      <button class="grilla-demo__vp-btn" data-vp="768">768 <span>Tablet</span></button>
+      <button class="grilla-demo__vp-btn" data-vp="1366">1366 <span>Desktop</span></button>
+    </div>
+    <label class="grilla-demo__overlay-toggle">
+      <input type="checkbox" id="grilla-overlay" checked> Overlay columnas <kbd>G</kbd>
+    </label>
+  </div>
+  <div class="grilla-demo__stage-wrap">
+    <div class="grilla-demo__stage" id="grilla-stage">
+      <div class="grilla-demo__overlay" id="grilla-overlay-el" aria-hidden="true"></div>
+      <div class="grilla-demo__content">
+        <div class="grilla-demo__rail" title="Rail lateral 68px"></div>
+        <div class="grilla-demo__container" id="grilla-container">
+          <div class="grilla-demo__block grilla-demo__block--compose" id="grilla-compose">
+            <span class="grilla-demo__lbl" id="grilla-lbl-compose">Compose · 6 col</span>
+          </div>
+          <div class="grilla-demo__block grilla-demo__block--full" id="grilla-full">
+            <span class="grilla-demo__lbl">Board full · contenedor</span>
+          </div>
+          <div class="grilla-demo__measurements" id="grilla-measurements"></div>
+        </div>
+      </div>
+    </div>
+    <p class="docs-muted grilla-demo__hint">Ancho simulado; el overlay dibuja columnas reales para el viewport seleccionado.</p>
+  </div>
+</div>
+<script>
+(function(){
+  var GRIDS = {
+    360:  { cols: 2,  gutter: 16, margin: 16, container: null,  rail: 0,   label: 'Mobile' },
+    768:  { cols: 12, gutter: 24, margin: 24, container: null,  rail: 0,   label: 'Tablet' },
+    1366: { cols: 12, gutter: 24, margin: 24, container: 1280,  rail: 68,  label: 'Desktop' },
+  };
+  var compose_cols = 6;
+  var stage = document.getElementById('grilla-stage');
+  var overlay = document.getElementById('grilla-overlay-el');
+  var container = document.getElementById('grilla-container');
+  var composeEl = document.getElementById('grilla-compose');
+  var fullEl = document.getElementById('grilla-full');
+  var lblCompose = document.getElementById('grilla-lbl-compose');
+  var measureEl = document.getElementById('grilla-measurements');
+  var currentVp = 360;
+
+  function colWidth(g, w) {
+    return (w - (g.cols - 1) * g.gutter) / g.cols;
+  }
+  function containerW(g, stageW) {
+    var avail = stageW - g.rail - 2 * g.margin;
+    return g.container ? Math.min(g.container, avail) : avail;
+  }
+
+  function render(vp) {
+    var g = GRIDS[vp];
+    var stageW = stage.getBoundingClientRect().width || 640;
+    var cw = containerW(g, stageW);
+    var col = colWidth(g, cw);
+    var composeCols = (g.cols >= 12) ? compose_cols : g.cols;
+    var composeW = composeCols * col + (composeCols - 1) * g.gutter;
+
+    container.style.width = cw + 'px';
+    container.style.marginLeft = g.rail ? g.rail + 'px' : 'auto';
+    container.style.marginRight = 'auto';
+    composeEl.style.width = composeW + 'px';
+    composeEl.style.marginLeft = 'auto';
+    composeEl.style.marginRight = 'auto';
+    fullEl.style.width = cw + 'px';
+    lblCompose.textContent = 'Compose · ' + composeCols + ' col · ' + Math.round(composeW) + 'px';
+
+    measureEl.innerHTML =
+      '<span>Contenedor: <strong>' + Math.round(cw) + 'px</strong></span>' +
+      (g.rail ? '<span>Rail: <strong>' + g.rail + 'px</strong></span>' : '') +
+      '<span>Col: <strong>' + col.toFixed(1) + 'px</strong></span>' +
+      '<span>Compose (' + composeCols + ' col): <strong>' + Math.round(composeW) + 'px</strong></span>';
+
+    // overlay columns
+    var cols = '';
+    for (var i = 0; i < g.cols; i++) {
+      var left = i * (col + g.gutter);
+      cols += '<span class="grilla-demo__col" style="left:' + left + 'px;width:' + col + 'px"></span>';
+    }
+    overlay.innerHTML = cols;
+    overlay.style.left = (g.rail || (stageW - cw)/2) + 'px';
+    overlay.style.width = cw + 'px';
+  }
+
+  document.querySelectorAll('.grilla-demo__vp-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.grilla-demo__vp-btn').forEach(function(b){ b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      currentVp = parseInt(btn.dataset.vp);
+      render(currentVp);
+    });
+  });
+  document.getElementById('grilla-overlay').addEventListener('change', function(){
+    overlay.hidden = !this.checked;
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'g' || e.key === 'G') {
+      var cb = document.getElementById('grilla-overlay');
+      cb.checked = !cb.checked;
+      overlay.hidden = !cb.checked;
+    }
+  });
+  window.addEventListener('resize', function(){ render(currentVp); });
+  setTimeout(function(){ render(currentVp); }, 100);
+})();
+</script>
+  </div>
+
+  <div class="docs-card">
+    <h3>Reglas de producto</h3>
+    <h4 style="margin-top:16px">Ancho de boards</h4>
+    <ul class="docs-list">
+      <li>≤ 3 ítems → ancho del <strong>compose</strong> (6 col).</li>
+      <li>≥ 4 ítems → <strong>full</strong> (ancho del contenedor).</li>
+      <li>Mapa → siempre <strong>full</strong>.</li>
+      <li>Estado de vuelo → siempre <strong>compose</strong> (un solo cluster).</li>
+    </ul>
+    <h4>Una tool</h4>
+    <p>Cada componente es: input del usuario + compose (≥ 2 oraciones) + board + follow-up (pregunta en texto, mismo ancho que el compose). Los chips de sugerencia van arriba del composer y no pertenecen a ninguna tool.</p>
+    <h4>Espaciado vertical</h4>
+    <div class="docs-table-wrap"><table class="docs-table "><thead><tr><th>Tramo</th><th>Medida</th><th>Estado</th></tr></thead><tbody><tr><td>Entre tools (input + compose + board + follow-up)</td><td>48px</td><td><span class="eva-3-tag docs-chip"><span class="tag-text">Definido</span></span></td></tr><tr><td>Input → compose</td><td>24px</td><td><span class="eva-3-tag docs-chip"><span class="tag-text">Definido</span></span></td></tr><tr><td>Compose → board</td><td>16px</td><td><span class="eva-3-tag docs-chip"><span class="tag-text">Definido</span></span></td></tr><tr><td>Board → follow-up</td><td>16px</td><td><span class="eva-3-tag docs-chip docs-chip--pending"><span class="tag-text">⚠ Propuesta, sin confirmar</span></span></td></tr></tbody></table></div>
+  </div>
+
+  <div class="docs-card">
+    <h3>Cards de carrusel</h3>
+    <p>Foundations dice que los carruseles <em>no</em> se adhieren a la grilla de EVA: el contenedor del carrusel sí, pero las cards tienen ancho fijo. En Figma (Cards / Vuelo) ese ancho es <strong>242px</strong>.</p>
+    <h4>Estado actual</h4>
+    <div class="docs-table-wrap"><table class="docs-table "><thead><tr><th>Viewport</th><th>Compose (6 col)</th><th>Card</th></tr></thead><tbody><tr><td>1366</td><td>~613px</td><td>242px fija · scroll</td></tr><tr><td>1440+</td><td>~628px</td><td>242px fija · scroll</td></tr><tr><td>768</td><td>~314px</td><td>242px fija · scroll</td></tr><tr><td>360</td><td>~328px (2 col)</td><td>242px fija · scroll</td></tr></tbody></table></div>
+    <p class="docs-muted">3 × 242 + 2 × 24 = 774px &gt; compose de 6 col (~613px en 1366): las cards no llenan el compose, el carrusel scrollea.</p>
+    <h4>Alternativas evaluadas <span class="docs-chip-pending">(en discusión)</span></h4>
+    <div class="docs-table-wrap"><table class="docs-table "><thead><tr><th>Opción</th><th>Ancho card</th><th>Trade-off</th></tr></thead><tbody><tr><td>6 col, card = 2 col</td><td>188–193px</td><td>Todo calza en la grilla de 12, incluido board full. Se aleja de los 242px de Figma.</td></tr><tr><td>Cards fijas 242px</td><td>242px</td><td>Respeta Figma. Para ver 3 enteras hace falta compose ≥ 758px (8 columnas ~825–845px).</td></tr></tbody></table></div>
+  </div>
+
+  <div class="docs-card docs-card--warn">
+    <h3>⚠ Pendiente de definición</h3>
+    <ul class="docs-list">
+      <li>Confirmar el espaciado board → follow-up (hoy 16px, marcado como propuesta sin confirmar).</li>
+      <li>Elegir una sola regla de cards: <strong>6 col + card = 2 col (188–193px)</strong> vs <strong>cards fijas 242px</strong>.</li>
+    </ul>
+    <p class="docs-muted">Estos ítems quedan marcados en esta sección como pendientes hasta que diseño los confirme.</p>
   </div>
 </section>
 <section class="docs-section" id="bottom-sheet">
