@@ -194,6 +194,13 @@ def figma_url(content, node_id):
     return content['figma']['fileUrl'] + '?node-id=' + node_id.replace(':', '-')
 
 
+LIBRARY_URL = 'https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA'
+
+
+def library_url(node_id):
+    return LIBRARY_URL + '?node-id=' + node_id.replace(':', '-')
+
+
 def inline_md(text):
     """Markdown inline mínimo: `code` y **bold**."""
     t = esc(text)
@@ -374,9 +381,9 @@ SECTIONS = [
     ('inicio', 'Inicio'),
     ('cuando-usar', 'Cuándo usar cada superficie'),
     ('fundamentos', 'Fundamentos'),
-    ('bottom-sheet', 'Bottom sheet · mobile'),
-    ('side-sheet', 'Side sheet · desktop'),
-    ('modal', 'Modal · desktop + mobile'),
+    ('bottom-sheet', 'Bottom Sheet'),
+    ('side-sheet', 'Side Sheet'),
+    ('modal', 'Modal'),
     ('formularios', 'Formularios y widgets'),
     ('persistencia', 'Modelo de persistencia'),
     ('spec', 'Spec (MD) vs Figma'),
@@ -452,7 +459,11 @@ class Site:
             f'<a class="eva-3-btn-ghost -sm docs-btn" href="{esc(self.furl(n))}" target="_blank" rel="noopener">'
             f'<em class="btn-text">Ver en Figma · {esc(n)}</em></a>'
             for n in nodes if not str(n).startswith('I'))
-        search = ' '.join([v.get('name', ''), vid, group, ' '.join(nodes), g.get('title', '')]).lower()
+        lib_nodes = v.get('libraryNodeIds') or []
+        figma_links += ''.join(
+            f'<a class="eva-3-btn-ghost -sm docs-btn" href="{esc(library_url(n))}" target="_blank" rel="noopener">'
+            f'<em class="btn-text">Ver en Librería · {esc(n)}</em></a>' for n in lib_nodes)
+        search = ' '.join([v.get('name', ''), vid, group, ' '.join(nodes + lib_nodes), g.get('title', '')]).lower()
         snippet = display_snippet(v['_snippet'])
         files, _ = self.required_css(v)
         req = ['EVA (CDN): eva-core.min.css + eva.min.css', 'Rubik (Google Fonts)', 'css/tokens.css', 'css/base.css'] + files
@@ -505,6 +516,10 @@ class Site:
         group = g['_group']
         sec = g.get('figmaSection')
         sec_link = self.figma_link(sec, f'Sección Figma {sec}') if sec else '—'
+        if g.get('librarySection'):
+            ls = g['librarySection']
+            sec_link = (f'<a class="docs-figma-link" href="{esc(library_url(ls))}" target="_blank" rel="noopener">'
+                        f'Librería SOFIA {esc(ls)}</a>') + ('' if not sec else ' · ' + sec_link)
         cards = ''.join(self.card(g, v) for v in g.get('variants', []))
         return f'''
 <section class="docs-group" id="g-{esc(group)}" data-group="{esc(group)}">
@@ -605,7 +620,7 @@ class Site:
 <section class="docs-section" id="inicio">
   <div class="docs-hero docs-card">
     <p class="docs-eyebrow">Handoff para devs</p>
-    <h1>SOFIA · Sheets &amp; Modals</h1>
+    <h1>SOFIA Librería Devs</h1>
     <p class="docs-lead">Todas las instancias ya diseñadas en Figma de <strong>bottom sheet</strong> (mobile), <strong>side sheet</strong> (desktop),
     <strong>modales</strong> (desktop + mobile) y <strong>formularios / widgets</strong> en bottom sheet de SOFIA, el asistente conversacional de Despegar,
     implementadas en HTML + CSS sobre EVA. No hay nada nuevo: cada pieza sale del Figma o del MD de referencia.</p>
@@ -980,9 +995,9 @@ class Site:
             self.s_inicio(),
             self.s_cuando_usar(),
             self.s_fundamentos(),
-            self.surface_section('bottom-sheet', 'Bottom sheet · mobile', bs_lead, 'bottom-sheet', ('bottomSheet', 'bottom-sheet.js'), 'bottom-sheet'),
-            self.surface_section('side-sheet', 'Side sheet · desktop', ss_lead, 'side-sheet', ('sideSheet', 'side-sheet.js'), 'side-sheet'),
-            self.surface_section('modal', 'Modal · desktop + mobile', modal_lead, 'modal', ('modal', 'modal.js'), 'modal'),
+            self.surface_section('bottom-sheet', 'Bottom Sheet', bs_lead, 'bottom-sheet', ('bottomSheet', 'bottom-sheet.js'), 'bottom-sheet'),
+            self.surface_section('side-sheet', 'Side Sheet', ss_lead, 'side-sheet', ('sideSheet', 'side-sheet.js'), 'side-sheet'),
+            self.surface_section('modal', 'Modal', modal_lead, 'modal', ('modal', 'modal.js'), 'modal'),
             self.surface_section('formularios', 'Formularios y widgets', forms_lead, 'forms', None, 'forms'),
             self.s_persistencia(),
             self.s_spec(),
@@ -994,7 +1009,7 @@ class Site:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SOFIA · Sheets &amp; Modals — Handoff para devs</title>
+<title>SOFIA Librería Devs</title>
 <!-- ARCHIVO GENERADO por tools/build.py — no editar a mano. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1011,7 +1026,7 @@ class Site:
 <a class="docs-skip" href="#docs-main">Saltar al contenido</a>
 <header class="docs-topbar">
   <button type="button" class="docs-topbar__menu eva-3-btn-ghost -sm" aria-controls="docs-sidebar" aria-expanded="false" aria-label="Abrir navegación"><i class="eva-3-icon-hamburger-menu" aria-hidden="true"></i></button>
-  <a class="docs-topbar__brand" href="#inicio"><span class="docs-topbar__logo">SOFIA</span> · Sheets &amp; Modals — <span class="docs-topbar__sub">Handoff para devs</span></a>
+  <a class="docs-topbar__brand" href="#inicio"><span class="docs-topbar__logo">SOFIA</span> <span class="docs-topbar__sub">Librería Devs</span></a>
   <a class="eva-3-btn -sm -primary docs-btn docs-topbar__figma" href="{esc(c["figma"]["pageUrl"])}" target="_blank" rel="noopener"><em class="btn-text">Figma ↗</em></a>
 </header>
 <div class="docs-layout">
