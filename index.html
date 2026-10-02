@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components/bs-chat.css">
+<link rel="stylesheet" href="css/components/bs-dialogue.css">
 <link rel="stylesheet" href="css/components/bs-footer.css">
 <link rel="stylesheet" href="css/components/bs-header.css">
 <link rel="stylesheet" href="css/components/bs-hero.css">
@@ -37,9 +38,9 @@
       <label class="docs-search__label" for="docs-search-input">Buscar variante</label>
       <div class="docs-search__field"><i class="eva-3-icon-search" aria-hidden="true"></i>
         <input id="docs-search-input" type="search" placeholder="Nombre, id o nodo (ej. 4048:3733)" autocomplete="off"></div>
-      <p class="docs-search__status" aria-live="polite" data-total="50"></p>
+      <p class="docs-search__status" aria-live="polite" data-total="64"></p>
     </div>
-    <nav class="docs-nav" aria-label="Secciones"><ul><li><a href="#inicio" data-nav="inicio" class="docs-nav__sec">Inicio</a></li><li><a href="#cuando-usar" data-nav="cuando-usar" class="docs-nav__sec">Cuándo usar cada superficie</a></li><li><a href="#fundamentos" data-nav="fundamentos" class="docs-nav__sec">Fundamentos</a></li><li><a href="#bottom-sheet" data-nav="bottom-sheet" class="docs-nav__sec">Bottom sheet · mobile</a><ul class="docs-nav__sub"><li><a href="#g-bs-header" data-nav="g-bs-header">Estructura base (Header, Overlay, Content) <span class="docs-nav__count">6</span></a></li><li><a href="#g-bs-hero" data-nav="g-bs-hero">Header con imagen (BS_imageBG_tittle) <span class="docs-nav__count">3</span></a></li><li><a href="#g-bs-footer" data-nav="g-bs-footer">Footer (Action Container) <span class="docs-nav__count">3</span></a></li><li><a href="#g-bs-sheets" data-nav="g-bs-sheets">Sheets completas (mobile 360) <span class="docs-nav__count">10</span></a></li><li><a href="#g-bs-chat" data-nav="g-bs-chat">Ejemplos y tamaños dentro del chat <span class="docs-nav__count">5</span></a></li><li><a href="#motion-bottomSheet" data-nav="motion-bottomSheet">Motion</a></li></ul></li><li><a href="#side-sheet" data-nav="side-sheet" class="docs-nav__sec">Side sheet · desktop</a><ul class="docs-nav__sub"><li><a href="#g-side-sheet" data-nav="g-side-sheet">Desktop <span class="docs-nav__count">7</span></a></li><li><a href="#motion-sideSheet" data-nav="motion-sideSheet">Motion</a></li></ul></li><li><a href="#modal" data-nav="modal" class="docs-nav__sec">Modal · desktop + mobile</a><ul class="docs-nav__sub"><li><a href="#g-modal" data-nav="g-modal">Desktop y Mobile <span class="docs-nav__count">5</span></a></li><li><a href="#motion-modal" data-nav="motion-modal">Motion</a></li></ul></li><li><a href="#formularios" data-nav="formularios" class="docs-nav__sec">Formularios y widgets</a><ul class="docs-nav__sub"><li><a href="#g-forms-trip" data-nav="g-forms-trip">Tu viaje (start_package) <span class="docs-nav__count">6</span></a></li><li><a href="#g-forms-coupon" data-nav="g-forms-coupon">Cupón de descuento y formulario de destino (bottomsheet form) <span class="docs-nav__count">5</span></a></li></ul></li><li><a href="#persistencia" data-nav="persistencia" class="docs-nav__sec">Modelo de persistencia</a></li><li><a href="#spec" data-nav="spec" class="docs-nav__sec">Spec (MD) vs Figma</a></li><li><a href="#recursos" data-nav="recursos" class="docs-nav__sec">Recursos</a></li></ul></nav>
+    <nav class="docs-nav" aria-label="Secciones"><ul><li><a href="#inicio" data-nav="inicio" class="docs-nav__sec">Inicio</a></li><li><a href="#cuando-usar" data-nav="cuando-usar" class="docs-nav__sec">Cuándo usar cada superficie</a></li><li><a href="#fundamentos" data-nav="fundamentos" class="docs-nav__sec">Fundamentos</a></li><li><a href="#bottom-sheet" data-nav="bottom-sheet" class="docs-nav__sec">Bottom sheet · mobile</a><ul class="docs-nav__sub"><li><a href="#g-bs-header" data-nav="g-bs-header">Estructura base (Header, Overlay, Content) <span class="docs-nav__count">12</span></a></li><li><a href="#g-bs-hero" data-nav="g-bs-hero">Header con imagen (BS_imageBG_tittle) <span class="docs-nav__count">3</span></a></li><li><a href="#g-bs-footer" data-nav="g-bs-footer">Footer (Action Container) <span class="docs-nav__count">3</span></a></li><li><a href="#g-bs-sheets" data-nav="g-bs-sheets">Sheets completas (mobile 360) <span class="docs-nav__count">10</span></a></li><li><a href="#g-bs-chat" data-nav="g-bs-chat">Ejemplos y tamaños dentro del chat <span class="docs-nav__count">5</span></a></li><li><a href="#g-bs-dialogue" data-nav="g-bs-dialogue">Dialogue (layout completo) <span class="docs-nav__count">8</span></a></li><li><a href="#motion-bottomSheet" data-nav="motion-bottomSheet">Motion</a></li></ul></li><li><a href="#side-sheet" data-nav="side-sheet" class="docs-nav__sec">Side sheet · desktop</a><ul class="docs-nav__sub"><li><a href="#g-side-sheet" data-nav="g-side-sheet">Desktop <span class="docs-nav__count">7</span></a></li><li><a href="#motion-sideSheet" data-nav="motion-sideSheet">Motion</a></li></ul></li><li><a href="#modal" data-nav="modal" class="docs-nav__sec">Modal · desktop + mobile</a><ul class="docs-nav__sub"><li><a href="#g-modal" data-nav="g-modal">Desktop y Mobile <span class="docs-nav__count">5</span></a></li><li><a href="#motion-modal" data-nav="motion-modal">Motion</a></li></ul></li><li><a href="#formularios" data-nav="formularios" class="docs-nav__sec">Formularios y widgets</a><ul class="docs-nav__sub"><li><a href="#g-forms-trip" data-nav="g-forms-trip">Tu viaje (start_package) <span class="docs-nav__count">6</span></a></li><li><a href="#g-forms-coupon" data-nav="g-forms-coupon">Cupón de descuento y formulario de destino (bottomsheet form) <span class="docs-nav__count">5</span></a></li></ul></li><li><a href="#persistencia" data-nav="persistencia" class="docs-nav__sec">Modelo de persistencia</a></li><li><a href="#spec" data-nav="spec" class="docs-nav__sec">Spec (MD) vs Figma</a></li><li><a href="#recursos" data-nav="recursos" class="docs-nav__sec">Recursos</a></li></ul></nav>
   </aside>
   <div class="docs-backdrop" hidden></div>
   <main class="docs-main" id="docs-main">
@@ -53,8 +54,8 @@
     <strong>modales</strong> (desktop + mobile) y <strong>formularios / widgets</strong> en bottom sheet de SOFIA, el asistente conversacional de Despegar,
     implementadas en HTML + CSS sobre EVA. No hay nada nuevo: cada pieza sale del Figma o del MD de referencia.</p>
     <ul class="docs-stats">
-      <li><strong>50</strong> variantes</li>
-      <li><strong>9</strong> grupos</li>
+      <li><strong>64</strong> variantes</li>
+      <li><strong>10</strong> grupos</li>
       <li><strong>3</strong> animaciones (JS del handoff)</li>
       <li><strong>4</strong> casos de persistencia</li>
     </ul>
@@ -215,7 +216,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
   <header class="docs-group__head">
     <h3 class="docs-group__title">Bottom Sheet · Estructura base (Header, Overlay, Content)</h3>
     <p class="docs-group__desc">Piezas base para armar cualquier bottom sheet de SOFIA: el header (BS_header, con 4 variantes según la propiedad Handle), el overlay que oscurece el chat detrás del sheet y el área de contenido con el placeholder BS / Slot. El header es de ancho fluido: se usa igual en el bottom sheet mobile (360px) y en el side sheet desktop (421px).</p>
-    <p class="docs-meta"><a class="docs-figma-link" href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=49-79" target="_blank" rel="noopener">Sección Figma 49:79</a> · CSS: <code>css/components/bs-header.css</code> · 6 variantes · grupo <code>bs-header</code></p>
+    <p class="docs-meta"><a class="docs-figma-link" href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=49-79" target="_blank" rel="noopener">Sección Figma 49:79</a> · CSS: <code>css/components/bs-header.css</code> · 12 variantes · grupo <code>bs-header</code></p>
   </header>
   <div class="docs-grid">
 <article class="docs-card docs-variant" id="v-bs-header--header-title" data-search="bs_header · handle=title header-title bs-header 4048:3733 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
@@ -295,7 +296,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/header&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-header--header-tabs" data-search="bs_header · handle=tabs header-tabs bs-header 4048:4339 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
@@ -396,6 +397,258 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
     <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-header.css</code></li></ul></details>
   </div>
 </article>
+<article class="docs-card docs-variant" id="v-bs-header--header-mobile-compact" data-search="bs_header · type=mobile-compact header-mobile-compact bs-header 2071:13062 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">BS_header · Type=mobile-compact</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-header/header-mobile-compact</code><span class="docs-meta">360 × 48px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Mobile</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Type=mobile-compact</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="360" data-h="48">
+    <div class="docs-preview__frame" style="width:360px;height:48px">
+      <iframe src="previews/bs-header--header-mobile-compact.html" title="BS_header · Type=mobile-compact" loading="lazy" width="360" height="48" style="width:360px;height:48px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Header compacto mobile de la Librería SOFIA: handle gris (Neutral-400) + fila título + cerrar SVG 16×16. Sin área de contenido debajo. Alto 48px. Usarlo en sheets que no necesitan preview de contenido en el header.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">El color del handle en la Librería SOFIA es #C0C4CC (Neutral-400), distinto al #EBE5F5 de las variantes del handoff original. El botón cerrar usa el SVG propio de SOFIA (16×16, fill #323439), no el ícono EVA de 24px.</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-header--header-mobile-compact"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-header--header-mobile-compact"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-header--header-mobile-compact.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2071-13062" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2071:13062</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-header--header-mobile-compact" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-header--header-mobile-compact" class="docs-lang-html">&lt;header class=&quot;sofia-bs-header sofia-bs-header--mobile-compact&quot;&gt;
+  &lt;div class=&quot;sofia-bs-header__handle&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+      &lt;h2 class=&quot;sofia-bs-header__title eva-3-h5&quot;&gt;Title&lt;/h2&gt;
+      &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-header.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-header--header-mobile" data-search="bs_header · type=mobile header-mobile bs-header 2048:7995 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">BS_header · Type=mobile</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-header/header-mobile</code><span class="docs-meta">360 × 97px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Mobile</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Type=mobile</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="360" data-h="97">
+    <div class="docs-preview__frame" style="width:360px;height:97px">
+      <iframe src="previews/bs-header--header-mobile.html" title="BS_header · Type=mobile" loading="lazy" width="360" height="97" style="width:360px;height:97px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Header mobile con handle + título + cerrar + área de contenido (BS/Slot) debajo. El slot es el placeholder para contenido propio del header (buscador, resumen, selector). Alto 97px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">Mismas diferencias de handle color que en mobile-compact. El slot tiene 37px de alto dentro del header.</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-header--header-mobile"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-header--header-mobile"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-header--header-mobile.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2048-7995" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2048:7995</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-header--header-mobile" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-header--header-mobile" class="docs-lang-html">&lt;header class=&quot;sofia-bs-header sofia-bs-header--mobile&quot;&gt;
+  &lt;div class=&quot;sofia-bs-header__handle&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+      &lt;h2 class=&quot;sofia-bs-header__title eva-3-h5&quot;&gt;Title&lt;/h2&gt;
+      &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;sofia-slot sofia-bs-header__content-slot&quot;&gt;
+      &lt;p class=&quot;sofia-slot__label&quot;&gt;BS / Slot&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-header--header-desktop-compact" data-search="bs_header · type=desktop-compact header-desktop-compact bs-header 2061:13011 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">BS_header · Type=desktop-compact</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-header/header-desktop-compact</code><span class="docs-meta">575 × 56px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Desktop</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Type=desktop-compact</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="575" data-h="56">
+    <div class="docs-preview__frame" style="width:575px;height:56px">
+      <iframe src="previews/bs-header--header-desktop-compact.html" title="BS_header · Type=desktop-compact" loading="lazy" width="575" height="56" style="width:575px;height:56px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Header compacto desktop (side sheet / panel lateral): handle gris + título Title S (20px) + cerrar SVG 16×16. Sin área de contenido. Alto 56px · Ancho 575px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">El título usa Title S (H4 · Rubik Medium 20/28), más grande que en mobile (Subtitle L 16px). La clase CSS .sofia-bs-header__title--s aplica ese size. El ancho de 575px es el del panel desktop en la Librería SOFIA.</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-header--header-desktop-compact"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-header--header-desktop-compact"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-header--header-desktop-compact.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2061-13011" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2061:13011</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-header--header-desktop-compact" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-header--header-desktop-compact" class="docs-lang-html">&lt;header class=&quot;sofia-bs-header sofia-bs-header--desktop-compact&quot;&gt;
+  &lt;div class=&quot;sofia-bs-header__handle sofia-bs-header__handle--desktop&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+      &lt;h2 class=&quot;sofia-bs-header__title sofia-bs-header__title--s&quot;&gt;Title&lt;/h2&gt;
+      &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-header.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-header--header-desktop" data-search="bs_header · type=desktop header-desktop bs-header 2061:12974 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">BS_header · Type=desktop</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-header/header-desktop</code><span class="docs-meta">575 × 105px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Desktop</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Type=desktop</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="575" data-h="105">
+    <div class="docs-preview__frame" style="width:575px;height:105px">
+      <iframe src="previews/bs-header--header-desktop.html" title="BS_header · Type=desktop" loading="lazy" width="575" height="105" style="width:575px;height:105px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Header desktop con título Title S + cerrar + BS/Slot de contenido. El contenedor del handle tiene 12px de alto pero está vacío (sin barra visible). Alto 105px · Ancho 575px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">El handle container existe (reserva 12px de espacio) pero no tiene barra visible en Figma. Se implementa con .sofia-bs-header__handle--empty (sin span interior). El slot tiene ~37px de alto.</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-header--header-desktop"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-header--header-desktop"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-header--header-desktop.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2061-12974" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2061:12974</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-header--header-desktop" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-header--header-desktop" class="docs-lang-html">&lt;header class=&quot;sofia-bs-header sofia-bs-header--desktop&quot;&gt;
+  &lt;div class=&quot;sofia-bs-header__handle sofia-bs-header__handle--empty&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+      &lt;h2 class=&quot;sofia-bs-header__title sofia-bs-header__title--s&quot;&gt;Title&lt;/h2&gt;
+      &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;sofia-slot sofia-bs-header__content-slot&quot;&gt;
+      &lt;p class=&quot;sofia-slot__label&quot;&gt;BS / Slot&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-header--start-pack-m" data-search="bs_header · type=start_pack_m start-pack-m bs-header 2086:13513 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">BS_header · Type=start_pack_M</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-header/start-pack-m</code><span class="docs-meta">360 × 48px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Mobile</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Type=start_pack_M</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="360" data-h="48">
+    <div class="docs-preview__frame" style="width:360px;height:48px">
+      <iframe src="previews/bs-header--start-pack-m.html" title="BS_header · Type=start_pack_M" loading="lazy" width="360" height="48" style="width:360px;height:48px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Header mobile de inicio de viaje: handle + &quot;Tu próximo viaje&quot; + fila de íconos (globe, plane, hotel) + chevron-down. Muestra los 3 verticales de SOFIA con íconos custom de 16×16. Alto 48px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">Los íconos globe, plane y hotel son SVGs propios de SOFIA DS (16×16, fill #72777F = Neutral-500). No existen en EVA. El chevron-down sí es EVA (eva-3-icon-chevron-down). El handle tiene el color gris de la librería (#C0C4CC).</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-header--start-pack-m"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-header--start-pack-m"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-header--start-pack-m.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2086-13513" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2086:13513</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-header--start-pack-m" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-header--start-pack-m" class="docs-lang-html">&lt;header class=&quot;sofia-bs-header sofia-bs-header--start-pack&quot;&gt;
+  &lt;div class=&quot;sofia-bs-header__handle&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+      &lt;h2 class=&quot;sofia-bs-header__title eva-3-h5&quot;&gt;Tu próximo viaje&lt;/h2&gt;
+      &lt;div class=&quot;sofia-bs-header__pack-icons&quot; aria-hidden=&quot;true&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-globe.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-plane.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-hotel.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;i class=&quot;eva-3-icon-chevron-down sofia-bs-header__pack-chevron&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-header.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-header--start-pack-d" data-search="bs_header · type=start_pack_d start-pack-d bs-header 2086:13553 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">BS_header · Type=start_pack_D</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-header/start-pack-d</code><span class="docs-meta">575 × 56px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Desktop</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Type=start_pack_D</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="575" data-h="56">
+    <div class="docs-preview__frame" style="width:575px;height:56px">
+      <iframe src="previews/bs-header--start-pack-d.html" title="BS_header · Type=start_pack_D" loading="lazy" width="575" height="56" style="width:575px;height:56px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Versión desktop del header de inicio de viaje: título Title S + íconos de verticales + chevron. Sin barra de handle visible (mismo patrón que header-desktop). Alto 56px · Ancho 575px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">Mismo comportamiento que start_pack_M pero con tipografía Title S y sin handle bar visible (handle container vacío).</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-header--start-pack-d"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-header--start-pack-d"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-header--start-pack-d.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2086-13553" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2086:13553</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-header--start-pack-d" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-header--start-pack-d" class="docs-lang-html">&lt;header class=&quot;sofia-bs-header sofia-bs-header--start-pack sofia-bs-header--start-pack-d&quot;&gt;
+  &lt;div class=&quot;sofia-bs-header__handle sofia-bs-header__handle--empty&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+      &lt;h2 class=&quot;sofia-bs-header__title sofia-bs-header__title--s&quot;&gt;Tu próximo viaje&lt;/h2&gt;
+      &lt;div class=&quot;sofia-bs-header__pack-icons&quot; aria-hidden=&quot;true&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-globe.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-plane.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;img src=&quot;assets/icons/sofia-ic-hotel.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;i class=&quot;eva-3-icon-chevron-down sofia-bs-header__pack-chevron&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-header.css</code></li></ul></details>
+  </div>
+</article>
 <article class="docs-card docs-variant" id="v-bs-header--overlay" data-search="overlay overlay bs-header 4028:3424 bottom sheet · estructura base (header, overlay, content)" data-group="bs-header">
   <header class="docs-variant__head">
     <h4 class="docs-variant__name">Overlay</h4>
@@ -458,7 +711,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/div&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article></div>
 </section>
@@ -768,7 +1021,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/footer&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li></ul></details>
   </div>
 </article></div>
 </section>
@@ -828,7 +1081,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--sheet-slot-single" data-search="bottom sheet · header slot + single cta sheet-slot-single bs-sheets 4050:4655 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -881,7 +1134,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--sheet-tabs-single" data-search="bottom sheet · header tabs + single cta sheet-tabs-single bs-sheets 4050:4692 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -948,7 +1201,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--sheet-hero-title" data-search="bottom sheet · header imagen title + single cta sheet-hero-title bs-sheets 4050:4574 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -1015,7 +1268,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--sheet-hero-tags" data-search="bottom sheet · header imagen tags + single cta sheet-hero-tags bs-sheets 4050:4612 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -1088,7 +1341,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--sheet-hero-tabs" data-search="bottom sheet · header imagen tabs + single cta sheet-hero-tabs bs-sheets 4058:4644 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -1173,7 +1426,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--height-default" data-search="bottom sheet · altura=default height-default bs-sheets 4055:4059 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -1225,7 +1478,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--height-75" data-search="bottom sheet · altura=75% height-75 bs-sheets 4280:7321 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -1277,7 +1530,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--height-50" data-search="bottom sheet · altura=50% height-50 bs-sheets 4280:7337 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -1329,7 +1582,7 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
 &lt;/section&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-bs-sheets--height-25" data-search="bottom sheet · altura=25% height-25 bs-sheets 4280:7353 bottom sheet · sheets completas (mobile 360)" data-group="bs-sheets">
@@ -1842,6 +2095,416 @@ python3 tools/build.py --only modal  # solo las previews de un grupo</code></pre
   </div>
 </article></div>
 </section>
+<section class="docs-group" id="g-bs-dialogue" data-group="bs-dialogue">
+  <header class="docs-group__head">
+    <h3 class="docs-group__title">Bottom Sheet · Dialogue (layout completo)</h3>
+    <p class="docs-group__desc">Layouts completos de bottom sheet de la Librería SOFIA: header + área de contenido (BS/Slot) + footer. Cada variante combina una versión del BS_header (mobile 360px o desktop 575px) con el footer correspondiente (Simple=DualCTA, WithActions=Pagination, Single=SingleCTA). El chat-peek-bar es la barra emergente que propone retomar una conversación.</p>
+    <p class="docs-meta"><a class="docs-figma-link" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2040-22" target="_blank" rel="noopener">Librería SOFIA 2040:22</a> · CSS: <code>css/components/bs-dialogue.css</code> · 8 variantes · grupo <code>bs-dialogue</code></p>
+  </header>
+  <div class="docs-grid">
+<article class="docs-card docs-variant" id="v-bs-dialogue--mobile-simple" data-search="dialogue · mobile · simple mobile-simple bs-dialogue 2328:14390 bottom sheet · dialogue (layout completo)" data-group="bs-dialogue">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">Dialogue · Mobile · Simple</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-dialogue/mobile-simple</code><span class="docs-meta">360 × 348px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Mobile</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Footer=Simple (DualCTA)</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="360" data-h="348">
+    <div class="docs-preview__frame" style="width:360px;height:348px">
+      <iframe src="previews/bs-dialogue--mobile-simple.html" title="Dialogue · Mobile · Simple" loading="lazy" width="360" height="348" style="width:360px;height:348px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Layout mobile completo con header compact (handle + título + cerrar) + placeholder de contenido + footer de dos CTAs (ghost + primary). Es el Dialogue más común. 360×348px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">El header usa BS_header Type=mobile-compact (48px). El footer usa el Action Container con dos botones EVA (eva-3-btn-ghost + eva-3-btn). El slot es el placeholder BS/Slot a 200px de alto.</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-dialogue--mobile-simple"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-dialogue--mobile-simple"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-dialogue--mobile-simple.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2328-14390" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2328:14390</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-dialogue--mobile-simple" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-dialogue--mobile-simple" class="docs-lang-html">&lt;div class=&quot;sofia-dialogue sofia-dialogue--mobile&quot;&gt;
+  &lt;!-- BS_header · Type=mobile-compact --&gt;
+  &lt;header class=&quot;sofia-bs-header sofia-bs-header--mobile-compact&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__handle&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+      &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+        &lt;h2 class=&quot;sofia-bs-header__title eva-3-h5&quot;&gt;Title&lt;/h2&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+          &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;!-- Content · BS / Slot --&gt;
+  &lt;div class=&quot;sofia-dialogue__content&quot;&gt;
+    &lt;div class=&quot;sofia-slot&quot;&gt;&lt;p class=&quot;sofia-slot__label&quot;&gt;BS / Slot&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Action Container · Footer=Dual CTA --&gt;
+  &lt;footer class=&quot;sofia-bs-footer sofia-bs-footer--dual&quot;&gt;
+    &lt;div class=&quot;sofia-bs-footer__actions&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;eva-3-btn-ghost -md -primary&quot;&gt;&lt;em class=&quot;btn-text&quot;&gt;Secondary&lt;/em&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;eva-3-btn -md -primary&quot;&gt;&lt;em class=&quot;btn-text&quot;&gt;Primary&lt;/em&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-dialogue--desktop-simple" data-search="dialogue · desktop · simple desktop-simple bs-dialogue 2174:138 2328:14367 bottom sheet · dialogue (layout completo)" data-group="bs-dialogue">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">Dialogue · Desktop · Simple</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-dialogue/desktop-simple</code><span class="docs-meta">575 × 356px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Desktop</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Footer=Simple (DualCTA)</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="575" data-h="356">
+    <div class="docs-preview__frame" style="width:575px;height:356px">
+      <iframe src="previews/bs-dialogue--desktop-simple.html" title="Dialogue · Desktop · Simple" loading="lazy" width="575" height="356" style="width:575px;height:356px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Layout desktop completo con header compact (handle + título Title S + cerrar) + placeholder de contenido + footer DualCTA. 575×356px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">En la Librería SOFIA hay dos nodos con Platform=Desktop, Footer=Simple: 2174:138 y 2328:14367. Difieren en el footer (DualCTA con distintas configuraciones). Ambos ids se registran en libraryNodeIds.</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-dialogue--desktop-simple"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-dialogue--desktop-simple"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-dialogue--desktop-simple.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2174-138" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2174:138</em></a><a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2328-14367" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2328:14367</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-dialogue--desktop-simple" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-dialogue--desktop-simple" class="docs-lang-html">&lt;div class=&quot;sofia-dialogue sofia-dialogue--desktop&quot;&gt;
+  &lt;!-- BS_header · Type=desktop-compact --&gt;
+  &lt;header class=&quot;sofia-bs-header sofia-bs-header--desktop-compact&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__handle sofia-bs-header__handle--desktop&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+      &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+        &lt;h2 class=&quot;sofia-bs-header__title sofia-bs-header__title--s&quot;&gt;Title&lt;/h2&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+          &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;!-- Content · BS / Slot --&gt;
+  &lt;div class=&quot;sofia-dialogue__content&quot;&gt;
+    &lt;div class=&quot;sofia-slot&quot;&gt;&lt;p class=&quot;sofia-slot__label&quot;&gt;BS / Slot&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Action Container · Footer=Dual CTA --&gt;
+  &lt;footer class=&quot;sofia-bs-footer sofia-bs-footer--dual&quot;&gt;
+    &lt;div class=&quot;sofia-bs-footer__actions&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;eva-3-btn-ghost -md -primary&quot;&gt;&lt;em class=&quot;btn-text&quot;&gt;Secondary&lt;/em&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;eva-3-btn -md -primary&quot;&gt;&lt;em class=&quot;btn-text&quot;&gt;Primary&lt;/em&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-dialogue--mobile-with-actions" data-search="dialogue · mobile · with actions mobile-with-actions bs-dialogue 2229:210 bottom sheet · dialogue (layout completo)" data-group="bs-dialogue">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">Dialogue · Mobile · With Actions</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-dialogue/mobile-with-actions</code><span class="docs-meta">360 × 348px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Mobile</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Footer=With Actions (paginación)</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="360" data-h="348">
+    <div class="docs-preview__frame" style="width:360px;height:348px">
+      <iframe src="previews/bs-dialogue--mobile-with-actions.html" title="Dialogue · Mobile · With Actions" loading="lazy" width="360" height="348" style="width:360px;height:348px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Layout mobile con footer de paginación (chevron izquierda · contador · chevron derecha). Usarlo cuando el contenido del sheet se navega en pasos (onboarding, wizard). 360×348px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">El footer de paginación tiene los chevrons eva-3-icon-chevron-left y eva-3-icon-chevron-right (16px) y un label central. La fila de CTAs tiene ancho fijo 328px (--sofia-bs-footer-row-width).</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-dialogue--mobile-with-actions"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-dialogue--mobile-with-actions"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-dialogue--mobile-with-actions.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2229-210" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2229:210</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-dialogue--mobile-with-actions" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-dialogue--mobile-with-actions" class="docs-lang-html">&lt;div class=&quot;sofia-dialogue sofia-dialogue--mobile&quot;&gt;
+  &lt;!-- BS_header · Type=mobile-compact --&gt;
+  &lt;header class=&quot;sofia-bs-header sofia-bs-header--mobile-compact&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__handle&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+      &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+        &lt;h2 class=&quot;sofia-bs-header__title eva-3-h5&quot;&gt;Title&lt;/h2&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+          &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;!-- Content · BS / Slot --&gt;
+  &lt;div class=&quot;sofia-dialogue__content&quot;&gt;
+    &lt;div class=&quot;sofia-slot&quot;&gt;&lt;p class=&quot;sofia-slot__label&quot;&gt;BS / Slot&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Action Container · Footer=Paginación --&gt;
+  &lt;footer class=&quot;sofia-bs-footer sofia-bs-footer--steps&quot;&gt;
+    &lt;div class=&quot;sofia-bs-footer__actions sofia-bs-footer__actions--steps&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;sofia-bs-footer__steps-btn&quot; aria-label=&quot;Anterior&quot;&gt;
+        &lt;i class=&quot;eva-3-icon-chevron-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;/button&gt;
+      &lt;span class=&quot;sofia-bs-footer__steps-label&quot;&gt;1 de 3&lt;/span&gt;
+      &lt;button type=&quot;button&quot; class=&quot;sofia-bs-footer__steps-btn&quot; aria-label=&quot;Siguiente&quot;&gt;
+        &lt;i class=&quot;eva-3-icon-chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-dialogue--desktop-with-actions" data-search="dialogue · desktop · with actions desktop-with-actions bs-dialogue 2328:14390 bottom sheet · dialogue (layout completo)" data-group="bs-dialogue">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">Dialogue · Desktop · With Actions</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-dialogue/desktop-with-actions</code><span class="docs-meta">575 × 356px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Desktop</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Footer=With Actions (paginación)</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="575" data-h="356">
+    <div class="docs-preview__frame" style="width:575px;height:356px">
+      <iframe src="previews/bs-dialogue--desktop-with-actions.html" title="Dialogue · Desktop · With Actions" loading="lazy" width="575" height="356" style="width:575px;height:356px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Layout desktop con footer de paginación. 575×356px.</p>
+    
+    
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-dialogue--desktop-with-actions"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-dialogue--desktop-with-actions"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-dialogue--desktop-with-actions.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="https://www.figma.com/design/zKKxNLAAWfsVWgd7psyLpq/Librer%C3%ADa-SOFIA?node-id=2328-14390" target="_blank" rel="noopener"><em class="btn-text">Ver en Librería · 2328:14390</em></a>
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-dialogue--desktop-with-actions" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-dialogue--desktop-with-actions" class="docs-lang-html">&lt;div class=&quot;sofia-dialogue sofia-dialogue--desktop&quot;&gt;
+  &lt;!-- BS_header · Type=desktop-compact --&gt;
+  &lt;header class=&quot;sofia-bs-header sofia-bs-header--desktop-compact&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__handle sofia-bs-header__handle--desktop&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+      &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+        &lt;h2 class=&quot;sofia-bs-header__title sofia-bs-header__title--s&quot;&gt;Title&lt;/h2&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+          &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;!-- Content · BS / Slot --&gt;
+  &lt;div class=&quot;sofia-dialogue__content&quot;&gt;
+    &lt;div class=&quot;sofia-slot&quot;&gt;&lt;p class=&quot;sofia-slot__label&quot;&gt;BS / Slot&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Action Container · Footer=Paginación --&gt;
+  &lt;footer class=&quot;sofia-bs-footer sofia-bs-footer--steps&quot;&gt;
+    &lt;div class=&quot;sofia-bs-footer__actions sofia-bs-footer__actions--steps&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;sofia-bs-footer__steps-btn&quot; aria-label=&quot;Anterior&quot;&gt;
+        &lt;i class=&quot;eva-3-icon-chevron-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;/button&gt;
+      &lt;span class=&quot;sofia-bs-footer__steps-label&quot;&gt;1 de 3&lt;/span&gt;
+      &lt;button type=&quot;button&quot; class=&quot;sofia-bs-footer__steps-btn&quot; aria-label=&quot;Siguiente&quot;&gt;
+        &lt;i class=&quot;eva-3-icon-chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-dialogue--mobile-single" data-search="dialogue · mobile · single cta mobile-single bs-dialogue  bottom sheet · dialogue (layout completo)" data-group="bs-dialogue">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">Dialogue · Mobile · Single CTA</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-dialogue/mobile-single</code><span class="docs-meta">360 × 348px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Mobile</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Footer=Single CTA</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="360" data-h="348">
+    <div class="docs-preview__frame" style="width:360px;height:348px">
+      <iframe src="previews/bs-dialogue--mobile-single.html" title="Dialogue · Mobile · Single CTA" loading="lazy" width="360" height="348" style="width:360px;height:348px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Layout mobile con footer de un solo botón primary. Para sheets de confirmación o acción única. 360×348px.</p>
+    
+    
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-dialogue--mobile-single"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-dialogue--mobile-single"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-dialogue--mobile-single.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-dialogue--mobile-single" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-dialogue--mobile-single" class="docs-lang-html">&lt;div class=&quot;sofia-dialogue sofia-dialogue--mobile&quot;&gt;
+  &lt;header class=&quot;sofia-bs-header sofia-bs-header--mobile-compact&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__handle&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+      &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+        &lt;h2 class=&quot;sofia-bs-header__title eva-3-h5&quot;&gt;Title&lt;/h2&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+          &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;div class=&quot;sofia-dialogue__content&quot;&gt;
+    &lt;div class=&quot;sofia-slot&quot;&gt;&lt;p class=&quot;sofia-slot__label&quot;&gt;BS / Slot&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;footer class=&quot;sofia-bs-footer sofia-bs-footer--single&quot;&gt;
+    &lt;div class=&quot;sofia-bs-footer__actions&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;eva-3-btn -md -primary&quot;&gt;&lt;em class=&quot;btn-text&quot;&gt;Primary button&lt;/em&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-dialogue--desktop-single" data-search="dialogue · desktop · single cta desktop-single bs-dialogue  bottom sheet · dialogue (layout completo)" data-group="bs-dialogue">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">Dialogue · Desktop · Single CTA</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-dialogue/desktop-single</code><span class="docs-meta">575 × 356px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Platform=Desktop</span></span><span class="eva-3-tag docs-chip"><span class="tag-text">Footer=Single CTA</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="575" data-h="356">
+    <div class="docs-preview__frame" style="width:575px;height:356px">
+      <iframe src="previews/bs-dialogue--desktop-single.html" title="Dialogue · Desktop · Single CTA" loading="lazy" width="575" height="356" style="width:575px;height:356px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Layout desktop con footer de un solo botón primary. 575×356px.</p>
+    
+    
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-dialogue--desktop-single"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-dialogue--desktop-single"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-dialogue--desktop-single.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-dialogue--desktop-single" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-dialogue--desktop-single" class="docs-lang-html">&lt;div class=&quot;sofia-dialogue sofia-dialogue--desktop&quot;&gt;
+  &lt;header class=&quot;sofia-bs-header sofia-bs-header--desktop-compact&quot;&gt;
+    &lt;div class=&quot;sofia-bs-header__handle sofia-bs-header__handle--desktop&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;sofia-bs-header__handle-bar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;sofia-bs-header__row&quot;&gt;
+      &lt;div class=&quot;sofia-bs-header__bar&quot;&gt;
+        &lt;h2 class=&quot;sofia-bs-header__title sofia-bs-header__title--s&quot;&gt;Title&lt;/h2&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sofia-bs-header__close-sm&quot; aria-label=&quot;Cerrar&quot;&gt;
+          &lt;img src=&quot;assets/icons/sofia-ic-close-sm.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;div class=&quot;sofia-dialogue__content&quot;&gt;
+    &lt;div class=&quot;sofia-slot&quot;&gt;&lt;p class=&quot;sofia-slot__label&quot;&gt;BS / Slot&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;footer class=&quot;sofia-bs-footer sofia-bs-footer--single&quot;&gt;
+    &lt;div class=&quot;sofia-bs-footer__actions&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;eva-3-btn -md -primary&quot;&gt;&lt;em class=&quot;btn-text&quot;&gt;Primary button&lt;/em&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-dialogue--peek-overlay" data-search="chat-peek-bar · overlay peek-overlay bs-dialogue  bottom sheet · dialogue (layout completo)" data-group="bs-dialogue">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">chat-peek-bar · Overlay</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-dialogue/peek-overlay</code><span class="docs-meta">360 × 36px · stage <code>#ffffff</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Type=overlay</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#ffffff" data-w="360" data-h="36">
+    <div class="docs-preview__frame" style="width:360px;height:36px">
+      <iframe src="previews/bs-dialogue--peek-overlay.html" title="chat-peek-bar · Overlay" loading="lazy" width="360" height="36" style="width:360px;height:36px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Barra emergente que propone al usuario retomar la conversación de SOFIA. Fondo blanco con borde brand-primary (#4300D2). Texto &quot;Tu viaje vale&quot; + íconos de verticales (globe, plane, hotel) + chevron-up. Ancho 357px (360 − 1.5px borde a cada lado), alto 36px.</p>
+    
+    <details class="docs-details"><summary>Notas de implementación</summary><div class="docs-details__body">El borde usa --sofia-bs-cta-primary-bg (#4300D2, brand-primary-3). Los íconos son los mismos SVGs custom de 16px del start_pack. El chevron-up es EVA eva-3-icon-chevron-up.</div></details>
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-dialogue--peek-overlay"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-dialogue--peek-overlay"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-dialogue--peek-overlay.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-dialogue--peek-overlay" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-dialogue--peek-overlay" class="docs-lang-html">&lt;div class=&quot;sofia-peek-bar sofia-peek-bar--overlay&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;
+  &lt;span class=&quot;sofia-peek-bar__label&quot;&gt;Tu viaje vale&lt;/span&gt;
+  &lt;div class=&quot;sofia-peek-bar__icons&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;img src=&quot;assets/icons/sofia-ic-globe.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+    &lt;img src=&quot;assets/icons/sofia-ic-plane.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+    &lt;img src=&quot;assets/icons/sofia-ic-hotel.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+    &lt;i class=&quot;eva-3-icon-chevron-up sofia-peek-bar__chevron&quot;&gt;&lt;/i&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-dialogue.css</code></li></ul></details>
+  </div>
+</article>
+<article class="docs-card docs-variant" id="v-bs-dialogue--peek-inline" data-search="chat-peek-bar · inline peek-inline bs-dialogue  bottom sheet · dialogue (layout completo)" data-group="bs-dialogue">
+  <header class="docs-variant__head">
+    <h4 class="docs-variant__name">chat-peek-bar · Inline</h4>
+    <div class="docs-variant__meta"><code class="docs-variant__id">bs-dialogue/peek-inline</code><span class="docs-meta">360 × 36px · stage <code>#d8d8d8</code></span></div>
+    <div class="docs-chips"><span class="eva-3-tag docs-chip"><span class="tag-text">Type=inline</span></span></div>
+  </header>
+  <div class="docs-preview" style="background:#d8d8d8" data-w="360" data-h="36">
+    <div class="docs-preview__frame" style="width:360px;height:36px">
+      <iframe src="previews/bs-dialogue--peek-inline.html" title="chat-peek-bar · Inline" loading="lazy" width="360" height="36" style="width:360px;height:36px" tabindex="-1"></iframe>
+    </div>
+    <span class="docs-preview__scale" aria-hidden="true"></span>
+  </div>
+  <div class="docs-variant__body">
+    <p class="docs-variant__desc">Variante inline del chat-peek-bar: misma composición pero integrada en el flujo del chat (no flotante). Mismo ancho y alto.</p>
+    
+    
+    
+    <div class="docs-actions">
+      <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy" data-copy-target="#code-v-bs-dialogue--peek-inline"><em class="btn-text">Copiar HTML</em></button>
+      <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-toggle-code" aria-expanded="false" aria-controls="codewrap-v-bs-dialogue--peek-inline"><em class="btn-text">Ver código</em></button>
+      <a class="eva-3-btn-ghost -sm docs-btn" href="previews/bs-dialogue--peek-inline.html" target="_blank" rel="noopener"><em class="btn-text">Abrir preview ↗</em></a>
+      
+    </div>
+    <div class="docs-codewrap" id="codewrap-v-bs-dialogue--peek-inline" hidden>
+      <div class="docs-code"><pre><code id="code-v-bs-dialogue--peek-inline" class="docs-lang-html">&lt;div class=&quot;sofia-peek-bar sofia-peek-bar--inline&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;
+  &lt;span class=&quot;sofia-peek-bar__label&quot;&gt;Tu viaje vale&lt;/span&gt;
+  &lt;div class=&quot;sofia-peek-bar__icons&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;img src=&quot;assets/icons/sofia-ic-globe.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+    &lt;img src=&quot;assets/icons/sofia-ic-plane.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+    &lt;img src=&quot;assets/icons/sofia-ic-hotel.svg&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;&quot;&gt;
+    &lt;i class=&quot;eva-3-icon-chevron-up sofia-peek-bar__chevron&quot;&gt;&lt;/i&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div>
+    </div>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-dialogue.css</code></li></ul></details>
+  </div>
+</article></div>
+</section>
   
 <section class="docs-card docs-motion" id="motion-bottomSheet">
   <h3>Motion · 1. Bottom Sheet · Mobile</h3>
@@ -1973,7 +2636,7 @@ export function closeBottomSheet(sheet, overlay) {
 &lt;/aside&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-side-sheet--ss-tabs" data-search="side_sheet · title + tabs ss-tabs side-sheet 4121:2144 side sheet · desktop" data-group="side-sheet">
@@ -2035,7 +2698,7 @@ export function closeBottomSheet(sheet, overlay) {
 &lt;/aside&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-side-sheet--ss-tags" data-search="side_sheet · title + tags ss-tags side-sheet 4121:2103 side sheet · desktop" data-group="side-sheet">
@@ -2087,7 +2750,7 @@ export function closeBottomSheet(sheet, overlay) {
 &lt;/aside&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-side-sheet--ss-hero-title" data-search="side_sheet · hero + title ss-hero-title side-sheet 4121:2218 side sheet · desktop" data-group="side-sheet">
@@ -2153,7 +2816,7 @@ export function closeBottomSheet(sheet, overlay) {
 &lt;/aside&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-side-sheet--ss-hero-tags" data-search="side_sheet · hero + tags ss-hero-tags side-sheet 4121:2256 side sheet · desktop" data-group="side-sheet">
@@ -2225,7 +2888,7 @@ export function closeBottomSheet(sheet, overlay) {
 &lt;/aside&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant" id="v-side-sheet--ss-hero-tabs" data-search="side_sheet · hero + tabs ss-hero-tabs side-sheet 4121:2295 side sheet · desktop" data-group="side-sheet">
@@ -2307,7 +2970,7 @@ export function closeBottomSheet(sheet, overlay) {
 &lt;/aside&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-hero.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article>
 <article class="docs-card docs-variant docs-card--wide" id="v-side-sheet--ss-context" data-search="side sheet · desktop 1366 con overlay ss-context side-sheet 4119:1825 side sheet · desktop" data-group="side-sheet">
@@ -2354,7 +3017,7 @@ export function closeBottomSheet(sheet, overlay) {
 &lt;/aside&gt;
 </code></pre></div>
     </div>
-    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
+    <details class="docs-details docs-details--css"><summary>CSS requerido</summary><ul class="docs-details__body docs-list"><li><code>EVA (CDN): eva-core.min.css + eva.min.css</code></li><li><code>Rubik (Google Fonts)</code></li><li><code>css/tokens.css</code></li><li><code>css/base.css</code></li><li><code>css/components/bs-chat.css</code></li><li><code>css/components/bs-dialogue.css</code></li><li><code>css/components/bs-footer.css</code></li><li><code>css/components/bs-header.css</code></li><li><code>css/components/bs-sheets.css</code></li><li><code>css/components/side-sheet.css</code></li></ul></details>
   </div>
 </article></div>
 </section>
@@ -4044,7 +4707,7 @@ export function closeModal(modal, overlay) {
   <div class="docs-card"><h3>Secciones del Figma</h3><div class="docs-table-wrap"><table class="docs-table "><thead><tr><th>Título en Figma</th><th>Nombre de la sección</th><th>Link</th></tr></thead><tbody><tr><td>4. Hand-off final</td><td>hand-off bottom sheet</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=49-74" target="_blank" rel="noopener">49:74 ↗</a></td></tr><tr><td>Bottom sheet estructura base (OVERLAY)</td><td>Estructura base</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4048-4430" target="_blank" rel="noopener">4048:4430 ↗</a></td></tr><tr><td>Bottom sheet completa</td><td>Ejemplo in chat</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4055-3634" target="_blank" rel="noopener">4055:3634 ↗</a></td></tr><tr><td>Bottom sheet estructura base (CONTENIDO)</td><td>Estructura base</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4048-4552" target="_blank" rel="noopener">4048:4552 ↗</a></td></tr><tr><td>Ejemplos y tamaños dentro del chat</td><td>Ejemplo in chat</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4055-3912" target="_blank" rel="noopener">4055:3912 ↗</a></td></tr><tr><td>Bottom sheet estructura base (HEADER)</td><td>Estructura base</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=49-79" target="_blank" rel="noopener">49:79 ↗</a></td></tr><tr><td>—</td><td>Desktop_ modal</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4060-4860" target="_blank" rel="noopener">4060:4860 ↗</a></td></tr><tr><td>—</td><td>Desktop_ sidesheet</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4119-1787" target="_blank" rel="noopener">4119:1787 ↗</a></td></tr><tr><td>—</td><td>bottom sheet JS animación</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4123-2471" target="_blank" rel="noopener">4123:2471 ↗</a></td></tr><tr><td>1. Bottom Sheet · Mobile</td><td>Definicion de diseño</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4130-2487" target="_blank" rel="noopener">4130:2487 ↗</a></td></tr><tr><td>—</td><td>Modal JS animación</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4123-2472" target="_blank" rel="noopener">4123:2472 ↗</a></td></tr><tr><td>2. Modal · Desktop</td><td>Modal desktop</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4181-27776" target="_blank" rel="noopener">4181:27776 ↗</a></td></tr><tr><td>—</td><td>Side_sheet JS animación</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4123-2475" target="_blank" rel="noopener">4123:2475 ↗</a></td></tr><tr><td>—</td><td>Side sheet definicion de diseño</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4181-27781" target="_blank" rel="noopener">4181:27781 ↗</a></td></tr><tr><td>—</td><td>Modelo de persistencia</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4181-27790" target="_blank" rel="noopener">4181:27790 ↗</a></td></tr></tbody></table></div>
     <h5>Nodos sueltos en el canvas</h5><div class="docs-table-wrap"><table class="docs-table "><thead><tr><th>Nodo</th><th>Tipo</th><th>Link</th></tr></thead><tbody><tr><td>Qué evitar No usar scale en el sheet: rompería la metáfora de &quot;cajón físico&quot;. No animar el…</td><td>text</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4181-27770" target="_blank" rel="noopener">4181:27770 ↗</a></td></tr><tr><td>Qué evitar No usar scale en el side sheet: destruye la metáfora espacial de panel lateral.…</td><td>text</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4181-27789" target="_blank" rel="noopener">4181:27789 ↗</a></td></tr><tr><td>Modal Mobile</td><td>instance</td><td><a href="https://www.figma.com/design/CATCPGSOAIUuXcPBLDY1dK/SOFIA---Bottom-sheet---modal---site-sheet?node-id=4321-19656" target="_blank" rel="noopener">4321:19656 ↗</a></td></tr></tbody></table></div></div>
   <div class="docs-card docs-files">
-    <div><h3>CSS</h3><ul class="docs-list"><li><a href="css/tokens.css" target="_blank"><code>css/tokens.css</code></a></li><li><a href="css/base.css" target="_blank"><code>css/base.css</code></a></li><li><a href="css/components/bs-chat.css" target="_blank"><code>css/components/bs-chat.css</code></a></li><li><a href="css/components/bs-footer.css" target="_blank"><code>css/components/bs-footer.css</code></a></li><li><a href="css/components/bs-header.css" target="_blank"><code>css/components/bs-header.css</code></a></li><li><a href="css/components/bs-hero.css" target="_blank"><code>css/components/bs-hero.css</code></a></li><li><a href="css/components/bs-sheets.css" target="_blank"><code>css/components/bs-sheets.css</code></a></li><li><a href="css/components/forms-coupon.css" target="_blank"><code>css/components/forms-coupon.css</code></a></li><li><a href="css/components/forms-trip.css" target="_blank"><code>css/components/forms-trip.css</code></a></li><li><a href="css/components/modal.css" target="_blank"><code>css/components/modal.css</code></a></li><li><a href="css/components/side-sheet.css" target="_blank"><code>css/components/side-sheet.css</code></a></li></ul></div>
+    <div><h3>CSS</h3><ul class="docs-list"><li><a href="css/tokens.css" target="_blank"><code>css/tokens.css</code></a></li><li><a href="css/base.css" target="_blank"><code>css/base.css</code></a></li><li><a href="css/components/bs-chat.css" target="_blank"><code>css/components/bs-chat.css</code></a></li><li><a href="css/components/bs-dialogue.css" target="_blank"><code>css/components/bs-dialogue.css</code></a></li><li><a href="css/components/bs-footer.css" target="_blank"><code>css/components/bs-footer.css</code></a></li><li><a href="css/components/bs-header.css" target="_blank"><code>css/components/bs-header.css</code></a></li><li><a href="css/components/bs-hero.css" target="_blank"><code>css/components/bs-hero.css</code></a></li><li><a href="css/components/bs-sheets.css" target="_blank"><code>css/components/bs-sheets.css</code></a></li><li><a href="css/components/forms-coupon.css" target="_blank"><code>css/components/forms-coupon.css</code></a></li><li><a href="css/components/forms-trip.css" target="_blank"><code>css/components/forms-trip.css</code></a></li><li><a href="css/components/modal.css" target="_blank"><code>css/components/modal.css</code></a></li><li><a href="css/components/side-sheet.css" target="_blank"><code>css/components/side-sheet.css</code></a></li></ul></div>
     <div><h3>JS</h3><ul class="docs-list"><li><a href="js/motion/bottom-sheet.js" target="_blank"><code>js/motion/bottom-sheet.js</code></a></li><li><a href="js/motion/modal.js" target="_blank"><code>js/motion/modal.js</code></a></li><li><a href="js/motion/side-sheet.js" target="_blank"><code>js/motion/side-sheet.js</code></a></li><li><a href="js/motion/motion.global.js" target="_blank"><code>js/motion/motion.global.js (generado)</code></a></li></ul></div>
     <div><h3>Docs</h3><ul class="docs-list">
       <li><a href="README.md" target="_blank"><code>README.md</code></a> — cómo abrir, estructura y uso</li>
@@ -4124,6 +4787,90 @@ export function closeModal(modal, overlay) {
       <span class="eva-3-tag" role="button" tabindex="0"><span class="tag-text">Tag text</span><i class="tag-icon eva-3-icon-cross" aria-hidden="true"></i></span>
       <span class="eva-3-tag" role="button" tabindex="0"><span class="tag-text">Tag text</span><i class="tag-icon eva-3-icon-cross" aria-hidden="true"></i></span>
       <span class="eva-3-tag" role="button" tabindex="0"><span class="tag-text">Tag text</span><i class="tag-icon eva-3-icon-cross" aria-hidden="true"></i></span>
+    </div>
+  </div>
+</header>
+</template>
+<template data-snippet="bs-header/header-mobile-compact"><header class="sofia-bs-header sofia-bs-header--mobile-compact">
+  <div class="sofia-bs-header__handle" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+  <div class="sofia-bs-header__row">
+    <div class="sofia-bs-header__bar">
+      <h2 class="sofia-bs-header__title eva-3-h5">Title</h2>
+      <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+        <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+      </button>
+    </div>
+  </div>
+</header>
+</template>
+<template data-snippet="bs-header/header-mobile"><header class="sofia-bs-header sofia-bs-header--mobile">
+  <div class="sofia-bs-header__handle" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+  <div class="sofia-bs-header__row">
+    <div class="sofia-bs-header__bar">
+      <h2 class="sofia-bs-header__title eva-3-h5">Title</h2>
+      <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+        <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+      </button>
+    </div>
+    <div class="sofia-slot sofia-bs-header__content-slot">
+      <p class="sofia-slot__label">BS / Slot</p>
+    </div>
+  </div>
+</header>
+</template>
+<template data-snippet="bs-header/header-desktop-compact"><header class="sofia-bs-header sofia-bs-header--desktop-compact">
+  <div class="sofia-bs-header__handle sofia-bs-header__handle--desktop" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+  <div class="sofia-bs-header__row">
+    <div class="sofia-bs-header__bar">
+      <h2 class="sofia-bs-header__title sofia-bs-header__title--s">Title</h2>
+      <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+        <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+      </button>
+    </div>
+  </div>
+</header>
+</template>
+<template data-snippet="bs-header/header-desktop"><header class="sofia-bs-header sofia-bs-header--desktop">
+  <div class="sofia-bs-header__handle sofia-bs-header__handle--empty" aria-hidden="true"></div>
+  <div class="sofia-bs-header__row">
+    <div class="sofia-bs-header__bar">
+      <h2 class="sofia-bs-header__title sofia-bs-header__title--s">Title</h2>
+      <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+        <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+      </button>
+    </div>
+    <div class="sofia-slot sofia-bs-header__content-slot">
+      <p class="sofia-slot__label">BS / Slot</p>
+    </div>
+  </div>
+</header>
+</template>
+<template data-snippet="bs-header/start-pack-m"><header class="sofia-bs-header sofia-bs-header--start-pack">
+  <div class="sofia-bs-header__handle" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+  <div class="sofia-bs-header__row">
+    <div class="sofia-bs-header__bar">
+      <h2 class="sofia-bs-header__title eva-3-h5">Tu próximo viaje</h2>
+      <div class="sofia-bs-header__pack-icons" aria-hidden="true">
+        <img src="assets/icons/sofia-ic-globe.svg" width="16" height="16" alt="">
+        <img src="assets/icons/sofia-ic-plane.svg" width="16" height="16" alt="">
+        <img src="assets/icons/sofia-ic-hotel.svg" width="16" height="16" alt="">
+        <i class="eva-3-icon-chevron-down sofia-bs-header__pack-chevron"></i>
+      </div>
+    </div>
+  </div>
+</header>
+</template>
+<template data-snippet="bs-header/start-pack-d"><header class="sofia-bs-header sofia-bs-header--start-pack sofia-bs-header--start-pack-d">
+  <div class="sofia-bs-header__handle sofia-bs-header__handle--empty" aria-hidden="true"></div>
+  <div class="sofia-bs-header__row">
+    <div class="sofia-bs-header__bar">
+      <h2 class="sofia-bs-header__title sofia-bs-header__title--s">Tu próximo viaje</h2>
+      <div class="sofia-bs-header__pack-icons" aria-hidden="true">
+        <img src="assets/icons/sofia-ic-globe.svg" width="16" height="16" alt="">
+        <img src="assets/icons/sofia-ic-plane.svg" width="16" height="16" alt="">
+        <img src="assets/icons/sofia-ic-hotel.svg" width="16" height="16" alt="">
+        <i class="eva-3-icon-chevron-down sofia-bs-header__pack-chevron"></i>
+      </div>
     </div>
   </div>
 </header>
@@ -4894,6 +5641,184 @@ export function closeModal(modal, overlay) {
         </div>
       </footer>
     </section>
+  </div>
+</div>
+</template>
+<template data-snippet="bs-dialogue/mobile-simple"><div class="sofia-dialogue sofia-dialogue--mobile">
+  <!-- BS_header · Type=mobile-compact -->
+  <header class="sofia-bs-header sofia-bs-header--mobile-compact">
+    <div class="sofia-bs-header__handle" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+    <div class="sofia-bs-header__row">
+      <div class="sofia-bs-header__bar">
+        <h2 class="sofia-bs-header__title eva-3-h5">Title</h2>
+        <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+          <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Content · BS / Slot -->
+  <div class="sofia-dialogue__content">
+    <div class="sofia-slot"><p class="sofia-slot__label">BS / Slot</p></div>
+  </div>
+  <!-- Action Container · Footer=Dual CTA -->
+  <footer class="sofia-bs-footer sofia-bs-footer--dual">
+    <div class="sofia-bs-footer__actions">
+      <button type="button" class="eva-3-btn-ghost -md -primary"><em class="btn-text">Secondary</em></button>
+      <button type="button" class="eva-3-btn -md -primary"><em class="btn-text">Primary</em></button>
+    </div>
+  </footer>
+</div>
+</template>
+<template data-snippet="bs-dialogue/desktop-simple"><div class="sofia-dialogue sofia-dialogue--desktop">
+  <!-- BS_header · Type=desktop-compact -->
+  <header class="sofia-bs-header sofia-bs-header--desktop-compact">
+    <div class="sofia-bs-header__handle sofia-bs-header__handle--desktop" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+    <div class="sofia-bs-header__row">
+      <div class="sofia-bs-header__bar">
+        <h2 class="sofia-bs-header__title sofia-bs-header__title--s">Title</h2>
+        <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+          <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Content · BS / Slot -->
+  <div class="sofia-dialogue__content">
+    <div class="sofia-slot"><p class="sofia-slot__label">BS / Slot</p></div>
+  </div>
+  <!-- Action Container · Footer=Dual CTA -->
+  <footer class="sofia-bs-footer sofia-bs-footer--dual">
+    <div class="sofia-bs-footer__actions">
+      <button type="button" class="eva-3-btn-ghost -md -primary"><em class="btn-text">Secondary</em></button>
+      <button type="button" class="eva-3-btn -md -primary"><em class="btn-text">Primary</em></button>
+    </div>
+  </footer>
+</div>
+</template>
+<template data-snippet="bs-dialogue/mobile-with-actions"><div class="sofia-dialogue sofia-dialogue--mobile">
+  <!-- BS_header · Type=mobile-compact -->
+  <header class="sofia-bs-header sofia-bs-header--mobile-compact">
+    <div class="sofia-bs-header__handle" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+    <div class="sofia-bs-header__row">
+      <div class="sofia-bs-header__bar">
+        <h2 class="sofia-bs-header__title eva-3-h5">Title</h2>
+        <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+          <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Content · BS / Slot -->
+  <div class="sofia-dialogue__content">
+    <div class="sofia-slot"><p class="sofia-slot__label">BS / Slot</p></div>
+  </div>
+  <!-- Action Container · Footer=Paginación -->
+  <footer class="sofia-bs-footer sofia-bs-footer--steps">
+    <div class="sofia-bs-footer__actions sofia-bs-footer__actions--steps">
+      <button type="button" class="sofia-bs-footer__steps-btn" aria-label="Anterior">
+        <i class="eva-3-icon-chevron-left" aria-hidden="true"></i>
+      </button>
+      <span class="sofia-bs-footer__steps-label">1 de 3</span>
+      <button type="button" class="sofia-bs-footer__steps-btn" aria-label="Siguiente">
+        <i class="eva-3-icon-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+  </footer>
+</div>
+</template>
+<template data-snippet="bs-dialogue/desktop-with-actions"><div class="sofia-dialogue sofia-dialogue--desktop">
+  <!-- BS_header · Type=desktop-compact -->
+  <header class="sofia-bs-header sofia-bs-header--desktop-compact">
+    <div class="sofia-bs-header__handle sofia-bs-header__handle--desktop" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+    <div class="sofia-bs-header__row">
+      <div class="sofia-bs-header__bar">
+        <h2 class="sofia-bs-header__title sofia-bs-header__title--s">Title</h2>
+        <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+          <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+  <!-- Content · BS / Slot -->
+  <div class="sofia-dialogue__content">
+    <div class="sofia-slot"><p class="sofia-slot__label">BS / Slot</p></div>
+  </div>
+  <!-- Action Container · Footer=Paginación -->
+  <footer class="sofia-bs-footer sofia-bs-footer--steps">
+    <div class="sofia-bs-footer__actions sofia-bs-footer__actions--steps">
+      <button type="button" class="sofia-bs-footer__steps-btn" aria-label="Anterior">
+        <i class="eva-3-icon-chevron-left" aria-hidden="true"></i>
+      </button>
+      <span class="sofia-bs-footer__steps-label">1 de 3</span>
+      <button type="button" class="sofia-bs-footer__steps-btn" aria-label="Siguiente">
+        <i class="eva-3-icon-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+  </footer>
+</div>
+</template>
+<template data-snippet="bs-dialogue/mobile-single"><div class="sofia-dialogue sofia-dialogue--mobile">
+  <header class="sofia-bs-header sofia-bs-header--mobile-compact">
+    <div class="sofia-bs-header__handle" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+    <div class="sofia-bs-header__row">
+      <div class="sofia-bs-header__bar">
+        <h2 class="sofia-bs-header__title eva-3-h5">Title</h2>
+        <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+          <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="sofia-dialogue__content">
+    <div class="sofia-slot"><p class="sofia-slot__label">BS / Slot</p></div>
+  </div>
+  <footer class="sofia-bs-footer sofia-bs-footer--single">
+    <div class="sofia-bs-footer__actions">
+      <button type="button" class="eva-3-btn -md -primary"><em class="btn-text">Primary button</em></button>
+    </div>
+  </footer>
+</div>
+</template>
+<template data-snippet="bs-dialogue/desktop-single"><div class="sofia-dialogue sofia-dialogue--desktop">
+  <header class="sofia-bs-header sofia-bs-header--desktop-compact">
+    <div class="sofia-bs-header__handle sofia-bs-header__handle--desktop" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+    <div class="sofia-bs-header__row">
+      <div class="sofia-bs-header__bar">
+        <h2 class="sofia-bs-header__title sofia-bs-header__title--s">Title</h2>
+        <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+          <img src="assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="sofia-dialogue__content">
+    <div class="sofia-slot"><p class="sofia-slot__label">BS / Slot</p></div>
+  </div>
+  <footer class="sofia-bs-footer sofia-bs-footer--single">
+    <div class="sofia-bs-footer__actions">
+      <button type="button" class="eva-3-btn -md -primary"><em class="btn-text">Primary button</em></button>
+    </div>
+  </footer>
+</div>
+</template>
+<template data-snippet="bs-dialogue/peek-overlay"><div class="sofia-peek-bar sofia-peek-bar--overlay" role="status" aria-live="polite">
+  <span class="sofia-peek-bar__label">Tu viaje vale</span>
+  <div class="sofia-peek-bar__icons" aria-hidden="true">
+    <img src="assets/icons/sofia-ic-globe.svg" width="16" height="16" alt="">
+    <img src="assets/icons/sofia-ic-plane.svg" width="16" height="16" alt="">
+    <img src="assets/icons/sofia-ic-hotel.svg" width="16" height="16" alt="">
+    <i class="eva-3-icon-chevron-up sofia-peek-bar__chevron"></i>
+  </div>
+</div>
+</template>
+<template data-snippet="bs-dialogue/peek-inline"><div class="sofia-peek-bar sofia-peek-bar--inline" role="status" aria-live="polite">
+  <span class="sofia-peek-bar__label">Tu viaje vale</span>
+  <div class="sofia-peek-bar__icons" aria-hidden="true">
+    <img src="assets/icons/sofia-ic-globe.svg" width="16" height="16" alt="">
+    <img src="assets/icons/sofia-ic-plane.svg" width="16" height="16" alt="">
+    <img src="assets/icons/sofia-ic-hotel.svg" width="16" height="16" alt="">
+    <i class="eva-3-icon-chevron-up sofia-peek-bar__chevron"></i>
   </div>
 </div>
 </template>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Content · BS / Slot</title>
+<title>chat-peek-bar · Overlay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,13 +20,16 @@
 <link rel="stylesheet" href="../css/components/modal.css">
 <link rel="stylesheet" href="../css/components/side-sheet.css">
 <style>html,body{margin:0;padding:0;background:#ffffff;}
-.sofia-preview-stage{position:relative;width:360px;height:396px;overflow:hidden;}</style>
+.sofia-preview-stage{position:relative;width:360px;height:36px;overflow:hidden;}</style>
 </head><body>
-<div class="sofia-preview-stage" data-group="bs-header" data-variant="content-slot">
-<div class="sofia-bs-content">
-  <!-- BS / Slot: reemplazar el placeholder por el contenido del bottom sheet -->
-  <div class="sofia-slot">
-    <p class="sofia-slot__label">Content / Slot</p>
+<div class="sofia-preview-stage" data-group="bs-dialogue" data-variant="peek-overlay">
+<div class="sofia-peek-bar sofia-peek-bar--overlay" role="status" aria-live="polite">
+  <span class="sofia-peek-bar__label">Tu viaje vale</span>
+  <div class="sofia-peek-bar__icons" aria-hidden="true">
+    <img src="../assets/icons/sofia-ic-globe.svg" width="16" height="16" alt="">
+    <img src="../assets/icons/sofia-ic-plane.svg" width="16" height="16" alt="">
+    <img src="../assets/icons/sofia-ic-hotel.svg" width="16" height="16" alt="">
+    <i class="eva-3-icon-chevron-up sofia-peek-bar__chevron"></i>
   </div>
 </div>
 

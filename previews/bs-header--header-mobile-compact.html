@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Content · BS / Slot</title>
+<title>BS_header · Type=mobile-compact</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,16 +19,21 @@
 <link rel="stylesheet" href="../css/components/forms-trip.css">
 <link rel="stylesheet" href="../css/components/modal.css">
 <link rel="stylesheet" href="../css/components/side-sheet.css">
-<style>html,body{margin:0;padding:0;background:#ffffff;}
-.sofia-preview-stage{position:relative;width:360px;height:396px;overflow:hidden;}</style>
+<style>html,body{margin:0;padding:0;background:#d8d8d8;}
+.sofia-preview-stage{position:relative;width:360px;height:48px;overflow:hidden;}</style>
 </head><body>
-<div class="sofia-preview-stage" data-group="bs-header" data-variant="content-slot">
-<div class="sofia-bs-content">
-  <!-- BS / Slot: reemplazar el placeholder por el contenido del bottom sheet -->
-  <div class="sofia-slot">
-    <p class="sofia-slot__label">Content / Slot</p>
+<div class="sofia-preview-stage" data-group="bs-header" data-variant="header-mobile-compact">
+<header class="sofia-bs-header sofia-bs-header--mobile-compact">
+  <div class="sofia-bs-header__handle" aria-hidden="true"><span class="sofia-bs-header__handle-bar"></span></div>
+  <div class="sofia-bs-header__row">
+    <div class="sofia-bs-header__bar">
+      <h2 class="sofia-bs-header__title eva-3-h5">Title</h2>
+      <button type="button" class="sofia-bs-header__close-sm" aria-label="Cerrar">
+        <img src="../assets/icons/sofia-ic-close-sm.svg" width="16" height="16" alt="">
+      </button>
+    </div>
   </div>
-</div>
+</header>
 
 </div>
 

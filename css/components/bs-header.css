@@ -214,3 +214,105 @@
   text-align: center;
   white-space: nowrap;
 }
+
+/* ── Librería SOFIA · Variantes de la Librería (Type=mobile/desktop/start_pack)
+   Diferencias respecto de las variantes del handoff original:
+   - Handle: color #C0C4CC (Neutral-400) en lugar de #EBE5F5 (brand-primary-100)
+   - Close button: SVG propio 16×16 en lugar de ícono EVA 24px
+   - Desktop: título Title S (20px) en lugar de Subtitle L (16px)
+   - Desktop handle: contenedor sin barra visible (.sofia-bs-header__handle--empty)
+   ──────────────────────────────────────────────────────────────────────────── */
+
+/* Handle de la librería: gris Neutral-400 (#C0C4CC) */
+.sofia-bs-header--mobile-compact .sofia-bs-header__handle-bar,
+.sofia-bs-header--mobile .sofia-bs-header__handle-bar,
+.sofia-bs-header--desktop-compact .sofia-bs-header__handle-bar,
+.sofia-bs-header--start-pack .sofia-bs-header__handle-bar {
+  background: var(--color-neutral-400, #C0C4CC);
+}
+
+/* Handle container vacío (desktop, start_pack_D): 12px reservados, sin barra */
+.sofia-bs-header__handle--empty {
+  height: 12px;
+  background: none;
+}
+
+/* Close button: imagen SVG 16×16 (no ícono EVA) */
+.sofia-bs-header__close-sm {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.sofia-bs-header__close-sm:focus-visible {
+  outline: 2px solid var(--focus-color, var(--sofia-actionable-primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Título Title S (H4 · 20px) — variantes desktop */
+.sofia-bs-header__title--s {
+  font-size: var(--sofia-type-title-s-size, 20px);
+  line-height: var(--sofia-type-title-s-lh, 28px);
+  font-weight: var(--sofia-weight-medium, 500);
+  font-family: var(--sofia-font-primary, 'Rubik', sans-serif);
+  margin: 0;
+  color: var(--sofia-bs-color-title);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── mobile-compact (360×48): handle 12px + row hasta 48px total */
+.sofia-bs-header--mobile-compact .sofia-bs-header__row {
+  padding-bottom: var(--sofia-bs-cta-gap);
+}
+
+/* ── mobile (360×97): handle 12px + row (titulo) + content-slot */
+.sofia-bs-header--mobile .sofia-bs-header__row {
+  padding-bottom: var(--sofia-bs-cta-gap);
+  gap: 8px;
+}
+
+/* ── desktop-compact (575×56): handle 12px + row hasta 56px total */
+.sofia-bs-header--desktop-compact .sofia-bs-header__row {
+  padding-bottom: var(--sofia-bs-cta-gap);
+}
+
+/* ── desktop (575×105): handle vacío 12px + row + content-slot */
+.sofia-bs-header--desktop .sofia-bs-header__row {
+  padding-bottom: var(--sofia-bs-cta-gap);
+  gap: 8px;
+}
+
+/* Content slot dentro del header (mobile y desktop con contenido) */
+.sofia-bs-header__content-slot.sofia-slot {
+  height: 37px;
+  min-height: 37px;
+}
+
+/* ── start_pack: fila de íconos de verticales */
+.sofia-bs-header__pack-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.sofia-bs-header__pack-chevron {
+  font-size: 16px;
+  line-height: 16px;
+  width: 16px;
+  height: 16px;
+  color: var(--sofia-bs-color-title, #323439);
+}
+/* start_pack_M: handle gris + titulo Subtitle L (eva-3-h5) */
+.sofia-bs-header--start-pack .sofia-bs-header__row { padding-bottom: var(--sofia-bs-cta-gap); }
+/* start_pack_D: handle vacío + titulo Title S */
+.sofia-bs-header--start-pack-d .sofia-bs-header__handle { height: 12px; background: none; }
+.sofia-bs-header--start-pack-d .sofia-bs-header__handle span { display: none; }

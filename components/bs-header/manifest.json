@@ -68,6 +68,108 @@
       "scripts": []
     },
     {
+      "id": "header-mobile-compact",
+      "name": "BS_header · Type=mobile-compact",
+      "figmaNodeId": null,
+      "libraryNodeIds": ["2071:13062"],
+      "file": "header-mobile-compact.html",
+      "width": 360,
+      "height": 48,
+      "stage": "#d8d8d8",
+      "props": {
+        "Platform": "Mobile",
+        "Type": "mobile-compact"
+      },
+      "description": "Header compacto mobile de la Librería SOFIA: handle gris (Neutral-400) + fila título + cerrar SVG 16×16. Sin área de contenido debajo. Alto 48px. Usarlo en sheets que no necesitan preview de contenido en el header.",
+      "notes": "El color del handle en la Librería SOFIA es #C0C4CC (Neutral-400), distinto al #EBE5F5 de las variantes del handoff original. El botón cerrar usa el SVG propio de SOFIA (16×16, fill #323439), no el ícono EVA de 24px.",
+      "scripts": []
+    },
+    {
+      "id": "header-mobile",
+      "name": "BS_header · Type=mobile",
+      "figmaNodeId": null,
+      "libraryNodeIds": ["2048:7995"],
+      "file": "header-mobile.html",
+      "width": 360,
+      "height": 97,
+      "stage": "#d8d8d8",
+      "props": {
+        "Platform": "Mobile",
+        "Type": "mobile"
+      },
+      "description": "Header mobile con handle + título + cerrar + área de contenido (BS/Slot) debajo. El slot es el placeholder para contenido propio del header (buscador, resumen, selector). Alto 97px.",
+      "notes": "Mismas diferencias de handle color que en mobile-compact. El slot tiene 37px de alto dentro del header.",
+      "scripts": []
+    },
+    {
+      "id": "header-desktop-compact",
+      "name": "BS_header · Type=desktop-compact",
+      "figmaNodeId": null,
+      "libraryNodeIds": ["2061:13011"],
+      "file": "header-desktop-compact.html",
+      "width": 575,
+      "height": 56,
+      "stage": "#d8d8d8",
+      "props": {
+        "Platform": "Desktop",
+        "Type": "desktop-compact"
+      },
+      "description": "Header compacto desktop (side sheet / panel lateral): handle gris + título Title S (20px) + cerrar SVG 16×16. Sin área de contenido. Alto 56px · Ancho 575px.",
+      "notes": "El título usa Title S (H4 · Rubik Medium 20/28), más grande que en mobile (Subtitle L 16px). La clase CSS .sofia-bs-header__title--s aplica ese size. El ancho de 575px es el del panel desktop en la Librería SOFIA.",
+      "scripts": []
+    },
+    {
+      "id": "header-desktop",
+      "name": "BS_header · Type=desktop",
+      "figmaNodeId": null,
+      "libraryNodeIds": ["2061:12974"],
+      "file": "header-desktop.html",
+      "width": 575,
+      "height": 105,
+      "stage": "#d8d8d8",
+      "props": {
+        "Platform": "Desktop",
+        "Type": "desktop"
+      },
+      "description": "Header desktop con título Title S + cerrar + BS/Slot de contenido. El contenedor del handle tiene 12px de alto pero está vacío (sin barra visible). Alto 105px · Ancho 575px.",
+      "notes": "El handle container existe (reserva 12px de espacio) pero no tiene barra visible en Figma. Se implementa con .sofia-bs-header__handle--empty (sin span interior). El slot tiene ~37px de alto.",
+      "scripts": []
+    },
+    {
+      "id": "start-pack-m",
+      "name": "BS_header · Type=start_pack_M",
+      "figmaNodeId": null,
+      "libraryNodeIds": ["2086:13513"],
+      "file": "start-pack-m.html",
+      "width": 360,
+      "height": 48,
+      "stage": "#d8d8d8",
+      "props": {
+        "Platform": "Mobile",
+        "Type": "start_pack_M"
+      },
+      "description": "Header mobile de inicio de viaje: handle + \"Tu próximo viaje\" + fila de íconos (globe, plane, hotel) + chevron-down. Muestra los 3 verticales de SOFIA con íconos custom de 16×16. Alto 48px.",
+      "notes": "Los íconos globe, plane y hotel son SVGs propios de SOFIA DS (16×16, fill #72777F = Neutral-500). No existen en EVA. El chevron-down sí es EVA (eva-3-icon-chevron-down). El handle tiene el color gris de la librería (#C0C4CC).",
+      "scripts": []
+    },
+    {
+      "id": "start-pack-d",
+      "name": "BS_header · Type=start_pack_D",
+      "figmaNodeId": null,
+      "libraryNodeIds": ["2086:13553"],
+      "file": "start-pack-d.html",
+      "width": 575,
+      "height": 56,
+      "stage": "#d8d8d8",
+      "props": {
+        "Platform": "Desktop",
+        "Type": "start_pack_D"
+      },
+      "description": "Versión desktop del header de inicio de viaje: título Title S + íconos de verticales + chevron. Sin barra de handle visible (mismo patrón que header-desktop). Alto 56px · Ancho 575px.",
+      "notes": "Mismo comportamiento que start_pack_M pero con tipografía Title S y sin handle bar visible (handle container vacío).",
+      "scripts": []
+    },
+    {
       "id": "overlay",
       "name": "Overlay",
       "figmaNodeId": "4028:3424",
