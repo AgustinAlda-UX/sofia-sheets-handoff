@@ -378,19 +378,11 @@ def render_typography_samples(blocks):
 # 4. index.html
 # ──────────────────────────────────────────────────────────────────────────────
 SECTIONS = [
-    ('inicio', 'Inicio'),
-    ('cuando-usar', 'Cuándo usar cada superficie'),
-    ('fundamentos', 'Fundamentos'),
-    ('grilla', 'Grilla del chat'),
     ('bottom-sheet', 'Bottom Sheet'),
-    ('side-sheet', 'Side Sheet'),
     ('modal', 'Modal'),
-    ('formularios', 'Formularios y widgets'),
-    ('persistencia', 'Modelo de persistencia'),
-    ('spec', 'Spec (MD) vs Figma'),
-    ('recursos', 'Recursos'),
+    ('side-sheet', 'Side Sheet'),
 ]
-CATEGORY_SECTION = {'bottom-sheet': 'bottom-sheet', 'side-sheet': 'side-sheet', 'modal': 'modal', 'forms': 'formularios'}
+CATEGORY_SECTION = {'bottom-sheet': 'bottom-sheet', 'side-sheet': 'side-sheet', 'modal': 'modal'}
 
 
 class Site:
@@ -587,97 +579,37 @@ class Site:
     # sections ------------------------------------------------------------------
     def s_inicio(self):
         c = self.c
-        contract = read(os.path.join(ROOT, 'CONTRACT.md'))
-        msec = re.search(r'## Nombres de clases.*?\n(\|.*?)(?:\n\n|\n(?=[^|]))(.*?)(?=\n## )', contract, re.S)
-        conv_html = ''
-        if msec:
-            tlines = [l for l in msec.group(1).splitlines() if l.startswith('|')]
-            hdr = [x.strip() for x in tlines[0].strip('|').split('|')]
-            rows = [[inline_md(x.strip()) for x in l.strip('|').split('|')] for l in tlines[2:]]
-            conv_html = table([esc(h) for h in hdr], rows)
-            extra = msec.group(2).strip()
-            if extra:
-                conv_html += ''.join(f'<p>{inline_md(p)}</p>' for p in extra.split('\n') if p.strip())
-        install = f'''<!-- 1. EVA (Despegar design system) — siempre primero -->
-<link rel="stylesheet" href="{EVA_CORE}">
-<link rel="stylesheet" href="{EVA_CSS}">
-<!-- 2. Fuente Rubik -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="{RUBIK}" rel="stylesheet">
+        install = f'''<!-- 1. EVA -->
+<link rel=”stylesheet” href=”{EVA_CORE}”>
+<link rel=”stylesheet” href=”{EVA_CSS}”>
+<!-- 2. Rubik -->
+<link href=”{RUBIK}” rel=”stylesheet”>
 <!-- 3. Tokens + base SOFIA -->
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<!-- 4. CSS del componente que uses (ver "CSS requerido" en cada card) -->
-<link rel="stylesheet" href="css/components/bs-header.css">'''
-        motion_code = ''
-        for f, names in [('bottom-sheet.js', 'openBottomSheet, closeBottomSheet'),
-                         ('modal.js', 'openModal, closeModal'),
-                         ('side-sheet.js', 'openSideSheet, closeSideSheet')]:
-            motion_code += f"import {{ {names} }} from './js/motion/{f}';\n{motion_usage(f)}\n\n"
-        motion_code = motion_code.rstrip() + '\n'
+<link rel=”stylesheet” href=”css/tokens.css”>
+<link rel=”stylesheet” href=”css/base.css”>
+<!-- 4. CSS del componente (ver “CSS requerido” en cada card) -->
+<link rel=”stylesheet” href=”css/components/bs-header.css”>'''
         n_var = sum(len(g.get('variants', [])) for g in self.groups)
         return f'''
-<section class="docs-section" id="inicio">
-  <div class="docs-hero docs-card">
-    <p class="docs-eyebrow">Handoff para devs</p>
+<section class=”docs-section docs-section--hero” id=”inicio”>
+  <div class=”docs-hero docs-card”>
+    <p class=”docs-eyebrow”>Handoff para devs · SOFIA</p>
     <h1>SOFIA Librería Devs</h1>
-    <p class="docs-lead">Todas las instancias ya diseñadas en Figma de <strong>bottom sheet</strong> (mobile), <strong>side sheet</strong> (desktop),
-    <strong>modales</strong> (desktop + mobile) y <strong>formularios / widgets</strong> en bottom sheet de SOFIA, el asistente conversacional de Despegar,
-    implementadas en HTML + CSS sobre EVA. No hay nada nuevo: cada pieza sale del Figma o del MD de referencia.</p>
-    <ul class="docs-stats">
+    <p class=”docs-lead”>Componentes de <strong>Bottom Sheet</strong>, <strong>Modal</strong> y <strong>Side Sheet</strong> de SOFIA — el asistente conversacional de Despegar — implementados en HTML + CSS sobre EVA.</p>
+    <ul class=”docs-stats”>
       <li><strong>{n_var}</strong> variantes</li>
       <li><strong>{len(self.groups)}</strong> grupos</li>
-      <li><strong>3</strong> animaciones (JS del handoff)</li>
-      <li><strong>{len(c["persistence"]["cases"])}</strong> casos de persistencia</li>
+      <li><strong>3</strong> animaciones JS</li>
     </ul>
-    <div class="docs-actions">
-      <a class="eva-3-btn -md -primary docs-btn" href="{esc(c["figma"]["pageUrl"])}" target="_blank" rel="noopener"><em class="btn-text">Abrir el Figma ↗</em></a>
-      <a class="eva-3-btn-ghost -md docs-btn" href="#bottom-sheet"><em class="btn-text">Ir a los componentes</em></a>
+    <div class=”docs-actions”>
+      <a class=”eva-3-btn -md -primary docs-btn” href=”{esc(c['figma']['pageUrl'])}” target=”_blank” rel=”noopener”><em class=”btn-text”>Figma ↗</em></a>
+      <a class=”eva-3-btn-ghost -md docs-btn” href=”#bottom-sheet”><em class=”btn-text”>Ver componentes</em></a>
     </div>
   </div>
-
-  <div class="docs-card">
-    <h2>Fuentes</h2>
-    <ul class="docs-list">
-      <li><strong>Figma:</strong> <a href="{esc(c["figma"]["pageUrl"])}" target="_blank" rel="noopener">{esc(c["figma"]["fileName"])}</a> · página <code>{esc(c["figma"]["pageId"])}</code> “{esc(c["figma"]["pageName"])}” (fileKey <code>{esc(c["figma"]["fileKey"])}</code>).</li>
-      <li><strong>MD de referencia:</strong> <a href="docs/bottomsheet-dialogue-referencia.md" target="_blank">docs/bottomsheet-dialogue-referencia.md</a> (“{esc(c["spec"]["title"])}”). Las diferencias con Figma están en <a href="#spec">Spec</a>.</li>
-      <li><strong>Contenido documental:</strong> <code>docs/content.json</code> (textos literales extraídos del Figma) y el código de animación literal en <code>js/motion/*.js</code>.</li>
-    </ul>
-  </div>
-
-  <div class="docs-card">
-    <h2>Cómo usarlo</h2>
-    <h3>1 · Instalación</h3>
-    <p>Cargá EVA desde el CDN, la fuente Rubik, los tokens y la base SOFIA, y después el CSS del grupo que uses. Cada card indica su <em>CSS requerido</em> exacto.</p>
-    {code_block(install, 'html', True, 'HTML · <head>')}
-    <h3>2 · Markup</h3>
-    <p>Copiá el snippet de la card (“Copiar HTML”). Es HTML puro, sin estilos inline ni scripts. Los textos dentro del componente quedan como en Figma (“Title”, “Primary button”, “Content / Slot”…): reemplazalos por el contenido real.</p>
-    <h3>3 · Motion</h3>
-    <p>Las animaciones son los ES modules literales del handoff. Importalos y usalos tal cual indica el comentario <code>Uso:</code> de cada archivo:</p>
-    {code_block(motion_code, 'js', True, 'JS · ES modules')}
-    <p class="docs-muted"><code>js/motion/motion.global.js</code> es una copia generada (expone <code>window.SofiaMotion</code>) que usa este sitio para los playgrounds. En producto usá los módulos originales.</p>
-    <h3>4 · Convenciones de clases</h3>
-    <p>BEM con prefijo <code>sofia-</code> (tabla del CONTRACT). Las clases <code>eva-3-*</code> son de EVA y no se redefinen.</p>
-    {conv_html}
-    <h3>5 · Cómo regenerar</h3>
-    {code_block("python3 tools/build.py            # previews + motion.global.js + index.html" + chr(10) + "python3 tools/build.py --only modal  # solo las previews de un grupo", 'sh', True, 'Terminal (desde sofia-sheets-handoff/)')}
-  </div>
-
-  <div class="docs-card">
-    <h2>Leyenda</h2>
-    <dl class="docs-legend">
-      <dt><span class="eva-3-tag docs-chip"><span class="tag-text">EVA prevalece</span></span></dt>
-      <dd>Cuando el nodo de Figma es una instancia EVA (botones, tags, tabs, íconos, inputs) se usa la clase EVA real. Si EVA y Figma difieren de forma visible, <strong>gana EVA</strong> y la diferencia queda anotada en las notas de la variante.</dd>
-      <dt>Notas de implementación</dt>
-      <dd>Desplegable en cada card: decisiones tomadas al traducir Figma a código (layout, ajustes mínimos sobre EVA, diferencias EVA vs Figma, tokens usados). Leelas antes de integrar.</dd>
-      <dt>Chips <span class="eva-3-tag docs-chip"><span class="tag-text">Prop=Valor</span></span></dt>
-      <dd>Propiedades de la variante tal como figuran en el componente de Figma.</dd>
-      <dt>Preview</dt>
-      <dd>Se muestra al tamaño exacto del nodo de Figma (ancho × alto) y se achica para entrar en la card (nunca se agranda). “Abrir preview ↗” la abre a 1x.</dd>
-      <dt>Pautas en Figma</dt>
-      <dd>Notas que el diseño dejó junto al componente, transcriptas literal.</dd>
-    </dl>
+  <div class=”docs-card”>
+    <h2>Instalación</h2>
+    <p class=”docs-muted”>Cargá EVA, Rubik, los tokens SOFIA y el CSS del componente que uses. Cada card muestra su <em>CSS requerido</em> exacto.</p>
+    {code_block(install, 'html', True, 'HTML · &lt;head&gt;')}
   </div>
 </section>'''
 
@@ -1031,19 +963,96 @@ class Site:
   </div>
 </section>'''
 
-    def surface_section(self, sid, title, lead_html, category, motion=None, playground=None):
+    def inline_playground(self, category):
+        cat_groups = self.groups_of(category)
+        variants = [(g, v) for g in cat_groups for v in g.get('variants', []) if v['_snippet'] is not None]
+        if not variants:
+            return '<p class="docs-muted">Sin variantes disponibles.</p>'
+        pg_id = f'pg-{category}'
+        first_g, first_v = variants[0]
+        picks = ''
+        for g, v in variants:
+            group = g['_group']
+            vid = v['id']
+            name = v.get('name', vid)
+            short = name.split('·')[-1].strip() if '·' in name else name
+            src = f'previews/{group}--{vid}.html'
+            active = ' is-active' if (g is first_g and v is first_v) else ''
+            picks += (f'<button class="docs-pg__pick{active}" '
+                      f'data-group="{esc(group)}" data-id="{esc(vid)}" '
+                      f'data-src="{esc(src)}" data-w="{v["width"]}" data-h="{v["height"]}" '
+                      f'data-stage="{esc(v.get("stage","#d8d8d8"))}">{esc(short)}</button>')
+        first_src = f'previews/{first_g["_group"]}--{first_v["id"]}.html'
+        first_stage = first_v.get('stage', '#d8d8d8')
+        first_w, first_h = first_v['width'], first_v['height']
+        return f'''<div class="docs-pg" id="{esc(pg_id)}">
+  <div class="docs-pg__bar">
+    <div class="docs-pg__picks" role="group" aria-label="Seleccionar variante">{picks}</div>
+    <a class="eva-3-btn-ghost -sm docs-btn docs-pg__open" href="{esc(first_src)}" target="_blank" rel="noopener"><em class="btn-text">Abrir ↗</em></a>
+  </div>
+  <div class="docs-pg__stage" id="{esc(pg_id)}-stage" style="background:{esc(first_stage)}">
+    <iframe class="docs-pg__frame" id="{esc(pg_id)}-frame" src="{esc(first_src)}"
+            width="{first_w}" height="{first_h}"
+            style="width:{first_w}px;height:{first_h}px"
+            title="Preview {esc(category)}"></iframe>
+  </div>
+  <div class="docs-pg__footer">
+    <button type="button" class="eva-3-btn -sm -primary docs-btn docs-copy docs-pg__copy" data-copy-target="#{esc(pg_id)}-code"><em class="btn-text">Copiar HTML</em></button>
+    <button type="button" class="eva-3-btn-ghost -sm docs-btn docs-pg__toggle" aria-expanded="false" aria-controls="{esc(pg_id)}-codewrap"><em class="btn-text">Ver código</em></button>
+    <a class="eva-3-btn-ghost -sm docs-btn" href="{esc(first_src)}" target="_blank" rel="noopener"><em class="btn-text">↗ 1:1</em></a>
+  </div>
+  <div id="{esc(pg_id)}-codewrap" class="docs-pg__codewrap" hidden>
+    <pre><code id="{esc(pg_id)}-code"></code></pre>
+  </div>
+</div>
+<script>
+(function(){{
+  var pgEl = document.getElementById('{esc(pg_id)}');
+  if (!pgEl) return;
+  var frame = document.getElementById('{esc(pg_id)}-frame');
+  var stage = document.getElementById('{esc(pg_id)}-stage');
+  var codeEl = document.getElementById('{esc(pg_id)}-code');
+  var openLink = pgEl.querySelector('.docs-pg__open');
+  var codeWrap = document.getElementById('{esc(pg_id)}-codewrap');
+  var toggleBtn = pgEl.querySelector('.docs-pg__toggle');
+  function activate(btn) {{
+    pgEl.querySelectorAll('.docs-pg__pick').forEach(function(b){{ b.classList.remove('is-active'); }});
+    btn.classList.add('is-active');
+    frame.src = btn.dataset.src;
+    frame.style.width = btn.dataset.w + 'px';
+    frame.style.height = btn.dataset.h + 'px';
+    if (stage) stage.style.background = btn.dataset.stage;
+    if (openLink) openLink.href = btn.dataset.src;
+    var tmpl = document.querySelector('[data-snippet="' + btn.dataset.group + '/' + btn.dataset.id + '"]');
+    if (codeEl) codeEl.textContent = tmpl ? tmpl.innerHTML.trim() : '';
+  }}
+  pgEl.querySelectorAll('.docs-pg__pick').forEach(function(btn) {{
+    btn.addEventListener('click', function() {{ activate(btn); }});
+  }});
+  if (toggleBtn && codeWrap) {{
+    toggleBtn.addEventListener('click', function() {{
+      var open = !codeWrap.hidden;
+      codeWrap.hidden = open;
+      toggleBtn.setAttribute('aria-expanded', String(!open));
+      toggleBtn.querySelector('.btn-text').textContent = open ? 'Ver código' : 'Ocultar código';
+    }});
+  }}
+  var first = pgEl.querySelector('.docs-pg__pick');
+  if (first) activate(first);
+}})();
+</script>'''
+
+    def surface_section(self, sid, title, lead_html, category, motion=None):
         groups = ''.join(self.group_block(g) for g in self.groups_of(category))
         mot = self.motion_block(*motion) if motion else ''
-        pg = ''
-        if playground:
-            pg = f'<div class="docs-card"><h3>Playground</h3>{self.playground(playground)}</div>'
+        pg = f'<div class="docs-card docs-pg-card"><h3>Playground · {esc(title)}</h3>{self.inline_playground(category)}</div>'
         return f'''
 <section class="docs-section" id="{sid}">
   <h2 class="docs-section__title">{esc(title)}</h2>
   <div class="docs-card docs-intro">{lead_html}</div>
+  {pg}
   {groups}
   {mot}
-  {pg}
 </section>'''
 
     def def_lead(self, surface, extra=''):
@@ -1055,7 +1064,7 @@ class Site:
         out = f'<h5>Definición (Figma · “{esc(d["title"])}”)</h5><p>{esc(definition) if definition else "—"}</p>'
         if uses:
             out += f'<h5>Cuándo / para qué</h5><ul class="docs-list">{uses}</ul>'
-        out += f'<p class="docs-meta">Plataforma: {esc(d.get("platform", "—"))} · <a href="#cuando-usar">Ver todas las definiciones</a></p>'
+        out += f'<p class="docs-meta">Plataforma: {esc(d.get("platform", "—"))}</p>'
         return out + extra
 
     def s_persistencia(self):
@@ -1222,25 +1231,15 @@ class Site:
     def render(self):
         c = self.c
         comp_css = sorted(glob.glob(os.path.join(ROOT, 'css/components/*.css')))
-        css_links = '\n'.join(f'<link rel="stylesheet" href="css/components/{os.path.basename(f)}">' for f in comp_css)
-        pg_css = '<link rel="stylesheet" href="css/playground.css">' if os.path.exists(os.path.join(ROOT, 'css/playground.css')) else ''
-        pg_js = '<script src="js/playground.js"></script>' if os.path.exists(os.path.join(ROOT, 'js/playground.js')) else ''
+        css_links = '\n'.join(f'<link rel=”stylesheet” href=”css/components/{os.path.basename(f)}”>' for f in comp_css)
         bs_lead = self.def_lead('bottomSheet')
         ss_lead = self.def_lead('sideSheet')
         modal_lead = self.def_lead('modal')
-        forms_lead = self.def_lead('dialog', '<p class="docs-muted">Las instancias “bottomsheet pack” (viaje) y “bottomsheet form” (cupón / destino) salen del <a href="#persistencia">Modelo de persistencia</a>: cada una aparece en uno o más pasos del flujo.</p>')
         body = ''.join([
             self.s_inicio(),
-            self.s_cuando_usar(),
-            self.s_fundamentos(),
-            self.s_grilla(),
-            self.surface_section('bottom-sheet', 'Bottom Sheet', bs_lead, 'bottom-sheet', ('bottomSheet', 'bottom-sheet.js'), 'bottom-sheet'),
-            self.surface_section('side-sheet', 'Side Sheet', ss_lead, 'side-sheet', ('sideSheet', 'side-sheet.js'), 'side-sheet'),
-            self.surface_section('modal', 'Modal', modal_lead, 'modal', ('modal', 'modal.js'), 'modal'),
-            self.surface_section('formularios', 'Formularios y widgets', forms_lead, 'forms', None, 'forms'),
-            self.s_persistencia(),
-            self.s_spec(),
-            self.s_recursos(),
+            self.surface_section('bottom-sheet', 'Bottom Sheet', bs_lead, 'bottom-sheet', ('bottomSheet', 'bottom-sheet.js')),
+            self.surface_section('modal', 'Modal', modal_lead, 'modal', ('modal', 'modal.js')),
+            self.surface_section('side-sheet', 'Side Sheet', ss_lead, 'side-sheet', ('sideSheet', 'side-sheet.js')),
         ])
         n_var = sum(len(g.get('variants', [])) for g in self.groups)
         return f'''<!doctype html>
@@ -1259,7 +1258,6 @@ class Site:
 <link rel="stylesheet" href="css/base.css">
 {css_links}
 <link rel="stylesheet" href="css/docs.css">
-{pg_css}
 </head>
 <body class="docs-body">
 <a class="docs-skip" href="#docs-main">Saltar al contenido</a>
@@ -1293,7 +1291,6 @@ class Site:
 {self.templates()}
 <script src="js/motion/motion.global.js"></script>
 <script src="js/docs.js"></script>
-{pg_js}
 </body>
 </html>
 '''
@@ -1301,9 +1298,11 @@ class Site:
 
 def build_index(groups):
     content = json.loads(read(os.path.join(ROOT, 'docs/content.json')))
-    site = Site(groups, content)
+    allowed = {'bottom-sheet', 'modal', 'side-sheet'}
+    filtered = [g for g in groups if g.get('category') in allowed]
+    site = Site(filtered, content)
     write(os.path.join(ROOT, 'index.html'), site.render())
-    return sum(len(g.get('variants', [])) for g in groups)
+    return sum(len(g.get('variants', [])) for g in filtered)
 
 
 def main():
