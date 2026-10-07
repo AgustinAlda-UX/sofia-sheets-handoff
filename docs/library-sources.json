@@ -7,15 +7,70 @@
     "templates": "La página Templates va a una sección 'Ejemplos' (pantallas de referencia), no al catálogo."
   },
   "sources": [
-    { "nodeId": "2040:22",    "name": "📋 Bottom Sheet",       "status": "en curso", "order": 1 },
-    { "nodeId": "1218:4862",  "name": "💬 Conversación",       "status": "pendiente" },
-    { "nodeId": "1029:1865",  "name": "🐚 Sofia Shell",        "status": "pendiente" },
-    { "nodeId": "2101:22",    "name": "🎛 Form trigger",       "status": "pendiente" },
-    { "nodeId": "2245:7829",  "name": "😶 Cluster Headers",    "status": "pendiente" },
-    { "nodeId": "1054:2633",  "name": "🧳 Cards de producto",  "status": "pendiente" },
-    { "nodeId": "2110:22993", "name": "❤️ E2E",               "status": "pendiente" },
-    { "nodeId": "22:5578",    "name": "♻️ Posventa",           "status": "pendiente" },
-    { "nodeId": "2248:11225", "name": "📷 Tool de fotos",      "status": "pendiente" },
-    { "nodeId": "1218:4865",  "name": "🖥️ Templates",          "status": "pendiente", "target": "ejemplos" }
+    {
+      "nodeId": "2040:22",
+      "name": "📋 Bottom Sheet",
+      "status": "en curso",
+      "order": 1
+    },
+    {
+      "nodeId": "1218:4862",
+      "name": "💬 Conversación",
+      "status": "pendiente"
+    },
+    {
+      "nodeId": "1029:1865",
+      "name": "🐚 Sofia Shell",
+      "status": "pendiente"
+    },
+    {
+      "nodeId": "2101:22",
+      "name": "🎛 Form trigger",
+      "status": "pendiente"
+    },
+    {
+      "nodeId": "2245:7829",
+      "name": "😶 Cluster Headers",
+      "status": "pendiente"
+    },
+    {
+      "nodeId": "1054:2633",
+      "name": "🧳 Cards de producto",
+      "status": "pendiente"
+    },
+    {
+      "nodeId": "2110:22993",
+      "name": "❤️ E2E",
+      "status": "pendiente"
+    },
+    {
+      "nodeId": "22:5578",
+      "name": "♻️ Posventa",
+      "status": "pendiente"
+    },
+    {
+      "nodeId": "2248:11225",
+      "name": "📷 Tool de fotos",
+      "status": "pendiente"
+    },
+    {
+      "nodeId": "1218:4865",
+      "name": "🖥️ Templates",
+      "status": "pendiente",
+      "target": "ejemplos"
+    }
+  ],
+  "excluded": [
+    {
+      "group": "bs-dialogue",
+      "reason": "Eliminado a pedido del usuario (2026-10-07): la sección Dialogue no va en el sitio.",
+      "libraryNodeIds": [
+        "2328:14390",
+        "2174:138",
+        "2328:14367",
+        "2229:210",
+        "2328:14390"
+      ]
+    }
   ]
 }

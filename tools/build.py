@@ -1062,6 +1062,8 @@ class Site:
         definition = d.get('definition')
         uses = ''.join(f'<li>{esc(u["text"])}</li>' for u in d.get('useCases', []))
         out = f'<h5>Definición (Figma · “{esc(d["title"])}”)</h5><p>{esc(definition) if definition else "—"}</p>'
+        if d.get('definitionPlatformNote'):
+            out += f'<p><strong>{esc(d["definitionPlatformNote"])}</strong></p>'
         if uses:
             out += f'<h5>Cuándo / para qué</h5><ul class="docs-list">{uses}</ul>'
         out += f'<p class="docs-meta">Plataforma: {esc(d.get("platform", "—"))}</p>'

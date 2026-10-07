@@ -832,7 +832,7 @@
       "titleNodeId": "4321:17798",
       "platform": "Desktop",
       "platformSource": "No figura en la tabla del canvas; tomado de 4181:27785 ('Se usa en desktop') y del código 4123:2476 ('Side Sheet · Desktop').",
-      "definition": null,
+      "definition": "Es una superficie que emerge desde el borde inferior de la pantalla y se apoya sobre el contenido principal, sin reemplazarlo. Convive con la vista de origen en lugar de navegar a una nueva ruta: el contexto queda visible (o al menos implícito) detrás de un scrim, y la superficie se puede descartar deslizando hacia abajo, tocando el fondo o cerrando con la X.",
       "definitionNodeId": null,
       "useCases": [
         {
@@ -851,7 +851,9 @@
           "y": -6153.0,
           "position": "Fila 2 de la tabla (y=-6153), texto único ubicado entre las columnas 'botonsheet' (x=927) y 'sidesheet' (x=1199); abarca x=1035–1310."
         }
-      ]
+      ],
+      "definitionPlatformNote": "Solo funciona para desktop.",
+      "definitionSource": "Pedido del usuario (2026-10-07): misma definición que el bottom sheet (4322:27707), aclarando que el side sheet solo funciona para desktop."
     },
     {
       "surface": "dialog",
